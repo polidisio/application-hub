@@ -61,7 +61,7 @@ Desde el historial puedes acceder a:
     ],
     category: "ios",
     icon: "🍹",
-    iconImage: "/icons/DrinkTrack.png",
+    iconImage: "/icons/DrinkTrack.jpg",
   },
   {
     id: "magicmousebattery",
