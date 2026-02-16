@@ -3,6 +3,7 @@
 import { App, categoryLabels } from "@/data/apps";
 import { useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface AppModalProps {
   app: App;
@@ -33,7 +34,7 @@ export default function AppModal({ app, onClose }: AppModalProps) {
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+          className="absolute top-4 right-4 p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors z-10"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +54,18 @@ export default function AppModal({ app, onClose }: AppModalProps) {
 
         <div className="p-8">
           <div className="flex items-center gap-4 mb-6">
-            <span className="text-5xl">{app.icon}</span>
+            {app.iconImage ? (
+              <div className="relative w-20 h-20 flex-shrink-0">
+                <Image
+                  src={app.iconImage}
+                  alt={app.name}
+                  fill
+                  className="object-contain rounded-xl"
+                />
+              </div>
+            ) : (
+              <span className="text-5xl">{app.icon}</span>
+            )}
             <div>
               <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
                 {app.name}
@@ -92,6 +104,39 @@ export default function AppModal({ app, onClose }: AppModalProps) {
               </p>
             </div>
           </div>
+
+          {app.howToUse && (
+            <div className="mb-6">
+              <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
+                Manual de Usuario
+              </h3>
+              <div className="p-4 rounded-xl bg-zinc-50 dark:bg-zinc-800">
+                <p className="text-zinc-700 dark:text-zinc-300 whitespace-pre-line">
+                  {app.howToUse}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {app.screenshots && app.screenshots.length > 0 && (
+            <div className="mb-6">
+              <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
+                Capturas de Pantalla
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                {app.screenshots.map((screenshot, index) => (
+                  <div key={index} className="relative aspect-[9/19.5] rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+                    <Image
+                      src={screenshot}
+                      alt={`Captura ${index + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="flex gap-4">
             <Link

@@ -6,8 +6,11 @@ export interface App {
   description: string;
   features: string[];
   howItWorks: string;
+  howToUse?: string;
+  screenshots?: string[];
   category: Category;
   icon: string;
+  iconImage?: string;
 }
 
 export const apps: App[] = [
@@ -24,8 +27,41 @@ export const apps: App[] = [
       "Exportación e importación de datos"
     ],
     howItWorks: "1. Añade las bebidas que consumes desde el botón +\n2. Cada entrada guarda: nombre, emoji, precio y fecha/hora\n3. Consulta el historial para ver tu consumo\n4. Configura tus preferencias en Ajustes\n5. Exporta tus datos cuando lo necesites",
+    howToUse: `🎯 ¿Qué es DrinkTrack?
+DrinkTrack es una aplicación para rastrear tu consumo de bebidas diarias (cervezas, refrescos, agua, etc.) y controlar cuánto gastas.
+
+📱 Pantalla Principal
+- Lista de bebidas: Muestra todas las bebidas disponibles con su emoji
+- Contador: Cada bebida tiene botones + y - para añadir o quitar unidades
+- Totales superiores: Muestra el total de bebidas consumidas hoy y el coste total
+- Botón "+": Añadir una consumición personalizada
+
+🔄 Funciones de cada bebida
+- + : Añadir una unidad
+- - : Quitar una unidad  
+- Reset : Borrar todas las consumiciones de esa bebida hoy
+
+📊 Historial
+Accesible desde el botón de historial en la barra superior:
+- Vista de hoy: Consumiciones del día actual
+- Ayer: Consumiciones del día anterior
+- Últimos 7 días: Resumen semanal
+- Gráficos: Visualización de consumo y gasto por día
+
+⚙️ Gestionar Bebidas
+Desde el historial puedes acceder a:
+- Añadir nuevas bebidas personalizadas
+- Editar nombre, emoji, precio y categoría
+- Eliminar bebidas personalizadas`,
+    screenshots: [
+      "/images/drinktrack/Simulator Screenshot - iPhone 17 Pro Max - 2026-02-16 at 11.32.34.png",
+      "/images/drinktrack/Simulator Screenshot - iPhone 17 Pro Max - 2026-02-16 at 11.33.05.png",
+      "/images/drinktrack/Simulator Screenshot - iPhone 17 Pro Max - 2026-02-16 at 11.33.20.png",
+      "/images/drinktrack/Simulator Screenshot - iPhone 17 Pro Max - 2026-02-16 at 11.36.00.png"
+    ],
     category: "ios",
     icon: "🍹",
+    iconImage: "/icons/DrinkTrack.png",
   },
   {
     id: "magicmousebattery",
