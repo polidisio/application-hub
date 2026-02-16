@@ -1,7 +1,7 @@
 "use client";
 
 import { App, categoryLabels } from "@/data/apps";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -11,7 +11,10 @@ interface AppModalProps {
 }
 
 export default function AppModal({ app, onClose }: AppModalProps) {
+  const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
+    setIsVisible(true);
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
@@ -23,18 +26,25 @@ export default function AppModal({ app, onClose }: AppModalProps) {
     };
   }, [onClose]);
 
+  const handleClose = () => {
+    setIsVisible(false);
+    setTimeout(onClose, 200);
+  };
+
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
-      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md"
+      onClick={handleClose}
     >
       <div
-        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl"
+        className={`relative w-full max-w-2xl max-h-[90vh] overflow-y-auto glass-modal rounded-3xl transition-all duration-300 ${
+          isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
         <button
-          onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors z-10"
+          onClick={handleClose}
+          className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition-colors z-10 text-white"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -55,39 +65,40 @@ export default function AppModal({ app, onClose }: AppModalProps) {
         <div className="p-8">
           <div className="flex items-center gap-4 mb-6">
             {app.iconImage ? (
-              <div className="relative w-20 h-20 flex-shrink-0">
+              <div className="relative w-24 h-24 flex-shrink-0 glass rounded-2xl p-2">
                 <Image
                   src={app.iconImage}
                   alt={app.name}
                   fill
-                  className="object-contain rounded-xl"
+                  className="object-contain"
                 />
               </div>
             ) : (
               <span className="text-5xl">{app.icon}</span>
             )}
             <div>
-              <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+              <h2 className="text-3xl font-bold text-white">
                 {app.name}
               </h2>
-              <span className="inline-block px-3 py-1 mt-1 text-xs font-medium rounded-full bg-zinc-200 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300">
+              <span className="inline-block px-3 py-1 mt-2 text-xs font-medium rounded-full glass text-zinc-300">
                 {categoryLabels[app.category]}
               </span>
             </div>
           </div>
 
-          <p className="text-lg text-zinc-700 dark:text-zinc-300 mb-6">
+          <p className="text-lg text-zinc-300 mb-8">
             {app.description}
           </p>
 
           <div className="mb-6">
-            <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
+            <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+              <span className="w-1 h-6 rounded-full gradient-text" />
               Características
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {app.features.map((feature, index) => (
-                <li key={index} className="flex items-start gap-2 text-zinc-700 dark:text-zinc-300">
-                  <span className="text-green-500 mt-1">✓</span>
+                <li key={index} className="flex items-start gap-3 text-zinc-300">
+                  <span className="text-emerald-400 mt-1">✓</span>
                   {feature}
                 </li>
               ))}
@@ -95,11 +106,12 @@ export default function AppModal({ app, onClose }: AppModalProps) {
           </div>
 
           <div className="mb-6">
-            <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
+            <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+              <span className="w-1 h-6 rounded-full gradient-text" />
               Cómo funciona
             </h3>
-            <div className="p-4 rounded-xl bg-zinc-50 dark:bg-zinc-800">
-              <p className="text-zinc-700 dark:text-zinc-300 whitespace-pre-line">
+            <div className="p-5 rounded-2xl glass">
+              <p className="text-zinc-300 whitespace-pre-line">
                 {app.howItWorks}
               </p>
             </div>
@@ -107,11 +119,12 @@ export default function AppModal({ app, onClose }: AppModalProps) {
 
           {app.howToUse && (
             <div className="mb-6">
-              <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
+              <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                <span className="w-1 h-6 rounded-full gradient-text" />
                 Manual de Usuario
               </h3>
-              <div className="p-4 rounded-xl bg-zinc-50 dark:bg-zinc-800">
-                <p className="text-zinc-700 dark:text-zinc-300 whitespace-pre-line">
+              <div className="p-5 rounded-2xl glass">
+                <p className="text-zinc-300 whitespace-pre-line">
                   {app.howToUse}
                 </p>
               </div>
@@ -120,12 +133,13 @@ export default function AppModal({ app, onClose }: AppModalProps) {
 
           {app.screenshots && app.screenshots.length > 0 && (
             <div className="mb-6">
-              <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
+              <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                <span className="w-1 h-6 rounded-full gradient-text" />
                 Capturas de Pantalla
               </h3>
               <div className="grid grid-cols-2 gap-4">
                 {app.screenshots.map((screenshot, index) => (
-                  <div key={index} className="relative aspect-[9/19.5] rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+                  <div key={index} className="relative aspect-[9/19.5] rounded-xl overflow-hidden glass">
                     <Image
                       src={screenshot}
                       alt={`Captura ${index + 1}`}
@@ -138,10 +152,10 @@ export default function AppModal({ app, onClose }: AppModalProps) {
             </div>
           )}
 
-          <div className="flex gap-4">
+          <div className="flex gap-4 pt-4">
             <Link
               href="/privacy"
-              className="flex items-center justify-center gap-2 px-6 py-3 font-medium text-zinc-900 dark:text-zinc-100 border-2 border-zinc-300 dark:border-zinc-600 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+              className="flex items-center justify-center gap-2 px-6 py-3 font-medium text-white glass rounded-full hover:bg-white/15 transition-all duration-300"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -12,26 +12,34 @@ export default function AppCard({ app, onClick }: AppCardProps) {
   return (
     <button
       onClick={onClick}
-      className="group flex flex-col items-center gap-4 p-6 rounded-2xl bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+      className="group glass-card flex flex-col items-center gap-4 p-8 rounded-3xl transition-all duration-300"
     >
       {app.iconImage ? (
-        <div className="relative w-20 h-20">
+        <div className="relative w-24 h-24 transition-transform duration-300 group-hover:scale-110">
           <Image
             src={app.iconImage}
             alt={app.name}
             fill
-            className="object-contain"
+            className="object-contain drop-shadow-lg"
           />
         </div>
       ) : (
-        <span className="text-5xl">{app.icon}</span>
+        <span className="text-5xl transition-transform duration-300 group-hover:scale-110">
+          {app.icon}
+        </span>
       )}
-      <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+      <h3 className="text-xl font-semibold text-white">
         {app.name}
       </h3>
-      <p className="text-sm text-zinc-600 dark:text-zinc-400 text-center line-clamp-2">
+      <p className="text-sm text-zinc-300 text-center line-clamp-2">
         {app.description}
       </p>
+      
+      <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <span className="text-sm gradient-text font-medium">
+          Ver más →
+        </span>
+      </div>
     </button>
   );
 }

@@ -10,11 +10,11 @@ export default function Home() {
   const [selectedApp, setSelectedApp] = useState<App | null>(null);
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-black">
+    <div className="min-h-screen relative">
       <Header />
 
-      <main className="max-w-5xl mx-auto px-4 pb-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <main className="max-w-5xl mx-auto px-4 pb-16 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-items-center">
           {apps.map((app) => (
             <AppCard
               key={app.id}

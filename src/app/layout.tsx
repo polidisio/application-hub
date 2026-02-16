@@ -10,6 +10,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "ApplicationHub - Mis Aplicaciones",
   description: "Portfolio de mis aplicaciones iOS, Mac, juegos y desarrollos",
+  icons: {
+    icon: "/ApplicationHub.png",
+    apple: "/ApplicationHub.png",
+  },
 };
 
 export default function RootLayout({
