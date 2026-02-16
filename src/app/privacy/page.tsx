@@ -1,18 +1,18 @@
-import { Metadata } from "next";
-import Link from "next/link";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Política de Privacidad - ApplicationHub",
-  description: "Política de privacidad de las aplicaciones de Polidisio",
-};
+import Link from "next/link";
+import { useTranslation } from "@/app/hooks/useTranslation";
 
 export default function PrivacyPage() {
+  const { t, locale } = useTranslation();
+  const p = t.privacy;
+
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-black py-12 px-4">
-      <div className="max-w-3xl mx-auto">
+    <div className="min-h-screen relative py-12 px-4">
+      <div className="max-w-3xl mx-auto relative z-10">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 mb-8 transition-colors"
+          className="inline-flex items-center gap-2 text-zinc-300 hover:text-white mb-8 transition-colors"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -28,97 +28,93 @@ export default function PrivacyPage() {
             <path d="m12 19-7-7 7-7" />
             <path d="M19 12H5" />
           </svg>
-          Volver
+          {p.back}
         </Link>
 
-        <div className="bg-white dark:bg-zinc-900 rounded-2xl p-8 shadow-lg">
-          <h1 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mb-2">
-            Política de Privacidad
+        <div className="glass-modal rounded-2xl p-8">
+          <h1 className="text-3xl font-bold text-white mb-2">
+            {p.title}
           </h1>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-8">
-            Última actualización: 16 de febrero de 2026
+          <p className="text-sm text-zinc-400 mb-8">
+            {p.lastUpdate}: 16 de febrero de 2026
           </p>
 
-          <div className="prose dark:prose-invert max-w-none space-y-6 text-zinc-700 dark:text-zinc-300">
+          <div className="space-y-6 text-zinc-300">
             <section>
-              <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
-                1. Introducción
+              <h2 className="text-xl font-semibold text-white mb-3">
+                1. {p.introduction}
               </h2>
               <p>
-                Las aplicaciones desarrolladas por Polidisio respetan tu privacidad. 
-                Esta política describe cómo recopilamos, usamos y protegemos tu información.
+                {p.introductionText}
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
-                2. Datos que recopilamos
+              <h2 className="text-xl font-semibold text-white mb-3">
+                2. {p.dataCollected}
               </h2>
-              <p className="font-medium text-green-600 dark:text-green-400 mb-2">
-                Nuestras aplicaciones NO recopilan ningún dato personal del usuario.
+              <p className="font-medium text-emerald-400 mb-2">
+                {p.dataCollectedText}
               </p>
               <ul className="list-disc list-inside space-y-1">
-                <li>No recopilamos información de identificación personal</li>
-                <li>No usamos cookies</li>
-                <li>No usamos analytics</li>
-                <li>No accedemos a tu ubicación</li>
-                <li>No compartimos datos con terceros</li>
+                {p.dataCollectedList.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
               </ul>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
-                3. Datos que almacenamos
+              <h2 className="text-xl font-semibold text-white mb-3">
+                3. {p.storedData}
               </h2>
               <p>
-                Todos los datos se almacenan <strong>exclusivamente en tu dispositivo</strong>:
+                {p.storedDataText}
               </p>
               <ul className="list-disc list-inside space-y-1 mt-2">
-                <li>Configuración de la app</li>
-                <li>Contenido que tú decides guardar</li>
-                <li>Preferencias personales</li>
+                {p.storedDataList.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
               </ul>
               <p className="mt-2">
-                Estos datos se eliminan si desinstalas la aplicación.
+                {p.storedDataNote}
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
-                4. Permisos
+              <h2 className="text-xl font-semibold text-white mb-3">
+                4. {p.permissions}
               </h2>
               <p>
-                Nuestras aplicaciones no requieren permisos especiales más allá del acceso 
-                básico necesario para su funcionamiento.
+                {p.permissionsText}
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
-                5. Niños
+              <h2 className="text-xl font-semibold text-white mb-3">
+                5. {p.children}
               </h2>
               <p>
-                Nuestras aplicaciones son aptas para todas las edades.
+                {p.childrenText}
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
-                6. Cambios
+              <h2 className="text-xl font-semibold text-white mb-3">
+                6. {p.changes}
               </h2>
               <p>
-                Esta política puede actualizarse en futuras versiones de las aplicaciones.
+                {p.changesText}
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
-                7. Contacto
+              <h2 className="text-xl font-semibold text-white mb-3">
+                7. {p.contact}
               </h2>
-              <p>Para preguntas sobre privacidad:</p>
+              <p>{p.contactText}</p>
               <ul className="list-disc list-inside space-y-1 mt-2">
-                <li>Email: info@saraiba.eu</li>
-                <li>Web: <a href="https://saraiba.eu" className="text-blue-600 hover:underline">https://saraiba.eu</a></li>
+                <li>{p.contactEmail}: info@saraiba.eu</li>
+                <li>{p.contactWeb}: <a href="https://saraiba.eu" className="text-purple-400 hover:underline">https://saraiba.eu</a></li>
               </ul>
             </section>
           </div>

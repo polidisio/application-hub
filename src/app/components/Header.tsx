@@ -1,6 +1,11 @@
+"use client";
+
 import Image from "next/image";
+import { useTranslation } from "@/app/hooks/useTranslation";
 
 export default function Header() {
+  const { t } = useTranslation();
+
   return (
     <header className="py-16 px-4 relative z-10">
       <div className="max-w-5xl mx-auto text-center">
@@ -20,7 +25,7 @@ export default function Header() {
         </h1>
         
         <p className="text-xl text-zinc-300 max-w-xl mx-auto">
-          Mis aplicaciones, juegos y desarrollos
+          {t.header.subtitle}
         </p>
         
         <div className="flex justify-center gap-2 mt-6">

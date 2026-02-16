@@ -2,6 +2,7 @@
 
 import { App } from "@/data/apps";
 import Image from "next/image";
+import { useTranslation } from "@/app/hooks/useTranslation";
 
 interface AppCardProps {
   app: App;
@@ -9,6 +10,9 @@ interface AppCardProps {
 }
 
 export default function AppCard({ app, onClick }: AppCardProps) {
+  const { t, locale } = useTranslation();
+  const description = locale === "es" ? app.description : app.descriptionEn;
+
   return (
     <button
       onClick={onClick}
@@ -32,12 +36,12 @@ export default function AppCard({ app, onClick }: AppCardProps) {
         {app.name}
       </h3>
       <p className="text-sm text-zinc-300 text-center line-clamp-2">
-        {app.description}
+        {description}
       </p>
       
       <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <span className="text-sm gradient-text font-medium">
-          Ver más →
+          {t.common.viewMore}
         </span>
       </div>
     </button>

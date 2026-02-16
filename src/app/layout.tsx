@@ -8,7 +8,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "ApplicationHub - Mis Aplicaciones",
+  title: {
+    default: "ApplicationHub - Mis Aplicaciones",
+    template: "%s | ApplicationHub",
+  },
   description: "Portfolio de mis aplicaciones iOS, Mac, juegos y desarrollos",
   icons: {
     icon: "/ApplicationHub.png",

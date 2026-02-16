@@ -4,6 +4,7 @@ import { App, categoryLabels } from "@/data/apps";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslation } from "@/app/hooks/useTranslation";
 
 interface AppModalProps {
   app: App;
@@ -12,6 +13,7 @@ interface AppModalProps {
 
 export default function AppModal({ app, onClose }: AppModalProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const { t, locale } = useTranslation();
 
   useEffect(() => {
     setIsVisible(true);
@@ -30,6 +32,11 @@ export default function AppModal({ app, onClose }: AppModalProps) {
     setIsVisible(false);
     setTimeout(onClose, 200);
   };
+
+  const description = locale === "es" ? app.description : app.descriptionEn;
+  const features = locale === "es" ? app.features : app.featuresEn;
+  const howItWorks = locale === "es" ? app.howItWorks : app.howItWorksEn;
+  const howToUse = locale === "es" ? app.howToUse : app.howToUseEn;
 
   return (
     <div
@@ -87,16 +94,16 @@ export default function AppModal({ app, onClose }: AppModalProps) {
           </div>
 
           <p className="text-lg text-zinc-300 mb-8">
-            {app.description}
+            {description}
           </p>
 
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
               <span className="w-1 h-6 rounded-full gradient-text" />
-              Características
+              {t.common.features}
             </h3>
             <ul className="space-y-3">
-              {app.features.map((feature, index) => (
+              {features.map((feature, index) => (
                 <li key={index} className="flex items-start gap-3 text-zinc-300">
                   <span className="text-emerald-400 mt-1">✓</span>
                   {feature}
@@ -108,24 +115,24 @@ export default function AppModal({ app, onClose }: AppModalProps) {
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
               <span className="w-1 h-6 rounded-full gradient-text" />
-              Cómo funciona
+              {t.common.howItWorks}
             </h3>
             <div className="p-5 rounded-2xl glass">
               <p className="text-zinc-300 whitespace-pre-line">
-                {app.howItWorks}
+                {howItWorks}
               </p>
             </div>
           </div>
 
-          {app.howToUse && (
+          {howToUse && (
             <div className="mb-6">
               <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
                 <span className="w-1 h-6 rounded-full gradient-text" />
-                Manual de Usuario
+                {t.common.userManual}
               </h3>
               <div className="p-5 rounded-2xl glass">
                 <p className="text-zinc-300 whitespace-pre-line">
-                  {app.howToUse}
+                  {howToUse}
                 </p>
               </div>
             </div>
@@ -135,14 +142,14 @@ export default function AppModal({ app, onClose }: AppModalProps) {
             <div className="mb-6">
               <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
                 <span className="w-1 h-6 rounded-full gradient-text" />
-                Capturas de Pantalla
+                {t.common.screenshots}
               </h3>
               <div className="grid grid-cols-2 gap-4">
                 {app.screenshots.map((screenshot, index) => (
                   <div key={index} className="relative aspect-[9/19.5] rounded-xl overflow-hidden glass">
                     <Image
                       src={screenshot}
-                      alt={`Captura ${index + 1}`}
+                      alt={`Screenshot ${index + 1}`}
                       fill
                       className="object-cover"
                     />
@@ -171,7 +178,7 @@ export default function AppModal({ app, onClose }: AppModalProps) {
                 <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
                 <path d="M7 11V7a5 5 0 0 1 10 0v4" />
               </svg>
-              Política de Privacidad
+              {t.common.privacyPolicy}
             </Link>
           </div>
         </div>
