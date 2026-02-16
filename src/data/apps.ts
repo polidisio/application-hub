@@ -4,49 +4,44 @@ export interface App {
   id: string;
   name: string;
   description: string;
-  instructions: string;
+  features: string[];
+  howItWorks: string;
   category: Category;
   icon: string;
-  downloadUrl?: string;
-  repoUrl?: string;
 }
 
 export const apps: App[] = [
   {
-    id: "app-1",
-    name: "Mi Primera App",
-    description: "Una aplicación iOS innovadora",
-    instructions: "Para usar esta aplicación, descárgala desde la App Store y sigue los pasos de configuración inicial.",
+    id: "drinktrack",
+    name: "DrinkTrack",
+    description: "Aplicación para seguimiento de consumo de bebidas. Controla tu hidratación o consumo de alcohol con facilidad.",
+    features: [
+      "Registro rápido de bebidas consumidas",
+      "Historial de consumiciones",
+      "Personalización de bebidas (nombre, emoji, precio)",
+      "Datos almacenados exclusivamente en tu dispositivo",
+      "Sin recopilación de datos personales",
+      "Exportación e importación de datos"
+    ],
+    howItWorks: "1. Añade las bebidas que consumes desde el botón +\n2. Cada entrada guarda: nombre, emoji, precio y fecha/hora\n3. Consulta el historial para ver tu consumo\n4. Configura tus preferencias en Ajustes\n5. Exporta tus datos cuando lo necesites",
     category: "ios",
-    icon: "📱",
-    downloadUrl: "https://apps.apple.com",
+    icon: "🍹",
   },
   {
-    id: "app-2",
-    name: "Productividad Pro",
-    description: "App de productividad para Mac",
-    instructions: "Descarga desde Mac App Store, instala y configura tus preferencias de trabajo.",
-    category: "mac",
-    icon: "💻",
-    downloadUrl: "https://apps.apple.com",
-  },
-  {
-    id: "app-3",
-    name: "Aventura Espacial",
-    description: "Juego de aventura espacial",
-    instructions: "Instalar, crear perfil y comenzar a jugar. Controles: flechas para mover, espacio para acción.",
-    category: "juego",
-    icon: "🚀",
-    downloadUrl: "https://apps.apple.com",
-  },
-  {
-    id: "app-4",
-    name: "API Manager",
-    description: "Herramienta de desarrollo",
-    instructions: "Clona el repositorio, ejecuta npm install y npm run dev. Documentación en el README.",
-    category: "desarrollo",
-    icon: "⚙️",
-    repoUrl: "https://github.com",
+    id: "magicmousebattery",
+    name: "MagicMouseBattery",
+    description: "Widget para monitorear la batería de tu Magic Mouse de forma rápida y sencilla.",
+    features: [
+      "Monitoreo en tiempo real de la batería",
+      "Widget para la pantalla de inicio",
+      "Notificaciones de batería baja",
+      "Diseño minimalista y eficiente",
+      "Sin consumo excesivo de batería",
+      "Compatible con todos los modelos de Magic Mouse"
+    ],
+    howItWorks: "1. Instala la app en tu dispositivo iOS\n2. Añade el widget a tu pantalla de inicio\n3. El widget muestra automáticamente el nivel de batería\n4. Recibe notificaciones cuando la batería está baja\n5. Toca el widget para ver detalles adicionales",
+    category: "ios",
+    icon: "🪄",
   },
 ];
 
