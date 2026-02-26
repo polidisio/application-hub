@@ -106,7 +106,7 @@ From history you can access:
   },
   {
     id: "magicmousebattery",
-    name: "MagicMouseBattery",
+    name: "MyMouseBattery",
     description: "Widget para monitorear la batería de tu Magic Mouse de forma rápida y sencilla.",
     descriptionEn: "Widget to monitor your Magic Mouse battery quickly and easily.",
     features: [
@@ -129,7 +129,7 @@ From history you can access:
     howItWorksEn: "1. Install the app on your iOS device\n2. Add the widget to your home screen\n3. The widget automatically shows the battery level\n4. Receive notifications when battery is low\n5. Tap the widget to see additional details",
     category: "ios",
     icon: "🪄",
-    iconImage: "/icons/MagicMouseBattery.png",
+    iconImage: "/icons/MyMouseBattery.png",
   },
 ];
 
