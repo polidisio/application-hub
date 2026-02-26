@@ -156,6 +156,8 @@ From history you can access:
       "Automatic deployment on Vercel",
       "Simple web technology (HTML, CSS, JS)"
     ],
+    howItWorks: "1. Abre la web en tu navegador\n2. La cita del día se muestra automáticamente\n3. Disfruta de una nueva cita cada día\n4. Siéntete libre de añadir más citas al código fuente",
+    howItWorksEn: "1. Open the website in your browser\n2. The quote of the day is displayed automatically\n3. Enjoy a new quote every day\n4. Feel free to add more quotes to the source code",
     website: "https://daily-quotes.saraiba.eu/",
     category: "desarrollo",
     icon: "📝",
