@@ -162,6 +162,33 @@ From history you can access:
     category: "desarrollo",
     icon: "📝",
   },
+  {
+    id: "apple-music-cli",
+    name: "Apple Music CLI",
+    description: "OpenClaw skill para controlar Apple Music en macOS usando AppleScript.",
+    descriptionEn: "OpenClaw skill to control Apple Music on macOS using AppleScript.",
+    features: [
+      "Play/Pause/Stop",
+      "Next/Previous track",
+      "Obtener información de la pista actual",
+      "Control de volumen",
+      "Buscar y reproducir canciones",
+      "Reproducir playlists"
+    ],
+    featuresEn: [
+      "Play/Pause/Stop",
+      "Next/Previous track",
+      "Get current track info",
+      "Volume control",
+      "Search and play songs",
+      "Play playlists"
+    ],
+    howItWorks: "1. Instala el skill via OpenClaw: openclaw skills add https://github.com/polidisio/apple-music-cli\n2. Usa los comandos: apple-music play, pause, next, status, volume up, etc.",
+    howItWorksEn: "1. Install the skill via OpenClaw: openclaw skills add https://github.com/polidisio/apple-music-cli\n2. Use commands: apple-music play, pause, next, status, volume up, etc.",
+    website: "https://github.com/polidisio/apple-music-cli",
+    category: "desarrollo",
+    icon: "🎵",
+  },
 ];
 
 export const categoryLabels: Record<Category, string> = {
