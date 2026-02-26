@@ -16,6 +16,7 @@ export interface App {
   category: Category;
   icon: string;
   iconImage?: string;
+  website?: string;
 }
 
 export const apps: App[] = [
@@ -135,6 +136,29 @@ From history you can access:
     category: "mac",
     icon: "🖱️",
     iconImage: "/icons/MyMouseBattery.png",
+  },
+  {
+    id: "daily-quotes",
+    name: "Daily Quotes",
+    description: "Página web con citas diarias del día con estética retro de Windows 95/98 WordPad.",
+    descriptionEn: "Daily quotes website with Windows 95/98 WordPad retro aesthetic.",
+    features: [
+      "Diseño retro estilo Windows 95/98",
+      "Citas diarias automáticas",
+      "Estética WordPad de los 90s",
+      "Despliegue automático en Vercel",
+      "Tecnología web simple (HTML, CSS, JS)"
+    ],
+    featuresEn: [
+      "Retro Windows 95/98 design",
+      "Automatic daily quotes",
+      "90s WordPad aesthetic",
+      "Automatic deployment on Vercel",
+      "Simple web technology (HTML, CSS, JS)"
+    ],
+    website: "https://daily-quotes.saraiba.eu/",
+    category: "desarrollo",
+    icon: "📝",
   },
 ];
 
