@@ -107,28 +107,35 @@ From history you can access:
   {
     id: "magicmousebattery",
     name: "MyMouseBattery",
-    description: "Widget para monitorear la batería de tu Magic Mouse de forma rápida y sencilla.",
-    descriptionEn: "Widget to monitor your Magic Mouse battery quickly and easily.",
+    description: "Menu bar app para monitorear la batería del Magic Mouse y Magic Keyboard en macOS.",
+    descriptionEn: "Menu bar app to monitor your Magic Mouse and Magic Keyboard battery on macOS.",
     features: [
-      "Monitoreo en tiempo real de la batería",
-      "Widget para la pantalla de inicio",
-      "Notificaciones de batería baja",
-      "Diseño minimalista y eficiente",
-      "Sin consumo excesivo de batería",
-      "Compatible con todos los modelos de Magic Mouse"
+      "Monitoreo en tiempo real de la batería del Magic Mouse y Magic Keyboard",
+      "Menú bar con indicador visual del nivel de batería",
+      "Notificaciones cuando la batería baja del umbral configurado",
+      "Configuración editable del umbral de notificación (5-50%)",
+      "Diseño minimalista y eficiente"
     ],
     featuresEn: [
-      "Real-time battery monitoring",
-      "Home screen widget",
-      "Low battery notifications",
-      "Minimalist and efficient design",
-      "Low battery consumption",
-      "Compatible with all Magic Mouse models"
+      "Real-time battery monitoring for Magic Mouse and Magic Keyboard",
+      "Menu bar with visual battery level indicator",
+      "Notifications when battery drops below configured threshold",
+      "Editable notification threshold setting (5-50%)",
+      "Minimalist and efficient design"
     ],
-    howItWorks: "1. Instala la app en tu dispositivo iOS\n2. Añade el widget a tu pantalla de inicio\n3. El widget muestra automáticamente el nivel de batería\n4. Recibe notificaciones cuando la batería está baja\n5. Toca el widget para ver detalles adicionales",
-    howItWorksEn: "1. Install the app on your iOS device\n2. Add the widget to your home screen\n3. The widget automatically shows the battery level\n4. Receive notifications when battery is low\n5. Tap the widget to see additional details",
-    category: "ios",
-    icon: "🪄",
+    howItWorks: "1. Descarga e instala la app en tu Mac\n2. La app aparece como un icono en la barra de menú\n3. Haz clic para ver los niveles de batería de los dispositivos conectados\n4. Configura el umbral de notificación en Configuración > Notificación de batería baja",
+    howItWorksEn: "1. Download and install the app on your Mac\n2. The app appears as an icon in the menu bar\n3. Click to see battery levels of connected devices\n4. Configure the notification threshold in Settings > Low battery notification",
+    howToUse: "- La app aparece como un icono en la barra de menú\n- Haz clic para ver los niveles de batería de los dispositivos conectados\n- Configura el umbral de notificación en Configuración > Notificación de batería baja\n- El umbral de notificación se puede ajustar entre 5% y 50%",
+    howToUseEn: "- The app appears as an icon in the menu bar\n- Click to see battery levels of connected devices\n- Configure the notification threshold in Settings > Low battery notification\n- The notification threshold can be adjusted between 5% and 50%",
+    screenshots: [
+      "/images/mymousebattery/Screenshot 2026-02-20 at 15.26.32.png",
+      "/images/mymousebattery/Screenshot 2026-02-20 at 15.26.42.png",
+      "/images/mymousebattery/Screenshot 2026-02-20 at 15.26.54.png",
+      "/images/mymousebattery/Screenshot 2026-02-20 at 15.27.03.png",
+      "/images/mymousebattery/Screenshot 2026-02-26 at 09.40.03.png"
+    ],
+    category: "mac",
+    icon: "🖱️",
     iconImage: "/icons/MyMouseBattery.png",
   },
 ];
