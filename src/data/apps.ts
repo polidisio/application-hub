@@ -17,12 +17,13 @@ export interface App {
   icon: string;
   iconImage?: string;
   website?: string;
+  appStore?: string;
 }
 
 export const apps: App[] = [
   {
     id: "drinktrack",
-    name: "DrinkTrack",
+    name: "MyBarTrack",
     description: "Aplicación para seguimiento de consumo de bebidas. Controla tu hidratación o consumo de alcohol con facilidad.",
     descriptionEn: "Application to track your daily beverage consumption. Control your hydration or alcohol intake with ease.",
     features: [
@@ -43,8 +44,8 @@ export const apps: App[] = [
     ],
     howItWorks: "1. Añade las bebidas que consumes desde el botón +\n2. Cada entrada guarda: nombre, emoji, precio y fecha/hora\n3. Consulta el historial para ver tu consumo\n4. Configura tus preferencias en Ajustes\n5. Exporta tus datos cuando lo necesites",
     howItWorksEn: "1. Add the beverages you consume from the + button\n2. Each entry saves: name, emoji, price and date/time\n3. Check the history to see your consumption\n4. Configure your preferences in Settings\n5. Export your data when needed",
-    howToUse: `🎯 ¿Qué es DrinkTrack?
-DrinkTrack es una aplicación para rastrear tu consumo de bebidas diarias (cervezas, refrescos, agua, etc.) y controlar cuánto gastas.
+    howToUse: `🎯 ¿Qué es MyBarTrack?
+MyBarTrack es una aplicación para rastrear tu consumo de bebidas diarias (cervezas, refrescos, agua, etc.) y controlar cuánto gastas.
 
 📱 Pantalla Principal
 - Lista de bebidas: Muestra todas las bebidas disponibles con su emoji
@@ -104,6 +105,7 @@ From history you can access:
     category: "ios",
     icon: "🍹",
     iconImage: "/icons/DrinkTrack.jpg",
+    appStore: "https://apps.apple.com/es/app/mybartrack/id6759322912",
   },
   {
     id: "magicmousebattery",

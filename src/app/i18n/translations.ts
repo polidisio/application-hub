@@ -12,6 +12,7 @@ export const translations = {
       viewMore: "Ver más →",
       close: "Cerrar",
       website: "Visitar Web",
+      appStore: "App Store",
     },
     privacy: {
       title: "Política de Privacidad",
@@ -61,6 +62,7 @@ export const translations = {
       viewMore: "View more →",
       close: "Close",
       website: "Visit Website",
+      appStore: "App Store",
     },
     privacy: {
       title: "Privacy Policy",
