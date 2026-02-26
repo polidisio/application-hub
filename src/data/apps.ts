@@ -128,11 +128,9 @@ From history you can access:
     howToUse: "- La app aparece como un icono en la barra de menú\n- Haz clic para ver los niveles de batería de los dispositivos conectados\n- Configura el umbral de notificación en Configuración > Notificación de batería baja\n- El umbral de notificación se puede ajustar entre 5% y 50%",
     howToUseEn: "- The app appears as an icon in the menu bar\n- Click to see battery levels of connected devices\n- Configure the notification threshold in Settings > Low battery notification\n- The notification threshold can be adjusted between 5% and 50%",
     screenshots: [
-      "/images/mymousebattery/Screenshot 2026-02-20 at 15.26.32.png",
-      "/images/mymousebattery/Screenshot 2026-02-20 at 15.26.42.png",
-      "/images/mymousebattery/Screenshot 2026-02-20 at 15.26.54.png",
-      "/images/mymousebattery/Screenshot 2026-02-20 at 15.27.03.png",
-      "/images/mymousebattery/Screenshot 2026-02-26 at 09.40.03.png"
+      "/images/mymousebattery/image1.png",
+      "/images/mymousebattery/image2.png",
+      "/images/mymousebattery/image3.png"
     ],
     category: "mac",
     icon: "🖱️",
