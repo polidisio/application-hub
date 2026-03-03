@@ -138,6 +138,7 @@ From history you can access:
     category: "mac",
     icon: "🖱️",
     iconImage: "/icons/MyMouseBattery.png",
+    appStore: "https://apps.apple.com/es/app/mymousebattery/id6759709827?mt=12",
   },
   {
     id: "daily-quotes",
