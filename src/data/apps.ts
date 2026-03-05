@@ -22,6 +22,112 @@ export interface App {
 
 export const apps: App[] = [
   {
+    id: "flashcard-study",
+    name: "ThinkDeck Study",
+    description: "App iOS para estudiar flashcards con sistema de repetición espaciada, diseño glassmorphism y soporte multilingüe.",
+    descriptionEn: "iOS app for studying flashcards with spaced repetition system, glassmorphism design, and multilingual support.",
+    features: [
+      "Sistema de Repetición Espaciada (SRS) para optimizar el aprendizaje",
+      "Crear, editar y organizar mazos de tarjetas",
+      "Diseño Glassmorphism con colores personalizables",
+      "Importar mazos desde archivos CSV y Excel",
+      "Soporte para imágenes y audio en tarjetas",
+      "Estadísticas de progreso (nivel, precisión, correctas/incorrectas)",
+      "Modos de estudio: Todas las tarjetas y Pendientes hoy",
+      "Multilingüe: inglés, español, francés y alemán",
+      "Compatible con iPhone y iPad"
+    ],
+    featuresEn: [
+      "Spaced Repetition System (SRS) to optimize learning",
+      "Create, edit and organize flashcard decks",
+      "Glassmorphism design with customizable colors",
+      "Import decks from CSV and Excel files",
+      "Support for images and audio in cards",
+      "Progress statistics (level, precision, correct/incorrect)",
+      "Study modes: All cards and Due today",
+      "Multilingual: English, Spanish, French and German",
+      "Compatible with iPhone and iPad"
+    ],
+    howItWorks: "1. Crea un mazo con nombre y color personalizado\n2. Añade tarjetas con pregunta (anverso) y respuesta (reverso)\n3. Inicia una sesión de estudio y翻转 la tarjeta para ver la respuesta\n4. Marca cada tarjeta como correcta o incorrecta\n5. El sistema SRS programa las tarjetas para revisión óptima\n6. Importa tus propios mazos desde Excel o CSV\n7. Consulta las estadísticas para ver tu progreso",
+    howItWorksEn: "1. Create a deck with name and custom color\n2. Add cards with question (front) and answer (back)\n3. Start a study session and flip the card to reveal the answer\n4. Mark each card as correct or incorrect\n5. The SRS system schedules cards for optimal review\n6. Import your own decks from Excel or CSV\n7. Check statistics to track your progress",
+    howToUse: `🎯 ¿Qué es ThinkDeck Study?
+ThinkDeck Study es una app para estudiar con flashcards usando el sistema de repetición espaciada (SRS), que optimiza tu aprendizaje mostrando las tarjetas en el momento ideal.
+
+📱 Pantalla Principal
+- Verás la lista de tus mazos de tarjetas
+- Cada mazo muestra el nombre, color y número de tarjetas
+- Botón "+" para crear un nuevo mazo
+- Botón de importar para añadir desde CSV/Excel
+
+📝 Crear un Mazo
+- Pulsa "+" y dale un nombre al mazo
+- Elige un color de entre las opciones disponibles
+- Guarda el mazo
+
+🃏 Añadir Tarjetas
+- Entra en un mazo y pulsa "+" para añadir tarjeta
+- Escribe la pregunta (anverso) y la respuesta (reverso)
+- Las tarjetas pueden incluir imágenes y audio
+
+📖 Estudiar
+- Selecciona un mazo y pulsa "Study"
+- Elige modo: "All Cards" o "Due Today"
+- Toca la tarjeta para翻转 y ver la respuesta
+- Marca "Correct" o "Incorrect" para cada tarjeta
+- El sistema SRS adapta la próxima revisión
+
+📊 Estadísticas
+- Nivel de cada tarjeta (1-10)
+- Precisión porcentual
+- Veces estudiada, correctas e incorrectas
+- Disponible pulsando el icono de gráfico
+
+📥 Importar
+- Soporta formato CSV y Excel (.xlsx)
+- Columnas: front (pregunta), back (respuesta)
+- El delimitador se detecta automáticamente (coma, punto y coma, tab)`,
+    howToUseEn: `🎯 What is ThinkDeck Study?
+ThinkDeck Study is an app for studying flashcards using the spaced repetition system (SRS), which optimizes your learning by showing cards at the ideal time.
+
+📱 Main Screen
+- You will see your list of card decks
+- Each deck shows name, color, and number of cards
+- "+" button to create a new deck
+- Import button to add from CSV/Excel
+
+📝 Creating a Deck
+- Tap "+" and give the deck a name
+- Choose a color from the available options
+- Save the deck
+
+🃏 Adding Cards
+- Enter a deck and tap "+" to add a card
+- Write the question (front) and answer (back)
+- Cards can include images and audio
+
+📖 Studying
+- Select a deck and tap "Study"
+- Choose mode: "All Cards" or "Due Today"
+- Tap the card to flip and see the answer
+- Mark "Correct" or "Incorrect" for each card
+- The SRS system adapts the next review
+
+📊 Statistics
+- Level of each card (1-10)
+- Percentage precision
+- Times studied, correct and incorrect
+- Available by tapping the chart icon
+
+📥 Import
+- Supports CSV and Excel format (.xlsx)
+- Columns: front (question), back (answer)
+- Delimiter is automatically detected (comma, semicolon, tab)`,
+    category: "ios",
+    icon: "🧠",
+    iconImage: "/icons/flashcard-study.png",
+    website: "https://github.com/polidisio/flashcard-study",
+  },
+  {
     id: "drinktrack",
     name: "MyBarTrack",
     description: "Aplicación para seguimiento de consumo de bebidas. Controla tu hidratación o consumo de alcohol con facilidad.",
