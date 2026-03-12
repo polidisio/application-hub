@@ -22,6 +22,93 @@ export interface App {
 
 export const apps: App[] = [
   {
+    id: "markdown-notes",
+    name: "Markdown Notes",
+    description: "Bloc de notas Markdown con editor en tiempo real, exportación y sincronización iCloud. Enfoque privacidad: pago único, sin suscripción.",
+    descriptionEn: "Markdown note-taking app with real-time editor, export, and iCloud sync. Privacy-focused: one-time payment, no subscription.",
+    features: [
+      "Editor Markdown con syntax highlighting",
+      "Live preview en tiempo real",
+      "Exportación a PDF, HTML, DOCX",
+      "Carpetas y etiquetas",
+      "Sincronización iCloud (opcional)",
+      "Modo enfoque",
+      "Templates (diario, novela, código)",
+      "100% local + iCloud opcional"
+    ],
+    featuresEn: [
+      "Markdown editor with syntax highlighting",
+      "Real-time live preview",
+      "Export to PDF, HTML, DOCX",
+      "Folders and tags",
+      "iCloud sync (optional)",
+      "Focus mode",
+      "Templates (daily, novel, code)",
+      "100% local + optional iCloud"
+    ],
+    howItWorks: "1. Crea una nueva nota o selecciona una existente\n2. Escribe en Markdown con syntax highlighting\n3. Usa el panel de preview para ver el resultado en tiempo real\n4. Organiza tus notas en carpetas y etiquetas\n5. Exporta tus notas a PDF, HTML o DOCX\n6. Activa iCloud para sincronizar entre dispositivos",
+    howItWorksEn: "1. Create a new note or select an existing one\n2. Write in Markdown with syntax highlighting\n3. Use the preview panel to see real-time results\n4. Organize your notes into folders and tags\n5. Export your notes to PDF, HTML, or DOCX\n6. Enable iCloud to sync across devices",
+    howToUse: `📝 ¿Qué es Markdown Notes?
+Markdown Notes es un bloc de notas para iOS que te permite escribir en Markdown con todas las funcionalidades que necesitas.
+
+🖊️ Editor
+- Escribe en Markdown con syntax highlighting
+- Toolbar con botones para formato rápido (bold, italic, código, enlaces, etc.)
+- Vista dividida para editar y previsualizar a la vez
+- Contador de palabras y caracteres
+
+📁 Organizar
+- Crea carpetas para categorizar tus notas
+- Añade etiquetas para una organización flexible
+- Busca notas por título o contenido
+
+📤 Exportar
+- Exporta notas individuales a PDF, HTML o DOCX
+- Exporta todas las notas a la vez
+- Importa notas desde archivos Markdown
+
+🎨 Personalización
+- Temas: Sistema, Claro, Oscuro
+- Color de acento personalizable
+- Temas de código para el highlighting
+
+☁️ Sincronización
+- Sincronización opcional con iCloud
+- Tus notas siempre disponibles en todos tus dispositivos
+- Enfoque privacidad: datos locales + iCloud opcional`,
+    howToUseEn: `📝 What is Markdown Notes?
+Markdown Notes is an iOS note-taking app that lets you write in Markdown with all the features you need.
+
+🖊️ Editor
+- Write in Markdown with syntax highlighting
+- Toolbar with quick format buttons (bold, italic, code, links, etc.)
+- Split view to edit and preview simultaneously
+- Word and character counter
+
+📁 Organize
+- Create folders to categorize your notes
+- Add tags for flexible organization
+- Search notes by title or content
+
+📤 Export
+- Export individual notes to PDF, HTML, or DOCX
+- Export all notes at once
+- Import notes from Markdown files
+
+🎨 Customization
+- Themes: System, Light, Dark
+- Customizable accent color
+- Code themes for highlighting
+
+☁️ Sync
+- Optional iCloud synchronization
+- Your notes always available on all your devices
+- Privacy-focused: local data + optional iCloud`,
+    category: "ios",
+    icon: "📝",
+    iconImage: "/icons/MarkdownNotes.jpg",
+  },
+  {
     id: "flashcard-study",
     name: "ThinkDeck Study",
     description: "App iOS para estudiar flashcards con sistema de repetición espaciada, diseño glassmorphism y soporte multilingüe.",
