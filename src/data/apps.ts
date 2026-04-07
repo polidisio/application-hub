@@ -476,6 +476,12 @@ FileSizer is a macOS app that helps you find large files on your hard drive, ide
     icon: "📁",
     iconImage: "/icons/FileSizer.jpg",
     website: "https://github.com/polidisio/filesizer",
+    screenshots: [
+      "/images/filesizer/filesizer-1.png",
+      "/images/filesizer/filesizer-2.png",
+      "/images/filesizer/filesizer-3.png",
+      "/images/filesizer/filesizer-4.png",
+    ],
   },
   {
     id: "llmbox",
@@ -560,6 +566,11 @@ LLMBox is a chat interface to connect with local AI models like Ollama, Gemma, Q
     icon: "🤖",
     iconImage: "/icons/LLMBox.png",
     website: "https://github.com/polidisio/LocalAIChat",
+    screenshots: [
+      "/images/llmbox/llmbox-1.png",
+      "/images/llmbox/llmbox-2.png",
+      "/images/llmbox/llmbox-3.png",
+    ],
   },
 ];
 
