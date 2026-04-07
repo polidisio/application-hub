@@ -385,6 +385,182 @@ From history you can access:
     category: "desarrollo",
     icon: "🎵",
   },
+  {
+    id: "filesizer",
+    name: "FileSizer",
+    description: "App nativa macOS para encontrar archivos grandes en tu disco. Escaneo async, historial de búsquedas y exportación a CSV o JSON.",
+    descriptionEn: "Native macOS app to find large files on your disk. Async scanning, scan history, and export to CSV or JSON.",
+    features: [
+      "Interfaz SwiftUI moderna con NavigationSplitView",
+      "Escaneo async que no bloquea la interfaz",
+      "Gestión de archivos: mover a Papelera, revelar en Finder",
+      "Historial de escaneos para repetir búsquedas anteriores",
+      "Exportación de resultados a CSV o JSON",
+      "Lectura y escritura de comentarios Finder",
+      "Lista de exclusión para carpetas del sistema",
+      "Ready para Mac App Store"
+    ],
+    featuresEn: [
+      "Modern SwiftUI interface with NavigationSplitView",
+      "Async scanning without blocking the UI",
+      "File management: move to Trash, reveal in Finder",
+      "Scan history to repeat previous searches",
+      "Export results to CSV or JSON",
+      "Read and write Finder comments",
+      "Exclusion list for system folders",
+      "Mac App Store ready"
+    ],
+    howItWorks: "1. Selecciona una carpeta o volumen para escanear\n2. El escaneo analiza todos los archivos de forma async\n3. Ve los resultados ordenados por tamaño\n4. Gestiona archivos: mover a papelera, revelar en Finder\n5. Guarda el historial para repetir búsquedas\n6. Exporta los resultados a CSV o JSON",
+    howItWorksEn: "1. Select a folder or volume to scan\n2. The scan analyzes all files asynchronously\n3. View results sorted by size\n4. Manage files: move to trash, reveal in Finder\n5. Save history to repeat searches\n6. Export results to CSV or JSON",
+    howToUse: `📁 ¿Qué es FileSizer?
+FileSizer es una aplicación macOS que te ayuda a encontrar archivos grandes en tu disco duro, ideal para liberar espacio o analizar el uso de almacenamiento.
+
+🔍 Escanear
+- Haz clic en "Select Folder" para elegir directorio
+- Selecciona un volumen completo o carpeta específica
+- Añade rutas a la lista de exclusión (carpetas sistema)
+- El progreso del escaneo se muestra en tiempo real
+
+📊 Ver Resultados
+- Archivos ordenados por tamaño (mayor primero)
+- Muestra ruta completa, tamaño y fecha modificación
+- Filtra por tipo de archivo o tamaño mínimo
+- Click derecho para acciones rápidas
+
+🗑️ Gestionar Archivos
+- Mover a Papelera: elimina el archivo seleccionado
+- Revelar en Finder: abre la ubicación del archivo
+- Leer/Escribir comentarios Finder
+- Copiar ruta al portapapeles
+
+📜 Historial
+- Guarda los últimos escaneos realizados
+- Repite un escaneo anterior con un clic
+- Elimina escaneos antigos del historial
+
+📤 Exportar
+- Exporta a CSV para abrir en Excel/Numbers
+- Exporta a JSON para procesar con scripts
+- Incluye todas las columnas: nombre, ruta, tamaño, fecha`,
+    howToUseEn: `📁 What is FileSizer?
+FileSizer is a macOS app that helps you find large files on your hard drive, ideal for freeing up space or analyzing storage usage.
+
+🔍 Scanning
+- Click "Select Folder" to choose a directory
+- Select a full volume or specific folder
+- Add paths to the exclusion list (system folders)
+- Scan progress is shown in real time
+
+📊 View Results
+- Files sorted by size (largest first)
+- Shows full path, size, and modification date
+- Filter by file type or minimum size
+- Right-click for quick actions
+
+🗑️ Manage Files
+- Move to Trash: deletes the selected file
+- Reveal in Finder: opens the file location
+- Read/Write Finder comments
+- Copy path to clipboard
+
+📜 History
+- Saves recent scans performed
+- Repeat a previous scan with one click
+- Delete old scans from history
+
+📤 Export
+- Export to CSV for Excel/Numbers
+- Export to JSON for script processing
+- Includes all columns: name, path, size, date`,
+    category: "mac",
+    icon: "📁",
+    iconImage: "/icons/FileSizer.jpg",
+    website: "https://github.com/polidisio/filesizer",
+  },
+  {
+    id: "llmbox",
+    name: "LLMBox",
+    description: "Chat interface para conectar con modelos AI locales como Ollama, Gemma, Qwen y más. Streaming en tiempo real, historial de conversaciones y selector de modelos.",
+    descriptionEn: "Chat interface to connect with local AI models like Ollama, Gemma, Qwen, and more. Real-time streaming, conversation history, and model selector.",
+    features: [
+      "Conecta con servidores AI locales en tu red",
+      "Streaming de respuestas en tiempo real",
+      "Historial persistente de conversaciones",
+      "Cambio flexible entre diferentes modelos AI",
+      "Interfaz moderna inspirada en Apple Messages",
+      "Selector de modelos integrado"
+    ],
+    featuresEn: [
+      "Connect to local AI servers on your network",
+      "Real-time streaming responses",
+      "Persistent conversation history",
+      "Flexible switching between different AI models",
+      "Modern interface inspired by Apple Messages",
+      "Built-in model selector"
+    ],
+    howItWorks: "1. Añade un servidor AI local (URL base, ej: http://localhost:11434)\n2. Selecciona el modelo que quieres usar\n3. Escribe tu mensaje y recibe respuestas en streaming\n4. Consulta el historial de conversaciones\n5. Cambia de modelo cuando quieras desde el selector",
+    howItWorksEn: "1. Add a local AI server (base URL, eg: http://localhost:11434)\n2. Select the model you want to use\n3. Write your message and receive streaming responses\n4. Check conversation history\n5. Switch models anytime from the selector",
+    howToUse: `🤖 ¿Qué es LLMBox?
+LLMBox es una interfaz de chat para conectar con modelos AI locales como Ollama, Gemma, Qwen y más. Tus datos nunca salen de tu red.
+
+🔗 Conectar Servidor
+- Añade la URL base del servidor (ej: http://localhost:11434 para Ollama)
+- El servidor debe estar accesible en tu red
+- Prueba la conexión antes de guardar
+
+💬 Chatear
+- Escribe tu mensaje en el campo de texto
+- Presiona Enter o clic en Send para enviar
+- Las respuestas aparecen en streaming en tiempo real
+- El modelo responde de forma contextual
+
+📜 Historial
+- Las conversaciones se guardan automáticamente
+- Selecciona una conversación anterior para continuar
+- Elimina conversaciones que ya no necesites
+
+🔄 Cambiar Modelo
+- Usa el selector de modelos en la barra superior
+- Cambia entre diferentes modelos según necesidad
+- Cada modelo tiene sus propias características
+
+⚙️ Configuración
+- Edita o elimina servidores guardados
+- Gestiona tus conversaciones
+- Ajusta preferencias de la interfaz`,
+    howToUseEn: `🤖 What is LLMBox?
+LLMBox is a chat interface to connect with local AI models like Ollama, Gemma, Qwen, and more. Your data never leaves your network.
+
+🔗 Connect Server
+- Add the base URL of the server (eg: http://localhost:11434 for Ollama)
+- The server must be accessible on your network
+- Test the connection before saving
+
+💬 Chat
+- Write your message in the text field
+- Press Enter or click Send to submit
+- Responses appear in real-time streaming
+- The model responds contextually
+
+📜 History
+- Conversations are saved automatically
+- Select a previous conversation to continue
+- Delete conversations you no longer need
+
+🔄 Switch Model
+- Use the model selector in the top bar
+- Switch between different models as needed
+- Each model has its own characteristics
+
+⚙️ Settings
+- Edit or delete saved servers
+- Manage your conversations
+- Adjust interface preferences`,
+    category: "mac",
+    icon: "🤖",
+    iconImage: "/icons/LLMBox.png",
+    website: "https://github.com/polidisio/LocalAIChat",
+  },
 ];
 
 export const categoryLabels: Record<Category, string> = {
