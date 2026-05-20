@@ -673,6 +673,33 @@ QIResizer is a macOS app for resizing images quickly and easily.
       "/images/qiresizer/Captura de pantalla 2026-05-20 a las 13.21.29.png",
     ],
   },
+  {
+    id: "exiftool-cli",
+    name: "exiftool-cli",
+    description: "Herramienta CLI para extraer, exportar y eliminar metadatos EXIF de fotos. Soporta JPEG, PNG y TIFF. https://github.com/polidisio/exiftool-cli",
+    descriptionEn: "CLI tool to extract, export and remove EXIF metadata from photos. Supports JPEG, PNG and TIFF. https://github.com/polidisio/exiftool-cli",
+    features: [
+      "Modo interactivo con menús",
+      "Extraer metadatos EXIF (cámara, fecha, GPS)",
+      "Exportar a JSON o CSV",
+      "Eliminar metadatos manteniendo calidad",
+      "Procesamiento por lotes",
+      "Soporte recursivo de subcarpetas"
+    ],
+    featuresEn: [
+      "Interactive menu mode",
+      "Extract EXIF metadata (camera, date, GPS)",
+      "Export to JSON or CSV",
+      "Remove metadata while preserving quality",
+      "Batch processing",
+      "Recursive subfolder support"
+    ],
+    howItWorks: "1. Ejecuta exiftool-cli sin argumentos para modo interactivo\n2. Usa extract para ver metadatos en formato tabla\n3. Usa export para guardar en JSON o CSV\n4. Usa remove para eliminar metadatos\n5. Usa batch para procesar carpetas completas",
+    howItWorksEn: "1. Run exiftool-cli without arguments for interactive mode\n2. Use extract to view metadata in table format\n3. Use export to save to JSON or CSV\n4. Use remove to strip metadata\n5. Use batch to process entire folders",
+    category: "desarrollo",
+    icon: "🛠️",
+    website: "https://github.com/polidisio/exiftool-cli",
+  },
 ];
 
 export const categoryLabels: Record<Category, string> = {
