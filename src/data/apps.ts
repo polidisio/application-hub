@@ -572,6 +572,107 @@ LLMBox is a chat interface to connect with local AI models like Ollama, Gemma, Q
       "/images/llmbox/llmbox-3.png",
     ],
   },
+  {
+    id: "qiresizer",
+    name: "QIResizer",
+    description: "Redimensiona imágenes macOS con calidad y simplicidad. Soporta PNG, JPG y HEIC con controles avanzados de formato y calidad.",
+    descriptionEn: "macOS image resizer with quality and simplicity. Supports PNG, JPG and HEIC with advanced format and quality controls.",
+    features: [
+      "Drag & drop de imágenes",
+      "Presets: 1080p, 720p, 480p y custom",
+      "Bloqueo de aspect ratio",
+      "Formatos: JPEG, PNG, HEIC",
+      "Calidad ajustable para JPEG/HEIC",
+      "Nombre de archivo personalizado",
+      "Temas: Claro, Oscuro, Sistema",
+      "Estadísticas de ahorro de espacio"
+    ],
+    featuresEn: [
+      "Drag & drop images",
+      "Presets: 1080p, 720p, 480p and custom",
+      "Aspect ratio lock",
+      "Formats: JPEG, PNG, HEIC",
+      "Adjustable quality for JPEG/HEIC",
+      "Custom file name",
+      "Themes: Light, Dark, System",
+      "Space saving statistics"
+    ],
+    howItWorks: "1. Arrastra imágenes al área de drop o usa Browse Files\n2. Selecciona un preset o introduce un ancho personalizado\n3. Elige el formato de salida (JPEG, PNG, HEIC)\n4. Ajusta la calidad si usas JPEG o HEIC\n5. Haz clic en Resize Now y elige la carpeta de destino\n6. Ve las estadísticas de ahorro de espacio",
+    howItWorksEn: "1. Drag images to the drop area or use Browse Files\n2. Select a preset or enter a custom width\n3. Choose the output format (JPEG, PNG, HEIC)\n4. Adjust quality if using JPEG or HEIC\n5. Click Resize Now and choose the destination folder\n6. View space saving statistics",
+    howToUse: `🖼️ ¿Qué es QIResizer?
+QIResizer es una aplicación macOS para redimensionar imágenes de forma rápida y sencilla.
+
+📥 Importar Imágenes
+- Arrastra imágenes directamente al área de drop
+- O usa el botón "Browse Files" para seleccionarlas
+- Soporta PNG, JPG y HEIC
+- Añade varias imágenes a la vez
+
+📐 Dimensiones
+- Presets disponibles: 1080p, 720p, 480p
+- También puedes elegir "Custom" e introducir el ancho en píxeles
+- Activa "Lock Aspect Ratio" para mantener las proporciones
+
+📤 Formato de Salida
+- JPEG: ideal para fotos, con calidad ajustable (10-100%)
+- PNG: ideal para graphics, sin pérdida de calidad
+- HEIC: formato eficiente de Apple
+
+✏️ Nombre Personalizado
+- Añade un nombre personalizado para los archivos de salida
+- Los archivos se guardarán con el formato seleccionado
+
+🎨 Temas
+- Sistema: sigue la configuración de tu macOS
+- Claro: interfaz clara
+- Oscuro: interfaz oscura
+
+📊 Estadísticas
+- Después de redimensionar, ve el porcentaje de ahorro
+- Compara el tamaño original con el nuevo`,
+    howToUseEn: `🖼️ What is QIResizer?
+QIResizer is a macOS app for resizing images quickly and easily.
+
+📥 Import Images
+- Drag images directly to the drop area
+- Or use the "Browse Files" button to select them
+- Supports PNG, JPG and HEIC
+- Add multiple images at once
+
+📐 Dimensions
+- Available presets: 1080p, 720p, 480p
+- You can also choose "Custom" and enter the width in pixels
+- Enable "Lock Aspect Ratio" to maintain proportions
+
+📤 Output Format
+- JPEG: ideal for photos, with adjustable quality (10-100%)
+- PNG: ideal for graphics, lossless quality
+- HEIC: efficient Apple format
+
+✏️ Custom Name
+- Add a custom name for the output files
+- Files will be saved with the selected format
+
+🎨 Themes
+- System: follows your macOS settings
+- Light: light interface
+- Dark: dark interface
+
+📊 Statistics
+- After resizing, view the savings percentage
+- Compare original size with the new size`,
+    category: "mac",
+    icon: "🖼️",
+    iconImage: "/icons/QIResizer.png",
+    website: "https://github.com/polidisio/QIResizer",
+    screenshots: [
+      "/images/qiresizer/Captura de pantalla 2026-05-20 a las 13.20.09.png",
+      "/images/qiresizer/Captura de pantalla 2026-05-20 a las 13.20.36.png",
+      "/images/qiresizer/Captura de pantalla 2026-05-20 a las 13.21.00.png",
+      "/images/qiresizer/Captura de pantalla 2026-05-20 a las 13.21.18.png",
+      "/images/qiresizer/Captura de pantalla 2026-05-20 a las 13.21.29.png",
+    ],
+  },
 ];
 
 export const categoryLabels: Record<Category, string> = {
