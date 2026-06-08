@@ -386,6 +386,84 @@ From history you can access:
     icon: "🎵",
   },
   {
+    id: "synctracers",
+    name: "SyncTrackers",
+    description: "App local-first que extrae datos de entrenamiento de Apple Health y los sincroniza entre tus dispositivos.",
+    descriptionEn: "Local-first app that extracts Apple Health workout data and syncs across your devices.",
+    features: [
+      "Lee workouts de Apple Health / HealthKit",
+      "Guarda en SQLite local (SwiftData)",
+      "Sincronización privada entre dispositivos",
+      "Exportación a JSON con un tap",
+      "Sincronización automática al abrir, con botón y en background"
+    ],
+    featuresEn: [
+      "Reads workouts from Apple Health / HealthKit",
+      "Stores in local SQLite (SwiftData)",
+      "Private sync between devices",
+      "Export to JSON with one tap",
+      "Auto sync on open, button sync and background"
+    ],
+    howItWorks: "1. Abre la app y concede permisos de HealthKit\n2. La app lee automáticamente tus workouts de Apple Health\n3. Los datos se guardan en SQLite local\n4. Sincroniza entre dispositivos usando iCloud privado\n5. Exporta tus datos a JSON cuando lo necesites",
+    howItWorksEn: "1. Open the app and grant HealthKit permissions\n2. The app automatically reads your workouts from Apple Health\n3. Data is stored in local SQLite\n4. Sync between devices using private iCloud\n5. Export your data to JSON when needed",
+    howToUse: `📱 ¿Qué es SyncTrackers?
+SyncTrackers es una app para iOS que extrae tus datos de entrenamiento de Apple Health y los sincroniza entre tus dispositivos.
+
+📊 Dashboard
+- Verás un resumen de tu actividad reciente
+- Estadísticas de workouts: distancia, duración, calorías
+- Tu racha de entrenamiento actual
+
+🏃 Sincronizar Workouts
+- La app lee automáticamente de Apple Health
+- Compatible con múltiples tipos: running, cycling, swimming, etc.
+- Datos almacenados de forma privada en tu dispositivo
+
+☁️ Sincronización con iCloud
+- Tus datos se sincronizan entre iPhone y Mac
+- Sincronización automática al abrir la app
+- También puedes pulsar el botón de sincronizar manualmente
+- Funciona en background cada N horas
+
+📤 Exportar Datos
+- Exporta todos tus workouts a JSON
+- Comparte o guarda el archivo como prefieras
+
+⚙️ Configuración
+- Activa/desactiva la sincronización automática
+- Configura el intervalo de sincronización en background`,
+    howToUseEn: `📱 What is SyncTrackers?
+SyncTrackers is an iOS app that extracts your Apple Health workout data and syncs it across your devices.
+
+📊 Dashboard
+- See a summary of your recent activity
+- Workout statistics: distance, duration, calories
+- Your current training streak
+
+🏃 Syncing Workouts
+- The app automatically reads from Apple Health
+- Compatible with multiple types: running, cycling, swimming, etc.
+- Data stored privately on your device
+
+☁️ iCloud Sync
+- Your data syncs between iPhone and Mac
+- Auto sync when opening the app
+- You can also manually tap the sync button
+- Works in background every N hours
+
+📤 Export Data
+- Export all your workouts to JSON
+- Share or save the file as you prefer
+
+⚙️ Settings
+- Enable/disable auto sync
+- Configure the background sync interval`,
+    category: "ios",
+    icon: "💪",
+    iconImage: "/icons/SyncTrackers.jpg",
+    website: "https://github.com/polidisio/syncsalud",
+  },
+  {
     id: "filesizer",
     name: "FileSizer",
     description: "App nativa macOS para encontrar archivos grandes en tu disco. Escaneo async, historial de búsquedas y exportación a CSV o JSON.",
