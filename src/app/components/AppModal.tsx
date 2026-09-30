@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { App, categoryLabels } from "@/data/apps";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,23 +23,24 @@ export default function AppModal({ app, onClose }: AppModalProps) {
   const [activeTab, setActiveTab] = useState<"manual" | "screenshots">("manual");
   const { t, locale } = useTranslation();
 
+  const handleClose = useCallback(() => {
+    setIsVisible(false);
+    setTimeout(onClose, 200);
+  }, [onClose]);
+
   useEffect(() => {
-    setIsVisible(true);
+    const raf = requestAnimationFrame(() => setIsVisible(true));
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") handleClose();
     };
     document.addEventListener("keydown", handleEscape);
     document.body.style.overflow = "hidden";
     return () => {
+      cancelAnimationFrame(raf);
       document.removeEventListener("keydown", handleEscape);
       document.body.style.overflow = "";
     };
-  }, []);
-
-  const handleClose = () => {
-    setIsVisible(false);
-    setTimeout(onClose, 200);
-  };
+  }, [handleClose]);
 
   const description = locale === "es" ? app.description : app.descriptionEn;
   const features = locale === "es" ? app.features : app.featuresEn;
@@ -221,7 +222,7 @@ export default function AppModal({ app, onClose }: AppModalProps) {
               </Link>
             )}
             <Link
-              href="/privacy"
+              href={app.privacyUrl ?? "/privacy"}
               className="btn btn-glass"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

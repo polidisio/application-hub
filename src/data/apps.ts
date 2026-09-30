@@ -18,6 +18,7 @@ export interface App {
   iconImage?: string;
   website?: string;
   appStore?: string;
+  privacyUrl?: string;
 }
 
 export const apps: App[] = [
@@ -462,6 +463,7 @@ SyncTrackers is an iOS app that extracts your Apple Health workout data and sync
     icon: "💪",
     iconImage: "/icons/SyncTrackers.jpg",
     website: "https://github.com/polidisio/syncsalud",
+    privacyUrl: "/privacy/synctracers",
   },
   {
     id: "filesizer",

@@ -17,6 +17,7 @@ export const translations = {
     privacy: {
       title: "Política de Privacidad",
       lastUpdate: "Última actualización",
+      date: "16 de febrero de 2026",
       introduction: "Introducción",
       introductionText: "Las aplicaciones desarrolladas por Polidisio respetan tu privacidad. Esta política describe cómo recopilamos, usamos y protegemos tu información.",
       dataCollected: "Datos que recopilamos",
@@ -28,6 +29,48 @@ export const translations = {
         "No accedemos a tu ubicación",
         "No compartimos datos con terceros"
       ],
+      storedData: "Datos que almacenamos",
+      storedDataText: "Todos los datos se almacenan exclusivamente en tu dispositivo:",
+      storedDataList: [
+        "Configuración de la app",
+        "Contenido que tú decides guardar",
+        "Preferencias personales"
+      ],
+      storedDataNote: "Estos datos se eliminan si desinstalas la aplicación.",
+      permissions: "Permisos",
+      permissionsText: "Nuestras aplicaciones no requieren permisos especiales más allá del acceso básico necesario para su funcionamiento.",
+      children: "Niños",
+      childrenText: "Nuestras aplicaciones son aptas para todas las edades.",
+      changes: "Cambios",
+      changesText: "Esta política puede actualizarse en futuras versiones de las aplicaciones.",
+      contact: "Contacto",
+      contactText: "Para preguntas sobre privacidad:",
+      contactEmail: "Email",
+      contactWeb: "Web",
+      back: "Volver",
+    },
+    privacySyncTrackers: {
+      title: "Política de Privacidad",
+      lastUpdate: "Última actualización",
+      date: "30 de septiembre de 2026",
+      introduction: "Introducción",
+      introductionText: "Las aplicaciones desarrolladas por Polidisio respetan tu privacidad. Esta política describe cómo recopilamos, usamos y protegemos tu información.",
+      dataCollected: "Datos que recopilamos",
+      dataCollectedText: "Para mejorar nuestras aplicaciones y entender cómo las usas, utilizamos PostHog (posthog.com), un servicio de analytics. Recopilamos de forma ANÓNIMA:",
+      collectedList: [
+        "Eventos de uso de la app (pantallas abiertas, botones pulsados)",
+        "Versión de la app y sistema operativo",
+        "Modelo de dispositivo (no tu nombre ni datos personales)",
+        "País/región aproximado basado en la configuración del dispositivo (NO GPS)"
+      ],
+      notCollectedTitle: "NO recopilamos:",
+      dataCollectedList: [
+        "Tu nombre, email o datos personales",
+        "Datos de salud reales",
+        "Contenido de tus documentos o datos privados",
+        "Ubicación GPS precisa"
+      ],
+      optOutText: "Puedes desactivar la recogida de datos desde los ajustes de la app.",
       storedData: "Datos que almacenamos",
       storedDataText: "Todos los datos se almacenan exclusivamente en tu dispositivo:",
       storedDataList: [
@@ -67,6 +110,7 @@ export const translations = {
     privacy: {
       title: "Privacy Policy",
       lastUpdate: "Last updated",
+      date: "February 16, 2026",
       introduction: "Introduction",
       introductionText: "Apps developed by Polidisio respect your privacy. This policy describes how we collect, use, and protect your information.",
       dataCollected: "Data We Collect",
@@ -78,6 +122,48 @@ export const translations = {
         "We do not access your location",
         "We do not share data with third parties"
       ],
+      storedData: "Data We Store",
+      storedDataText: "All data is stored exclusively on your device:",
+      storedDataList: [
+        "App configuration",
+        "Content you choose to save",
+        "Personal preferences"
+      ],
+      storedDataNote: "This data is deleted if you uninstall the app.",
+      permissions: "Permissions",
+      permissionsText: "Our apps do not require special permissions beyond basic access needed for functionality.",
+      children: "Children",
+      childrenText: "Our apps are suitable for all ages.",
+      changes: "Changes",
+      changesText: "This policy may be updated in future versions of the apps.",
+      contact: "Contact",
+      contactText: "For privacy questions:",
+      contactEmail: "Email",
+      contactWeb: "Web",
+      back: "Back",
+    },
+    privacySyncTrackers: {
+      title: "Privacy Policy",
+      lastUpdate: "Last updated",
+      date: "September 30, 2026",
+      introduction: "Introduction",
+      introductionText: "Apps developed by Polidisio respect your privacy. This policy describes how we collect, use, and protect your information.",
+      dataCollected: "Data We Collect",
+      dataCollectedText: "To improve our apps and understand how they are used, we use PostHog (posthog.com), an analytics service. We collect the following ANONYMOUSLY:",
+      collectedList: [
+        "App usage events (screens opened, buttons tapped)",
+        "App version and operating system",
+        "Device model (not your name or personal data)",
+        "Approximate country/region based on device settings (NOT GPS)"
+      ],
+      notCollectedTitle: "We do NOT collect:",
+      dataCollectedList: [
+        "Your name, email or personal data",
+        "Actual health data",
+        "The content of your documents or private data",
+        "Precise GPS location"
+      ],
+      optOutText: "You can turn off data collection in the app settings.",
       storedData: "Data We Store",
       storedDataText: "All data is stored exclusively on your device:",
       storedDataList: [

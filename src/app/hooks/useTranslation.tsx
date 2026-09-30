@@ -17,6 +17,8 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const browserLang = navigator.language || "en";
     const detectedLocale: Locale = browserLang.startsWith("es") ? "es" : "en";
+    // detect after mount to avoid SSR hydration mismatch
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLocale(detectedLocale);
   }, []);
 
