@@ -300,6 +300,7 @@ From history you can access:
     icon: "🍹",
     iconImage: "/icons/DrinkTrack.jpg",
     appStore: "https://apps.apple.com/es/app/mybartrack/id6759322912",
+    privacyUrl: "/privacy/mybartrack",
   },
   {
     id: "magicmousebattery",

@@ -49,7 +49,7 @@ export const translations = {
       contactWeb: "Web",
       back: "Volver",
     },
-    privacySyncTrackers: {
+    privacyAnalytics: {
       title: "Política de Privacidad",
       lastUpdate: "Última actualización",
       date: "30 de septiembre de 2026",
@@ -142,7 +142,7 @@ export const translations = {
       contactWeb: "Web",
       back: "Back",
     },
-    privacySyncTrackers: {
+    privacyAnalytics: {
       title: "Privacy Policy",
       lastUpdate: "Last updated",
       date: "September 30, 2026",
