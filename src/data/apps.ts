@@ -467,6 +467,94 @@ SyncTrackers is an iOS app that extracts your Apple Health workout data and sync
     privacyUrl: "/privacy/synctracers",
   },
   {
+    id: "trackhobbies",
+    name: "TrackHobbies",
+    description: "Tu diario personal de ocio: apunta los libros que lees, las series que ves y los juegos que juegas, y sigue tu progreso. Sin cuentas.",
+    descriptionEn: "Your personal leisure journal: log the books you read, the series you watch and the games you play, and track your progress. No accounts.",
+    features: [
+      "Libros, series y videojuegos en tres pestañas",
+      "Estados: pendiente, sin empezar, en progreso, completado y archivado",
+      "Búsqueda con portadas y descripciones automáticas, o alta manual",
+      "Progreso por páginas, temporadas/episodios u horas jugadas",
+      "Nota de 0 a 5 con cuartos de estrella y reseña personal",
+      "Estadísticas de tu colección",
+      "Sincronización con iCloud entre iPhone y iPad",
+      "Importa de Goodreads (CSV), exporta a CSV y copia de seguridad JSON"
+    ],
+    featuresEn: [
+      "Books, series and games in three tabs",
+      "Statuses: wishlist, not started, in progress, completed and archived",
+      "Search with automatic covers and descriptions, or manual entry",
+      "Progress by pages, seasons/episodes or hours played",
+      "0 to 5 rating in quarter-star steps and personal review",
+      "Collection statistics",
+      "iCloud sync between iPhone and iPad",
+      "Import from Goodreads (CSV), export to CSV and JSON backup"
+    ],
+    howItWorks: "1. Abre la app: no hay registro ni cuentas\n2. Busca un título y la app rellena portada y datos, o añádelo a mano\n3. Actualiza tu progreso, fechas, nota y reseña\n4. Consulta tus estadísticas y filtra tu biblioteca\n5. Tus datos se guardan en el dispositivo y se sincronizan con tu iCloud privado",
+    howItWorksEn: "1. Open the app: no sign-up or accounts\n2. Search a title and the app fills in cover and details, or add it manually\n3. Update your progress, dates, rating and review\n4. Check your statistics and filter your library\n5. Data is stored on your device and synced via your private iCloud",
+    howToUse: `📚 ¿Qué es TrackHobbies?
+Un diario personal de ocio para iPhone y iPad: libros, series y juegos en un solo lugar.
+
+➕ Añadir títulos
+- Busca por título y se rellenan portada y descripción
+- ¿No aparece? Añádelo a mano con estado, páginas, temporadas, horas y portada propia
+
+📈 Seguir el progreso
+- Libros: página actual y total, o porcentaje
+- Series: temporada y episodio actuales
+- Juegos: horas jugadas
+- Fechas de inicio y fin
+
+⭐ Puntuar
+- Nota de 0 a 5 con saltos de cuarto de estrella
+- Reseña personal para cada título
+- Filtra por estado, nota o fecha, y busca por título o autor
+
+📊 Estadísticas
+- Elementos por tipo y estado, páginas leídas, horas jugadas, nota media y tus mejor valorados
+
+☁️ Tus datos
+- Sincronización con iCloud entre iPhone y iPad
+- Importa desde Goodreads (CSV), exporta a CSV y haz copias JSON`,
+    howToUseEn: `📚 What is TrackHobbies?
+A personal leisure journal for iPhone and iPad: books, series and games in one place.
+
+➕ Adding titles
+- Search by title and cover and description are filled in
+- Not found? Add it manually with status, pages, seasons, hours and your own cover
+
+📈 Tracking progress
+- Books: current and total page, or percentage
+- Series: current season and episode
+- Games: hours played
+- Start and end dates
+
+⭐ Rating
+- 0 to 5 rating in quarter-star steps
+- Personal review for each title
+- Filter by status, rating or date, and search by title or author
+
+📊 Statistics
+- Items by type and status, pages read, hours played, average rating and your top rated
+
+☁️ Your data
+- iCloud sync between iPhone and iPad
+- Import from Goodreads (CSV), export to CSV and make JSON backups`,
+    screenshots: [
+      "/images/trackhobbies/01_library.png",
+      "/images/trackhobbies/02_search.png",
+      "/images/trackhobbies/03_detail_progress.png",
+      "/images/trackhobbies/05_completed_ratings.png",
+      "/images/trackhobbies/08_stats.png",
+    ],
+    category: "ios",
+    icon: "📚",
+    iconImage: "/icons/TrackHobbies.png",
+    website: "https://github.com/polidisio/TrackHobbies",
+    privacyUrl: "/privacy/trackhobbies",
+  },
+  {
     id: "filesizer",
     name: "FileSizer",
     description: "App nativa macOS para encontrar archivos grandes en tu disco. Escaneo async, historial de búsquedas y exportación a CSV o JSON.",
