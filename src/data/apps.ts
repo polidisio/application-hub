@@ -136,7 +136,7 @@ Markdown Notes is an iOS note-taking app that lets you write in Markdown with al
       "Multilingual: English, Spanish, French and German",
       "Compatible with iPhone and iPad"
     ],
-    howItWorks: "1. Crea un mazo con nombre y color personalizado\n2. Añade tarjetas con pregunta (anverso) y respuesta (reverso)\n3. Inicia una sesión de estudio y翻转 la tarjeta para ver la respuesta\n4. Marca cada tarjeta como correcta o incorrecta\n5. El sistema SRS programa las tarjetas para revisión óptima\n6. Importa tus propios mazos desde Excel o CSV\n7. Consulta las estadísticas para ver tu progreso",
+    howItWorks: "1. Crea un mazo con nombre y color personalizado\n2. Añade tarjetas con pregunta (anverso) y respuesta (reverso)\n3. Inicia una sesión de estudio y voltea la tarjeta para ver la respuesta\n4. Marca cada tarjeta como correcta o incorrecta\n5. El sistema SRS programa las tarjetas para revisión óptima\n6. Importa tus propios mazos desde Excel o CSV\n7. Consulta las estadísticas para ver tu progreso",
     howItWorksEn: "1. Create a deck with name and custom color\n2. Add cards with question (front) and answer (back)\n3. Start a study session and flip the card to reveal the answer\n4. Mark each card as correct or incorrect\n5. The SRS system schedules cards for optimal review\n6. Import your own decks from Excel or CSV\n7. Check statistics to track your progress",
     howToUse: `🎯 ¿Qué es ThinkDeck Study?
 ThinkDeck Study es una app para estudiar con flashcards usando el sistema de repetición espaciada (SRS), que optimiza tu aprendizaje mostrando las tarjetas en el momento ideal.
@@ -160,7 +160,7 @@ ThinkDeck Study es una app para estudiar con flashcards usando el sistema de rep
 📖 Estudiar
 - Selecciona un mazo y pulsa "Study"
 - Elige modo: "All Cards" o "Due Today"
-- Toca la tarjeta para翻转 y ver la respuesta
+- Toca la tarjeta para voltea y ver la respuesta
 - Marca "Correct" o "Incorrect" para cada tarjeta
 - El sistema SRS adapta la próxima revisión
 
