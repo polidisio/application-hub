@@ -642,6 +642,100 @@ Privacy
     privacyUrl: "/privacy/streamaura",
   },
   {
+    id: "noduscli",
+    name: "NodusCli",
+    description: "Cliente SSH para iPhone y iPad con terminal real (xterm-256color), pestañas, búsqueda en el historial y claves en el llavero de Apple. Sin cuentas ni analíticas.",
+    descriptionEn: "An SSH client for iPhone and iPad with a real terminal (xterm-256color), tabs, scrollback search and keys kept in the Apple Keychain. No accounts, no analytics.",
+    features: [
+      "Terminal interactiva real (xterm-256color): vim, htop, tmux y apps ncurses funcionan como en el escritorio",
+      "Barra de teclas extra con Esc, Ctrl, Tab, flechas y F1-F12",
+      "Varias pestañas: mantén varios servidores abiertos a la vez",
+      "Búsqueda en el historial (scrollback) de la terminal",
+      "Servidores guardados: conecta con un toque",
+      "Acceso con contraseña o con clave privada (ed25519 y ECDSA)",
+      "Verificación de la clave del servidor como PuTTY: confianza en el primer uso y aviso si cambia",
+      "Contraseñas y claves solo en el llavero de Apple; sin cuentas, publicidad ni analíticas"
+    ],
+    featuresEn: [
+      "A real interactive terminal (xterm-256color): vim, htop, tmux and ncurses apps work like on the desktop",
+      "Extra key bar with Esc, Ctrl, Tab, arrows and F1-F12",
+      "Multiple tabs: keep several servers open at once",
+      "Search the terminal scrollback",
+      "Saved servers: connect with one tap",
+      "Sign in with a password or a private key (ed25519 and ECDSA)",
+      "Host key verification like PuTTY: trust on first use, with a warning if it changes",
+      "Passwords and keys only in the Apple Keychain; no accounts, ads or analytics"
+    ],
+    howItWorks: "1. Abre la app: no hay registro ni cuentas\n2. Pulsa + y añade un servidor: host, puerto, usuario y contraseña (opcional con clave)\n3. Opcional: importa tu clave privada SSH\n4. Toca el servidor para conectar y confirma la huella la primera vez\n5. Usa la terminal; abre más pestañas con +\n6. Tus datos se quedan en tu dispositivo",
+    howItWorksEn: "1. Open the app: no sign-up or accounts\n2. Tap + and add a server: host, port, user and password (optional with a key)\n3. Optional: import your SSH private key\n4. Tap the server to connect and confirm the fingerprint the first time\n5. Use the terminal; open more tabs with +\n6. Your data stays on your device",
+    howToUse: `Qué es NodusCli
+Un cliente SSH para iPhone y iPad pensado para quien vive en la terminal: una terminal real, no una vista web.
+
+Añadir un servidor
+- Pulsa + en la pantalla principal
+- Introduce nombre, host, puerto (22 por defecto), usuario y contraseña
+- La contraseña es opcional si usas una clave privada
+
+Usar una clave privada
+- Clave SSH > Importar clave privada
+- Se admiten claves OpenSSH ed25519 y ECDSA (P-256, P-384, P-521) en PEM
+- Las claves RSA y las protegidas con passphrase aún no se admiten: la app te indica cómo convertirlas (por ejemplo, con ssh-keygen)
+
+Conectar
+- Toca un servidor
+- La primera vez verás la huella SHA256 de su clave: confírmala si es la correcta
+- Si la clave cambia, NodusCli te avisa antes de conectar
+
+En la terminal
+- Barra superior de teclas: Esc, Ctrl, Tab, flechas y F1-F12
+- Pestañas: + para abrir otro servidor, × para cerrar
+- Lupa: busca en el historial de la terminal
+- Ajustes: tamaño de letra y tema de color
+
+Red local
+- Para conectar a servidores de tu casa u oficina, iOS pedirá permiso de Red local la primera vez: pulsa Permitir
+- Si lo denegaste, actívalo en Ajustes > NodusCli > Red local
+
+Privacidad
+- Sin cuentas, publicidad ni analíticas
+- Contraseñas y claves en el llavero de Apple`,
+    howToUseEn: `What is NodusCli
+An SSH client for iPhone and iPad built for people who live in the terminal: a real terminal, not a web view.
+
+Add a server
+- Tap + on the main screen
+- Enter name, host, port (22 by default), user and password
+- The password is optional if you use a private key
+
+Use a private key
+- SSH key > Import private key
+- OpenSSH ed25519 and ECDSA (P-256, P-384, P-521) keys in PEM are supported
+- RSA keys and passphrase-protected keys are not supported yet: the app tells you how to convert them (for example, with ssh-keygen)
+
+Connect
+- Tap a server
+- The first time you will see the SHA256 fingerprint of its key: confirm it if it is the right one
+- If the key changes, NodusCli warns you before connecting
+
+In the terminal
+- Top key bar: Esc, Ctrl, Tab, arrows and F1-F12
+- Tabs: + to open another server, × to close
+- Magnifier: search the terminal scrollback
+- Settings: font size and color theme
+
+Local network
+- To connect to servers in your home or office, iOS will ask for Local Network permission the first time: tap Allow
+- If you denied it, enable it in Settings > NodusCli > Local Network
+
+Privacy
+- No accounts, ads or analytics
+- Passwords and keys in the Apple Keychain`,
+    category: "ios",
+    icon: "💻",
+    iconImage: "/icons/NodusCli.png",
+    privacyUrl: "/privacy/noduscli",
+  },
+  {
     id: "filesizer",
     name: "FileSizer",
     description: "App nativa macOS para encontrar archivos grandes en tu disco. Escaneo async, historial de búsquedas y exportación a CSV o JSON.",
