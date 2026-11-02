@@ -13,6 +13,7 @@ export interface App {
   howToUse?: string;
   howToUseEn?: string;
   screenshots?: string[];
+  screenshotsEn?: string[];
   category: Category;
   icon: string;
   iconImage?: string;
@@ -553,6 +554,92 @@ A personal leisure journal for iPhone and iPad: books, series and games in one p
     iconImage: "/icons/TrackHobbies.png",
     website: "https://github.com/polidisio/TrackHobbies",
     privacyUrl: "/privacy/trackhobbies",
+  },
+  {
+    id: "streamaura",
+    name: "StreamAura",
+    description: "Reproductor para tus propias fuentes: listas IPTV (M3U/M3U8), cuentas Xtream y la biblioteca de tu NAS o servidor de medios. Para iPhone, iPad y Apple TV. Sin cuentas ni analíticas.",
+    descriptionEn: "A player for your own sources: IPTV playlists (M3U/M3U8), Xtream accounts and the library on your NAS or media server. For iPhone, iPad and Apple TV. No accounts, no analytics.",
+    features: [
+      "Listas M3U y M3U8 por dirección web o archivo, y cuentas Xtream Codes",
+      "Canales por grupos, búsqueda y favoritos",
+      "Películas y series de Xtream con categorías, temporadas y continuar viendo",
+      "Biblioteca propia por DLNA, SMB, NFS o WebDAV, o con tu servidor Jellyfin o Plex",
+      "Series agrupadas por temporada a partir de los nombres de archivos y carpetas",
+      "Carátulas generadas automáticamente, sin depender de servicios externos",
+      "Selección de audio y subtítulos, con soporte para MKV y muchos formatos",
+      "Contraseñas en el llavero de Apple; sin cuentas, publicidad ni analíticas"
+    ],
+    featuresEn: [
+      "M3U and M3U8 playlists by web address or file, and Xtream Codes accounts",
+      "Channels by group, search and favorites",
+      "Xtream movies and series with categories, seasons and continue watching",
+      "Your own library over DLNA, SMB, NFS or WebDAV, or with your Jellyfin or Plex server",
+      "Series grouped by season from file and folder names",
+      "Automatically generated artwork, with no reliance on external services",
+      "Audio and subtitle selection, with MKV and many other formats supported",
+      "Passwords in the Apple Keychain; no accounts, ads or analytics"
+    ],
+    howItWorks: "1. Abre la app: no hay registro ni cuentas\n2. Añade una fuente: una lista IPTV o un servidor de medios de tu red\n3. Elige las carpetas de tu NAS que quieres explorar\n4. Navega por canales, películas y series y pulsa para reproducir\n5. Tus datos se quedan en tu dispositivo",
+    howItWorksEn: "1. Open the app: no sign-up or accounts\n2. Add a source: an IPTV playlist or a media server on your network\n3. Choose the folders on your NAS you want to browse\n4. Browse channels, movies and series and tap to play\n5. Your data stays on your device",
+    howToUse: `Qué es StreamAura
+Un reproductor para iPhone, iPad y Apple TV que reúne tus listas IPTV y la biblioteca de tu NAS en un solo sitio. StreamAura no incluye ni ofrece canales ni contenido: tú añades tus propias fuentes.
+
+Añadir una lista IPTV
+- Fuentes > + > Añadir lista IPTV
+- Pega la dirección de una lista M3U o M3U8, elige un archivo o introduce los datos de tu cuenta Xtream
+
+Añadir tu biblioteca
+- Fuentes > + > Añadir servidor de medios (NAS)
+- Elige el tipo: DLNA, SMB, NFS, WebDAV, Jellyfin o Plex
+- Para SMB, NFS y WebDAV, usa "Elegir carpetas" para marcar qué carpetas explorar
+- Las series se agrupan por temporada y episodio
+
+Reproducir
+- Pulsa un canal, película o episodio
+- Cambia de pista de audio o de subtítulos desde el reproductor
+- En Apple TV, desliza hacia arriba en el mando para abrir las pistas
+
+Privacidad
+- Sin cuentas, publicidad ni analíticas
+- Las contraseñas se guardan en el llavero de Apple`,
+    howToUseEn: `What is StreamAura
+A player for iPhone, iPad and Apple TV that brings your IPTV playlists and your NAS library together in one place. StreamAura does not include or provide any channels or content: you add your own sources.
+
+Add an IPTV playlist
+- Sources > + > Add IPTV playlist
+- Paste the address of an M3U or M3U8 playlist, pick a file, or enter your Xtream account details
+
+Add your library
+- Sources > + > Add media server (NAS)
+- Choose the type: DLNA, SMB, NFS, WebDAV, Jellyfin or Plex
+- For SMB, NFS and WebDAV, use "Choose folders" to pick which folders to browse
+- Series are grouped by season and episode
+
+Play
+- Tap a channel, movie or episode
+- Switch audio track or subtitles from the player
+- On Apple TV, swipe up on the remote to open the tracks
+
+Privacy
+- No accounts, ads or analytics
+- Passwords are stored in the Apple Keychain`,
+    screenshots: [
+      "/images/streamaura/es-1.jpg",
+      "/images/streamaura/es-2.jpg",
+      "/images/streamaura/es-3.jpg",
+      "/images/streamaura/es-4.jpg",
+    ],
+    screenshotsEn: [
+      "/images/streamaura/en-1.jpg",
+      "/images/streamaura/en-2.jpg",
+      "/images/streamaura/en-3.jpg",
+      "/images/streamaura/en-4.jpg",
+    ],
+    category: "ios",
+    icon: "📺",
+    iconImage: "/icons/StreamAura.png",
+    privacyUrl: "/privacy/streamaura",
   },
   {
     id: "filesizer",

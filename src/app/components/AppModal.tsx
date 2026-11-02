@@ -46,7 +46,8 @@ export default function AppModal({ app, onClose }: AppModalProps) {
   const features = locale === "es" ? app.features : app.featuresEn;
   const howItWorks = locale === "es" ? app.howItWorks : app.howItWorksEn;
   const howToUse = locale === "es" ? app.howToUse : app.howToUseEn;
-  const hasTabs = howToUse || (app.screenshots && app.screenshots.length > 0);
+  const screenshots = locale === "en" && app.screenshotsEn ? app.screenshotsEn : app.screenshots;
+  const hasTabs = howToUse || (screenshots && screenshots.length > 0);
 
   return (
     <div
@@ -153,7 +154,7 @@ export default function AppModal({ app, onClose }: AppModalProps) {
                     {t.common.userManual}
                   </button>
                 )}
-                {app.screenshots && app.screenshots.length > 0 && (
+                {screenshots && screenshots.length > 0 && (
                   <button
                     onClick={() => setActiveTab("screenshots")}
                     className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all ${
@@ -175,9 +176,9 @@ export default function AppModal({ app, onClose }: AppModalProps) {
                 </div>
               )}
 
-              {activeTab === "screenshots" && app.screenshots && app.screenshots.length > 0 && (
+              {activeTab === "screenshots" && screenshots && screenshots.length > 0 && (
                 <div className="grid grid-cols-2 gap-3">
-                  {app.screenshots.map((screenshot, index) => (
+                  {screenshots.map((screenshot, index) => (
                     <div key={index} className="relative aspect-[9/19.5] rounded-2xl overflow-hidden bg-white/5 border border-white/8">
                       <Image
                         src={screenshot}
