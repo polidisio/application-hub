@@ -1,86 +1,60 @@
 # Code Review Report: application-hub
+Generated: 2026-11-04T00:12:35.552096
 
-**Date:** 2026-05-22  
-**Review Method:** Automated Claude Code analysis  
-**Repository:** polidisio/application-hub  
-**Branch:** code-review/application-hub-20260522
+I've read all17 source files (well within the 20-file limit) and cross-checked data, i18n, CSS utilities, and asset paths. Here's the report.
 
 ---
 
-## Summary
+# Code Review: application-hub
 
-| Severity | Count |
-|----------|-------|
-| CRITICAL | 0 |
-| HIGH | 2 |
-| MEDIUM | 4 |
-| MINOR | 4 |
+**Scope:** `src/` (17 files: 8 app routes, 4 components, 1 hook, 1 i18n module, 1 data module, 1 global CSS). Next.js 16 / React 19 / Tailwind v4, fully static, no backend.
 
-**Overall: Clean codebase — no critical bugs or security vulnerabilities.**
+**Overall:** The code is clean and idiomatic. No critical security vulnerabilities — there is no user input, no `dangerouslySetInnerHTML`, no auth, no API routes, no external data fetching, and external links correctly use `rel="noopener noreferrer"`. The issues below are mostly correctness of displayed content, i18n consistency, accessibility, and a couple of real bugs.
 
 ---
 
-## HIGH Issues
+## 1. CRITICAL (must fix)
 
-### 1. Unused `nameEn` field in App interface
-- **File:** `src/data/apps.ts:6`
-- **Description:** `nameEn?: string` is defined in the `App` interface but never displayed in `AppCard` or `AppModal`. Either dead code or missing bilingual feature.
-- **Fix:** If English names are meant to display based on locale, update components. Otherwise remove the field.
-
-### 2. Duplicate `categoryBadgeClass` across components
-- **Files:** `src/app/components/AppCard.tsx:7-12`, `src/app/components/AppModal.tsx:9-14`
-- **Description:** Identical static object is copy-pasted in two files. Also `juego` maps to `"badge badge-mac"` (likely typo — should be `"badge badge-juego"`).
-- **Fix:** Extract to shared constant file (`src/app/components/categoryStyles.ts`) and fix the `juego` mapping.
+None. No exploitable vulnerability or data-loss defect found.
 
 ---
 
-## MEDIUM Issues
+## 2. HIGH (should fix)
 
-### 3. Missing `useCallback` for `handleEscape` in AppModal
-- **File:** `src/app/components/AppModal.tsx:28-31`
-- **Description:** `handleEscape` is recreated on every render. Works correctly due to useEffect re-registering, but idiomatic pattern is `useCallback`.
-- **Fix:** Wrap in `useCallback` with `onClose` as dependency.
+### H1 — Visible wrong character count in the header
+`src/app/components/Header.tsx:63`
+```tsx
+9 apps &nbsp;·&nbsp; macOS &nbsp;·&nbsp; iOS &nbsp;·&nbsp; Web
+```
+The dataset contains **14** apps (`src/data/apps.ts`, 14 `id:` entries). The number is hardcoded and already stale.
+**Fix:** derive it — `apps.length` — or remove the count entirely.
 
-### 4. Hardcoded date in privacy page
-- **File:** `src/app/privacy/page.tsx:52`
-- **Description:** `"16 de febrero de 2026"` / `"16 February 2026"` is hardcoded inline.
-- **Fix:** Add a `lastUpdateDate` key to translations and reference it dynamically.
+### H2 — Corrupted text (Chinese characters) in the Spanish/English ThinkDeck copy
+`src/data/apps.ts:140` and `src/data/apps.ts:164`
+```
+3. Inicia una sesión de estudio y翻转 la tarjeta para ver la respuesta
+- Toca la tarjeta para翻转 y ver la respuesta
+```
+`翻转` means "flip" in Chinese — clearly a bad IME substitution for "girar"/"flip". User-visible in the app modal.
+**Fix:** replace with "girar" (ES) and "flip" (EN) respectively.
 
-### 5. `useEffect` in `useTranslation` has empty deps with no comment
-- **File:** `src/app/hooks/useTranslation.tsx:17-21`
-- **Description:** Locale detection runs once on mount (`[]` deps) — intentional, but no comment explains why lint warning is suppressed.
-- **Fix:** Add `// eslint-disable-next-line` or a clarifying comment.
+### H3 — App name mismatch in the MyBarTrack English manual
+`src/data/apps.ts:268-269`
+```ts
+howToUseEn: `🎯 What is DrinkTrack?
+DrinkTrack is an app to track your daily beverage consumption...
+```
+The app is named **MyBarTrack** everywhere else (`name` at line 221, the ES manual at 242-243, the icon `/icons/DrinkTrack.jpg`). The EN manual shows a product name users can't find in the store.
+**Fix:** replace `DrinkTrack` → `MyBarTrack` in `howToUseEn`.
 
-### 6. `howToUse` content has flipped character encoding
-- **File:** `src/data/apps.ts:162`
-- **Description:** `"翻转"` contains U+2F8F4 (flipped variant) instead of standard `翻` (U+7FF0).
-- **Fix:** Replace with correct `翻转` using standard characters.
+### H4 — MyBarTrack's feature list contradicts its own privacy policy (legal inconsistency)
+- `src/data/apps.ts:228-229` (shown to users in the app modal):
+  - "Datos almacenados exclusivamente en tu dispositivo"
+  - "Sin recopilación de datos personales"
+- `src/app/privacy/mybartrack/page.tsx:8` serves `t.privacyAnalytics`, whose `dataCollectedText` states the app **uses PostHog analytics** and collects anonymous usage events.
 
----
+These cannot both be true. A privacy policy that contradicts the in-app claim is a store-review / GDPR exposure, not just a copy bug.
+**Fix:** decide which is true. If PostHog is used, drop the "Sin recopilación de datos personales" feature bullet and state the analytics disclosure in the modal; if not, give MyBarTrack its own policy page instead of reusing `privacyAnalytics`.
 
-## MINOR Suggestions
-
-### 7. `next.config.ts` is empty
-- No custom configuration. Fine for now, but populate when adding image domains, redirects, or security headers.
-
-### 8. No test suite
-- No testing framework (Jest, Vitest, Playwright). Low priority for a portfolio site.
-
-### 9. `layout.tsx` hardcodes `lang="es"`
-- **File:** `src/app/layout.tsx:29`
-- **Description:** HTML lang attribute always Spanish regardless of active locale — affects SEO and screen readers.
-- **Fix:** Pass locale to layout and set `lang={locale}`.
-
-### 10. `juego` category uses `badge-mac` CSS class
-- **Files:** `AppCard.tsx:10`, `AppModal.tsx:12`
-- **Description:** Category `juego` uses `badge-mac` class. May be intentional (shared styles) but worth confirming.
-- **Fix:** Confirm with designer or create `badge-juego` style.
-
----
-
-## Security & Dependency Notes
-
-- **next@16.1.6, react@19.2.3** — Cutting-edge versions, no known security issues.
-- **External links** use `target="_blank"` with `rel="noopener noreferrer"` correctly.
-- **`mailto:` link** (`info@saraiba.eu`) hardcoded as intended.
-- **No security scanning** (`npm audit`) configured — recommend adding to CI.
+### H5 — `<html lang>` is hardcoded to Spanish while the UI switches to English
+`src/app/layout.t
