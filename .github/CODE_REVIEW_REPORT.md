@@ -1,86 +1,53 @@
 # Code Review Report: application-hub
+Generated: 2026-11-05T00:08:32.366155
 
-**Date:** 2026-05-22  
-**Review Method:** Automated Claude Code analysis  
-**Repository:** polidisio/application-hub  
-**Branch:** code-review/application-hub-20260522
+I've read all source files. Here's my report.
 
 ---
 
-## Summary
+# Code Review: application-hub
 
-| Severity | Count |
-|----------|-------|
-| CRITICAL | 0 |
-| HIGH | 2 |
-| MEDIUM | 4 |
-| MINOR | 4 |
+Stack: Next.js 16 (App Router), React 19, Tailwind v4, TypeScript. Small static site — 14 app entries,6 privacy pages, no API routes, no auth, no DB. **No XSS/injection surface** — everything is static local data rendered through React (no `dangerouslySetInnerHTML`, no user input, no network calls). `next/link` external links correctly use `rel="noopener noreferrer"`.
 
-**Overall: Clean codebase — no critical bugs or security vulnerabilities.**
+The code is generally clean. Below are real defects, roughly in severity order.
 
 ---
 
-## HIGH Issues
+## 1. CRITICAL
 
-### 1. Unused `nameEn` field in App interface
-- **File:** `src/data/apps.ts:6`
-- **Description:** `nameEn?: string` is defined in the `App` interface but never displayed in `AppCard` or `AppModal`. Either dead code or missing bilingual feature.
-- **Fix:** If English names are meant to display based on locale, update components. Otherwise remove the field.
-
-### 2. Duplicate `categoryBadgeClass` across components
-- **Files:** `src/app/components/AppCard.tsx:7-12`, `src/app/components/AppModal.tsx:9-14`
-- **Description:** Identical static object is copy-pasted in two files. Also `juego` maps to `"badge badge-mac"` (likely typo — should be `"badge badge-juego"`).
-- **Fix:** Extract to shared constant file (`src/app/components/categoryStyles.ts`) and fix the `juego` mapping.
+**None.** No exploitable vulnerabilities or data-loss bugs found. The issues below are correctness/UX/legal-accuracy defects.
 
 ---
 
-## MEDIUM Issues
+## 2. HIGH
 
-### 3. Missing `useCallback` for `handleEscape` in AppModal
-- **File:** `src/app/components/AppModal.tsx:28-31`
-- **Description:** `handleEscape` is recreated on every render. Works correctly due to useEffect re-registering, but idiomatic pattern is `useCallback`.
-- **Fix:** Wrap in `useCallback` with `onClose` as dependency.
+### H1 — Modal opens with a blank content area when switching between apps
+`src/app/components/AppModal.tsx:23, 50, 171–192`
 
-### 4. Hardcoded date in privacy page
-- **File:** `src/app/privacy/page.tsx:52`
-- **Description:** `"16 de febrero de 2026"` / `"16 February 2026"` is hardcoded inline.
-- **Fix:** Add a `lastUpdateDate` key to translations and reference it dynamically.
+`activeTab` is component state initialized to `"manual"`, but `AppModal` is unmounted/remounted per app (via `{selectedApp && <AppModal .../>}` in `page.tsx:92`) — yet the state *persists across apps* because React reuses the same component instance when switching `app` prop... actually more precisely: the modal for app A is closed (`setSelectedApp(null)`) and reopened, remounting `AppModal` with `activeTab` reset to `"manual"`. But if the user opens app A (has screenshots), clicks the **Screenshots** tab, then closes and opens app B (no screenshots), the sequence is: app A modal unmounts → app B mounts fresh → `activeTab = "manual"`. The bug fires when the *same* instance handles two apps.
 
-### 5. `useEffect` in `useTranslation` has empty deps with no comment
-- **File:** `src/app/hooks/useTranslation.tsx:17-21`
-- **Description:** Locale detection runs once on mount (`[]` deps) — intentional, but no comment explains why lint warning is suppressed.
-- **Fix:** Add `// eslint-disable-next-line` or a clarifying comment.
+The concrete, reproducible path: `activeTab === "screenshots"` while `screenshots` is empty. Then the "Manual" button renders with **inactive** styling (line 361-363, since `activeTab !== "manual"`), and both content blocks are skipped (line 171 requires `activeTab === "manual"`, line 179 requires `screenshots.length > 0`). The user sees an empty region with a greyed-out "Manual" tab.
 
-### 6. `howToUse` content has flipped character encoding
-- **File:** `src/data/apps.ts:162`
-- **Description:** `"翻转"` contains U+2F8F4 (flipped variant) instead of standard `翻` (U+7FF0).
-- **Fix:** Replace with correct `翻转` using standard characters.
+**Fix:** reset the tab when the app changes, and always fall back to an available tab:
+```tsx
+useEffect(() => setActiveTab("manual"), [app.id]);
+// and
+const effectiveTab = screenshots?.length ? activeTab : "manual";
+```
+Also initialize `activeTab` from what's actually available (`useState(hasScreenshots ? "screenshots" : "manual")`) so a screenshots-only app doesn't open on an empty Manual panel.
 
----
+### H2 — App count in the header is wrong (hardcoded)
+`src/app/components/Header.tsx:63`
 
-## MINOR Suggestions
+```
+9 apps  ·  macOS  ·  iOS  ·  Web
+```
+`src/data/apps.ts` contains **14** apps (ids at lines 27, 114, 220, 307, 340, 365, 392, 471, 559, 645, 739, 837, 926, 1027). The header advertises 9. `SPEC.md` also still says "All 9 apps" — the spec drifted with the data.
 
-### 7. `next.config.ts` is empty
-- No custom configuration. Fine for now, but populate when adding image domains, redirects, or security headers.
+**Fix:** `const appCount = apps.length;` and interpolate. Same for the `SPEC.md` checklist.
 
-### 8. No test suite
-- No testing framework (Jest, Vitest, Playwright). Low priority for a portfolio site.
+### H3 — The generic privacy policy contradicts the per-app policies
+`src/app/i18n/translations.ts:24, 28` (ES) / `:240, 244` (EN) vs `:59` and `:101`
 
-### 9. `layout.tsx` hardcodes `lang="es"`
-- **File:** `src/app/layout.tsx:29`
-- **Description:** HTML lang attribute always Spanish regardless of active locale — affects SEO and screen readers.
-- **Fix:** Pass locale to layout and set `lang={locale}`.
-
-### 10. `juego` category uses `badge-mac` CSS class
-- **Files:** `AppCard.tsx:10`, `AppModal.tsx:12`
-- **Description:** Category `juego` uses `badge-mac` class. May be intentional (shared styles) but worth confirming.
-- **Fix:** Confirm with designer or create `badge-juego` style.
-
----
-
-## Security & Dependency Notes
-
-- **next@16.1.6, react@19.2.3** — Cutting-edge versions, no known security issues.
-- **External links** use `target="_blank"` with `rel="noopener noreferrer"` correctly.
-- **`mailto:` link** (`info@saraiba.eu`) hardcoded as intended.
-- **No security scanning** (`npm audit`) configured — recommend adding to CI.
+The default policy at `/privacy` states:
+> "Nuestras aplicaciones NO recopilan n
