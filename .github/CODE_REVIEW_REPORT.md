@@ -1,86 +1,37 @@
 # Code Review Report: application-hub
+Generated: 2026-11-06T00:07:34.454734
 
-**Date:** 2026-05-22  
-**Review Method:** Automated Claude Code analysis  
-**Repository:** polidisio/application-hub  
-**Branch:** code-review/application-hub-20260522
+I reviewed all source files (18 files, ~2,400 lines). Here are my findings.
 
 ---
 
-## Summary
+# Code Review: application-hub
 
-| Severity | Count |
-|----------|-------|
-| CRITICAL | 0 |
-| HIGH | 2 |
-| MEDIUM | 4 |
-| MINOR | 4 |
+**Scope:** `src/`, `eslint.config.mjs`, `next.config.ts`, `postcss.config.mjs`. Node modules not installed, so lint/typecheck could not be executed — findings are from static reading (corroborated with a script for data/asset consistency).
 
-**Overall: Clean codebase — no critical bugs or security vulnerabilities.**
+## 1. CRITICAL issues
 
----
+None. No XSS vectors (`dangerouslySetInnerHTML` is never used; all content is static strings), no auth/secrets/DB surface, no external data fetching, and external links correctly use `rel="noopener noreferrer"`. The app is a static catalog with no server-side attack surface.
 
-## HIGH Issues
+## 2. HIGH issues
 
-### 1. Unused `nameEn` field in App interface
-- **File:** `src/data/apps.ts:6`
-- **Description:** `nameEn?: string` is defined in the `App` interface but never displayed in `AppCard` or `AppModal`. Either dead code or missing bilingual feature.
-- **Fix:** If English names are meant to display based on locale, update components. Otherwise remove the field.
+**H1. Header displays a hardcoded, wrong app count** — `src/app/components/Header.tsx:63`
+```
+9 apps &nbsp;·&nbsp; macOS &nbsp;·&nbsp; iOS &nbsp;·&nbsp; Web
+```
+`src/data/apps.ts` actually contains **14** apps (7 ios, 4 mac, 3 desarrollo). The stat is stale and will never self-update.
+**Fix:** `const total = apps.length;` and interpolate, or drop the count from the static string.
 
-### 2. Duplicate `categoryBadgeClass` across components
-- **Files:** `src/app/components/AppCard.tsx:7-12`, `src/app/components/AppModal.tsx:9-14`
-- **Description:** Identical static object is copy-pasted in two files. Also `juego` maps to `"badge badge-mac"` (likely typo — should be `"badge badge-juego"`).
-- **Fix:** Extract to shared constant file (`src/app/components/categoryStyles.ts`) and fix the `juego` mapping.
+**H2. A filter tab for a category that contains zero apps** — `src/app/page.tsx:9-15` + `src/data/apps.ts`
+`Category` includes `"juego"`, the filter row renders a "Games" button, and `categoryLabels` maps it — but **no app has `category: "juego"`**. Clicking "Games" shows the empty state with a "Games 0" badge. Either the category is dead or apps are missing.
+**Fix:** remove `"juego"` from `Category`/filters/labels, or add the missing app.
 
----
+**H3. Privacy policy pages have no SEO metadata and render no server HTML** — `src/app/privacy/*/page.tsx` (all 6 files)
+Every privacy route is `"use client"` and exports no `metadata`, so all six pages inherit the root title `"ApplicationHub - Mis Aplicaciones"`. Search engines and link previews see an unstyled empty shell (content only exists after hydration). Next.js also disallows exporting route-segment config such as `metadata` from a `"use client"` module.
+**Fix:** convert the privacy routes to server components that statically render the `es` text and export `export const metadata = { title: ... }` per route; keep the client provider for the locale toggle.
 
-## MEDIUM Issues
+**H4. Privacy policy contact details are hardcoded to an unrelated domain** — `src/app/components/PrivacyView.tsx:167-176`
+The contact block renders `info@saraiba.eu` / `https://saraiba.eu` literally, ignoring the `p.contactEmail` / `p.contactWeb` fields (which misleadingly hold the *labels* "Email"/"Web"). Meanwhile every app in `src/data/apps.ts` links to `github.com/polidisio/*`, and the site is "Polidisio". A privacy policy naming a third party's domain is a real legal/credibility problem, and it is silently untranslatable.
+**Fix:** rename the fields to `contactEmailLabel`/`contactWebLabel` and add `contactEmailValue`/`contactWebValue` per translation block, then render the values.
 
-### 3. Missing `useCallback` for `handleEscape` in AppModal
-- **File:** `src/app/components/AppModal.tsx:28-31`
-- **Description:** `handleEscape` is recreated on every render. Works correctly due to useEffect re-registering, but idiomatic pattern is `useCallback`.
-- **Fix:** Wrap in `useCallback` with `onClose` as dependency.
-
-### 4. Hardcoded date in privacy page
-- **File:** `src/app/privacy/page.tsx:52`
-- **Description:** `"16 de febrero de 2026"` / `"16 February 2026"` is hardcoded inline.
-- **Fix:** Add a `lastUpdateDate` key to translations and reference it dynamically.
-
-### 5. `useEffect` in `useTranslation` has empty deps with no comment
-- **File:** `src/app/hooks/useTranslation.tsx:17-21`
-- **Description:** Locale detection runs once on mount (`[]` deps) — intentional, but no comment explains why lint warning is suppressed.
-- **Fix:** Add `// eslint-disable-next-line` or a clarifying comment.
-
-### 6. `howToUse` content has flipped character encoding
-- **File:** `src/data/apps.ts:162`
-- **Description:** `"翻转"` contains U+2F8F4 (flipped variant) instead of standard `翻` (U+7FF0).
-- **Fix:** Replace with correct `翻转` using standard characters.
-
----
-
-## MINOR Suggestions
-
-### 7. `next.config.ts` is empty
-- No custom configuration. Fine for now, but populate when adding image domains, redirects, or security headers.
-
-### 8. No test suite
-- No testing framework (Jest, Vitest, Playwright). Low priority for a portfolio site.
-
-### 9. `layout.tsx` hardcodes `lang="es"`
-- **File:** `src/app/layout.tsx:29`
-- **Description:** HTML lang attribute always Spanish regardless of active locale — affects SEO and screen readers.
-- **Fix:** Pass locale to layout and set `lang={locale}`.
-
-### 10. `juego` category uses `badge-mac` CSS class
-- **Files:** `AppCard.tsx:10`, `AppModal.tsx:12`
-- **Description:** Category `juego` uses `badge-mac` class. May be intentional (shared styles) but worth confirming.
-- **Fix:** Confirm with designer or create `badge-juego` style.
-
----
-
-## Security & Dependency Notes
-
-- **next@16.1.6, react@19.2.3** — Cutting-edge versions, no known security issues.
-- **External links** use `target="_blank"` with `rel="noopener noreferrer"` correctly.
-- **`mailto:` link** (`info@saraiba.eu`) hardcoded as intended.
-- **No security scanning** (`npm audit`) configured — recommend adding to CI.
+_(Informe completo en `.github/CODE_REVIEW_REPORT.md`.)_
