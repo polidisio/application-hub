@@ -1,124 +1,145 @@
 # Code Review Report: application-hub
-Generated: 2026-11-10 (nightly review)
+Generated: 2026-11-11 (nightly review)
 
-**Scope:** `src/app/page.tsx`, `src/app/layout.tsx`, `src/app/globals.css`, `src/app/hooks/useTranslation.tsx`, `src/app/i18n/translations.ts`, `src/app/privacy/**` (6 páginas), `src/app/components/{Header,AppCard,AppModal,PrivacyView}.tsx`, `src/data/apps.ts`
-**Método:** lectura completa de los ficheros listados contra el árbol de `main` (`5fd5fff`). Todos los hallazgos CRITICAL/HIGH de este informe han sido **verificados línea por línea** contra el código.
+**Scope:** `src/app/i18n/translations.ts`, `src/data/apps.ts`, `src/app/layout.tsx`, `src/app/page.tsx`, `src/app/hooks/useTranslation.tsx`, `src/app/components/{Header,AppCard,AppModal,PrivacyView}.tsx`, `src/app/privacy/**` (6 páginas)
+**Método:** lectura completa de los ficheros listados contra el árbol de `main` (`f4d4ddd`). Todos los hallazgos CRITICAL/HIGH de este informe han sido **verificados línea por línea** contra el código (repo público → verificación obligatoria antes de publicar).
 **Repo:** público.
+**Nota de severidad:** los hallazgos C1–C4 son los mismos bugs ya reportados en PR #9 (C1–C4), PR #10 (C1–C4) y PR #11 (H1–H3). Esta noche el modelo los degradó a HIGH; se **restituye la severidad** de las noches anteriores al confirmarlos de nuevo contra el código. Los hallazgos de contenido (texto corrupto, nombres, contadores) se mantienen en HIGH por ser defectos visibles, no vulnerabilidades.
+
+**Resumen:** 4 CRITICAL · 5 HIGH · 8 MEDIUM · 15 MINOR
 
 ---
 
 ## 1. CRITICAL
 
-### C1. La cabecera anuncia "9 apps" cuando el catálogo tiene 14
-**Ficheros:** `src/app/components/Header.tsx:63`
+### C1. La política de privacidad de SyncTrackers afirma que NO se recogen datos de salud mientras la app lee workouts de HealthKit
+**Ficheros:** `src/app/privacy/synctracers/page.tsx:8`, `src/app/i18n/translations.ts:69` (ES) / `:282` (EN), `src/data/apps.ts:394`, `:397`, `:404`
 
-```tsx
-9 apps &nbsp;·&nbsp; macOS &nbsp;·&nbsp; iOS &nbsp;·&nbsp; Web
-```
+**Verificado:**
+- `src/app/privacy/synctracers/page.tsx:8` → `<PrivacyView p={t.privacyAnalytics} />` (el bloque compartido).
+- `translations.ts:66` ES → `notCollectedTitle: "NO recopilamos:"`; `:69` → `"Datos de salud reales"`. EN: `:279` → `"We do NOT collect:"`; `:282` → `"Actual health data"`.
+- `apps.ts:394` → `"App local-first que extrae datos de entrenamiento de Apple Health y los sincroniza entre tus dispositivos."`; `:397` → `"Lee workouts de Apple Health / HealthKit"`; `:404` → `"Reads workouts from Apple Health / HealthKit"`.
 
-**Verificado:** `grep -c "^    id:" src/data/apps.ts` → **14** entradas (7 `ios`, 4 `mac`, 3 `desarrollo`). El literal está hardcodeado en `Header.tsx:63` y no se traduce en el locale EN.
-**Fix:** `import { apps } from "@/data/apps"` y renderizar `{apps.length} apps`.
+**Impacto:** la política publicada dice literalmente lo contrario de lo que hace la app. Es el caso más grave de la serie: unastatements de privacidad falsa para la única app que lee datos de salud, y además la app **sí** expone esos datos a un tercero (Apple/iCloud).
+**Fix:** bloque de traducción propio `privacySyncTrackers` (ES + EN) que declare explícitamente la lectura de workouts de HealthKit con permiso del usuario, el almacenamiento local (SQLite/SwiftData) y la sincronización privada por iCloud; eliminarlo de cualquier lista de "no recopilamos". Apuntar `synctracers/page.tsx:8` a ese bloque.
+*Duplica: PR #9 C2, PR #10 C4, PR #11 H3.*
 
-> Nota de severidad: el modelo lo etiquetó como CRITICAL; en la práctica es un defecto visible de contenido, no de seguridad. Se mantiene como CRITICAL solo por coherencia con las noches anteriores, donde ya se reportó. *Duplica: PR #4 H1, PR #6 H2, PR #7, PR #10 H1.*
+### C2. La declaración genérica de permisos contradice el requisito de HealthKit de SyncTrackers
+**Ficheros:** `src/app/i18n/translations.ts:83` (ES) / `:296` (EN), `src/app/privacy/synctracers/page.tsx:8`, `src/data/apps.ts:397` / `:404`
+
+**Verificado:**
+- `translations.ts:83` → `"Nuestras aplicaciones no requieren permisos especiales más allá del acceso básico necesario para su funcionamiento."`
+- `translations.ts:296` → `"Our apps do not require special permissions beyond basic access needed for functionality."`
+- El mismo bloque `privacyAnalytics` se usa en `/privacy/synctracers` (`:8`) y `/privacy/mybartrack` (`:8`).
+
+**Fix:** `permissionsText` específico para SyncTrackers que describa el entitlement de HealthKit, el acceso de solo lectura y cómo revocarlo en Ajustes.
+*Duplica: PR #9 C2, PR #10 C4, PR #11 H3.*
+
+### C3. MyBarTrack se anuncia como "sin recopilación de datos personales" mientras su política dice que usa PostHog
+**Ficheros:** `src/data/apps.ts:228` / `:229` (ES) y `:236` / `:237` (EN), `src/app/privacy/mybartrack/page.tsx:8`, `src/app/i18n/translations.ts:59` / `:272`
+
+**Verificado:**
+- `apps.ts:228` → `"Datos almacenados exclusivamente en tu dispositivo"`; `:229` → `"Sin recopilación de datos personales"`.
+- `apps.ts:236` → `"Data stored exclusively on your device"`; `:237` → `"No personal data collection"`.
+- `privacy/mybartrack/page.tsx:8` → `<PrivacyView p={t.privacyAnalytics} />`.
+- `translations.ts:59` → `"...utilizamos PostHog (posthog.com), un servicio de analytics..."`; `:272` → equivalente EN.
+
+**Impacto:** dos afirmaciones mutuamente excluyentes en el mismo producto publicado.
+**Fix:** o se elimina la analítica del bloque de MyBarTrack, o se corrige `apps.ts:228-229` / `:236-237` para declarar la analítica opcional.
+*Duplica: PR #5 H4, PR #9 C3, PR #10 C1, PR #11 H2.*
+
+### C4. La política genérica `/privacy` contradice las políticas de analítica del mismo sitio y es el fallback de casi todas las apps
+**Ficheros:** `src/app/privacy/page.tsx:8`, `src/app/i18n/translations.ts:24`, `:28` (ES) / `:237`, `:241` (EN), `src/app/components/AppModal.tsx:226`
+
+**Verificado:**
+- `translations.ts:24` → `"Nuestras aplicaciones NO recopilamos ningún dato personal del usuario."`; `:28` → `"No usamos analytics"`.
+- `translations.ts:237` → `"Our apps do NOT collect any personal user data."`; `:241` → `"We do not use analytics"`.
+- `privacy/page.tsx:8` → `<PrivacyView p={t.privacy} />`.
+- `AppModal.tsx:226` → `href={app.privacyUrl ?? "/privacy"}` → **toda app sin `privacyUrl` cae en la política genérica**. Solo 5 apps tienen política propia (`apps.ts:304` mybartrack, `:468` synctracers, `:556` trackhobbies, `:642` streamaura, `:736` noduscli); las otras 9 (incluida Markdown Notes, que sincroniza por iCloud, y LLMBox, que envía los prompts a un servidor AI) heredan la afirmación de que nada sale del dispositivo.
+
+**Fix:** convertir `t.privacy` en una umbrella policy honesta ("Algunas apps usan analítica opcional y anónima; otras no recopilan nada"), listar explícitamente cuáles, y dar `privacyUrl` o una sección de revelan a toda app cuyo comportamiento difiera de la línea base.
+*Duplica: PR #9 C1, PR #10 C2, PR #11 H1.*
 
 ---
 
 ## 2. HIGH
 
-### H1. La política de privacidad genérica contradice la política de analítica publicada en el mismo sitio
-**Ficheros:** `src/app/i18n/translations.ts:24`, `:28` (ES genérica) / `:237`, `:241` (EN genérica) vs `:59`, `:101`, `:272`, `:314`
+### H1. Las páginas de privacidad por app muestran un título genérico sin el nombre de la app
+**Ficheros:** `src/app/i18n/translations.ts:53` (ES) / `:266` (EN)
 
-**Verificado:**
-- `:24` → `"Nuestras aplicaciones NO recopilamos ningún dato personal del usuario."`; `:28` → `"No usamos analytics"`.
-- `:237` → `"Our apps do NOT collect any personal user data."`; `:241` → `"We do not use analytics"`.
-- `:59` / `:272` → `"utilizamos PostHog (posthog.com)"`; `:101` / `:314` → PostHog (TrackHobbies, analítica opcional).
-- `src/app/privacy/page.tsx:8` → `<PrivacyView p={t.privacy} />` (la versión "no usamos analytics"), y `AppModal.tsx:226` la usa como destino por defecto de **toda app sin `privacyUrl`**.
+**Verificado:** `:53` → `title: "Política de Privacidad"`; `:266` → `title: "Privacy Policy"`. Los bloques por app sí llevan sufijo: `:95` `"Política de Privacidad · TrackHobbies"`, `:137` `"· StreamAura"`, `:176` `"· NodusCli"`. El bloque compartido, usado por `/privacy/mybartrack` y `/privacy/synctracers`, no.
+**Fix:** dividir `privacyAnalytics` en dos bloques (o parametrizar el título por app).
+*Duplica: PR #8 H1.*
 
-**Impacto:** dos afirmaciones mutuamente excluyentes visibles para el usuario y para un auditor. Es el hallazgo de mayor riesgo legal (política de privacidad publicada).
-**Fix:** convertir `t.privacy` en una umbrella policy real ("Algunas de nuestras aplicaciones usan analítica opcional…"), listar explícitamente cuáles, y dar `privacyUrl` a toda app cuyo comportamiento difiera de la línea base.
-*Duplica: PR #9 C1, PR #10 C2.*
-
-### H2. MyBarTrack se anuncia como "sin recopilación de datos" mientras su política dice que usa PostHog
-**Ficheros:** `src/data/apps.ts:229` (ES) / `:237` (EN), `src/app/privacy/mybartrack/page.tsx:8`, `src/app/i18n/translations.ts:59` / `:272`, `src/data/apps.ts:304`
-
-**Verificado:** `apps.ts:229` → `"Sin recopilación de datos personales"`; `apps.ts:237` → `"No personal data collection"`; `privacy/mybartrack/page.tsx:8` → `<PrivacyView p={t.privacyAnalytics} />`; `translations.ts:59` / `:272` → PostHog; `apps.ts:304` → `privacyUrl: "/privacy/mybartrack"`.
-**Fix:** eliminar los bullets contradictorios y declarar la analítica opcional, o darle a la app su propio bloque de política.
-*Duplica: PR #5 H4, PR #9 C3, PR #10 C1.*
-
-### H3. La política de SyncTrackers omite el permiso de HealthKit que la app exige
-**Ficheros:** `src/app/i18n/translations.ts:83` (ES) / `:296` (EN), `src/app/privacy/synctracers/page.tsx:8`, `src/data/apps.ts:397` / `:404`
-
-**Verificado:** `:83` → `"Nuestras aplicaciones no requieren permisos especiales más allá del acceso básico…"`; `:296` → equivalente EN; `privacy/synctracers/page.tsx:8` → `<PrivacyView p={t.privacyAnalytics} />`; `apps.ts:397` → `"Lee workouts de Apple Health / HealthKit"`, `apps.ts:404` → `"Reads workouts from Apple Health / HealthKit"`.
-Además, el bloque genérico afirma bajo **"NO recopilamos:"** (`:66` ES / `:279` EN) `"Datos de salud reales"` (`:69`) / `"Actual health data"` (`:282`) — para una app cuyo producto es leer workouts de HealthKit.
-**Fix:** bloque propio `privacySyncTrackers` que declare el acceso de lectura de workouts de HealthKit/Apple Health y la sincronización privada por iCloud.
-*Duplica: PR #9 C2, PR #10 C4.*
-
-### H4. Caracteres chinos corruptos en el manual en español de ThinkDeck Study
+### H2. Caracteres chinos corruptos en el manual en español de ThinkDeck Study
 **Ficheros:** `src/data/apps.ts:140` y `:164`
 
-**Verificado:** `grep -n "翻转" src/data/apps.ts` → exactamente dos coincidencias, líneas **140** y **164**. El texto EN equivalente (`apps.ts:141`, `:200`) está limpio ("flip the card").
-**Fix:** sustituir por "y voltea" / "para voltear".
-*Duplica: PR #5 H2, PR #10 C3. Ya corregido por el PR #3 (abierto) — su fix dice "para voltea" en `:164`, construcción incorrecta en español; ajustarla a "para voltear" al fusionar.*
+**Verificado:** `grep -n "翻转" src/data/apps.ts` → exactamente dos coincidencias, líneas **140** y **164** (`"3. Inicia una sesión de estudio y翻转 la tarjeta para ver la respuesta"` y `"- Toca la tarjeta para翻转 y ver la respuesta"`). El manual EN equivalente (`apps.ts:141`, `:200`) está limpio ("flip the card").
+**Fix:** "y voltea la tarjeta" / "para voltear y ver la respuesta".
+*Duplica: PR #5 H2, PR #10 C3, PR #11 H4. Ya cubierto por el PR #3 (abierto).*
 
-### H5. El manual en inglés de MyBarTrack sigue usando el nombre antiguo "DrinkTrack"
-**Ficheros:** `src/data/apps.ts:268`
+### H3. El manual en inglés de MyBarTrack sigue usando el nombre antiguo "DrinkTrack"
+**Ficheros:** `src/data/apps.ts:268` / `:269`
 
-**Verificado:** `apps.ts:268` → `"🎯 What is DrinkTrack?"` y `:269` → `"DrinkTrack is an app to track your daily beverage consumption…"`. El nombre del catálogo es `MyBarTrack` (`apps.ts:221`, slug `mybartrack`, `privacyUrl` en `:304`); el manual en español (`apps.ts:242`) sí dice "MyBarTrack".
+**Verificado:** `:268` → `"🎯 What is DrinkTrack?"`; `:269` → `"DrinkTrack is an app to track your daily beverage consumption..."`. El catálogo es `id: "drinktrack"` (`:220`) / `name: "MyBarTrack"` (`:221`), `appStore` apunta a `/app/mybartrack/` (`:303`), `privacyUrl: "/privacy/mybartrack"` (`:304`) y el manual ES (`:242`) dice "MyBarTrack".
 **Fix:** "DrinkTrack" → "MyBarTrack" en `howToUseEn`.
-*Duplica: PR #5 H5, PR #10 H3.*
+*Duplica: PR #5 H5, PR #10 H3, PR #11 H5.*
 
-### H6. El modal queda en blanco si una app tiene capturas pero no manual
-**Ficheros:** `src/app/components/AppModal.tsx:23`, `:50`, `:171`
+### H4. Las etiquetas de categoría están hardcodeadas en español y difieren entre la tarjeta y el modal
+**Ficheros:** `src/app/components/AppModal.tsx:99`, `src/app/components/AppCard.tsx:50`, `src/data/apps.ts:1055-1060`
 
-**Verificado:** `activeTab` se inicializa a `"manual"` (`:23`); `hasTabs = howToUse || (screenshots && screenshots.length > 0)` (`:50`); el botón "Manual" solo se renderiza si `howToUse` (`:171`), y el panel de manual requiere `activeTab === "manual" && howToUse` (`:174`). Si `howToUse` es `undefined` pero hay capturas, `hasTabs` es `true` pero el panel de "manual" no se pinta y `activeTab` nunca pasa a `"screenshots"` → zona vacía.
-`howToUse` es opcional en el tipo `App` (`apps.ts:13`), así que cualquier app futura sin manual rompe en silencio. Hoy ninguna app del catálogo lo provoca.
-**Fix:** `useState(howToUse ? "manual" : "screenshots")`.
-*Duplica: PR #6 H1, PR #7 H1 (variante).*
+**Verificado:**
+- `apps.ts:1055-1060` → `categoryLabels: Record<Category, string> = { ios: "iOS", mac: "Mac", juego: "Juego", desarrollo: "Desarrollo" }` (español, sin variante EN).
+- `AppModal.tsx:99` → `{categoryLabels[app.category]}`.
+- `AppCard.tsx:50` → `{app.category === "desarrollo" ? "Dev" : app.category.toUpperCase()}` → produce `IOS`, `MAC`, `JUEGO`.
+- La misma app muestra un badge distinto en la rejilla y en el modal, y en locale EN el modal sigue en español.
+**Fix:** helper único locale-aware compartido por `AppCard` y `AppModal`. `categoryBadgeClass` está duplicado verbatim en `Header.tsx:9-14`, `AppCard.tsx:7-12` y `AppModal.tsx:9-14`.
+*Duplica: PR #10 H6, PR #11 H6.*
+
+### H5. La cabecera anuncia "9 apps" cuando el catálogo tiene 14
+**Ficheros:** `src/app/components/Header.tsx:63`
+
+**Verificado:** `Header.tsx:63` → `9 apps &nbsp;·&nbsp; macOS &nbsp;·&nbsp; iOS &nbsp;·&nbsp; Web` (literal hardcodeado, en inglés). `grep -c "^    id: \"" src/data/apps.ts` → **14** entradas (7 `ios`, 4 `mac`, 3 `desarrollo`). Los contadores del filtro (`page.tsx:50-52`) sí se calculan del catálogo → la cabecera contradice la barra de filtros contigua.
+**Fix:** `import { apps } from "@/data/apps"` y renderizar `{apps.length}`, con la cadena completa en `translations.ts`.
+*Duplica: PR #4 H1, PR #6 H2, PR #7, PR #10 H1, PR #11 C1.*
 
 ---
 
 ## 3. MEDIUM
 
-- **M1. `src/app/hooks/useTranslation.tsx:4` + `src/app/i18n/translations.ts` (final del fichero)** — `export type TranslationKeys = typeof translations.es;` no restringe `translations.en`: una clave que falte o esté mal escrita en EN compila limpio y renderiza `undefined` en runtime. **Fix:** `const en: TranslationKeys = {...}` o `satisfies TranslationKeys`.
-- **M2. `src/app/page.tsx:9-15`** — las etiquetas de filtro (`"All"`, `"iOS"`, `"Mac"`, `"Dev"`, `"Games"`) están hardcodeadas en inglés y fuera del sistema i18n. Además el filtro `"Games"` mapea a la categoría `"juego"`, que **no tiene ninguna app** (`grep -c 'category: "juego"' src/data/apps.ts` → 0) → siempre muestra el estado vacío.
-- **M3. `src/app/page.tsx:64`** — `"No apps in this category yet."` sin traducir.
-- **M4. `src/app/page.tsx:86`** — el enlace `"Privacy Policy"` del pie no se traduce; `© 2026 Polidisio` fija el año.
-- **M5. `src/app/components/AppCard.tsx:51`** — `{app.category === "desarrollo" ? "Dev" : app.category.toUpperCase()}` no está traducido, y `categoryLabels` (`src/data/apps.ts:1055-1060`) es solo-ES, por lo que `AppModal.tsx:99` renderiza "Juego"/"Desarrollo" **también en modo EN**. Además `toUpperCase()` produce `"JUEGO"`.
-- **M6. `src/app/components/AppCard.tsx:7-12` y `AppModal.tsx:9-14`** — `categoryBadgeClass` duplicado, tipado como `Record<string, string>` → una categoría desconocida produce `class="undefined"` sin aviso del compilador.
-- **M7. `src/app/layout.tsx:29`** — `<html lang="es">` hardcodeado pese a soportar EN (lectores de pantalla y buscadores reciben el idioma equivocado). `metadata.description` (`:16`) es solo-ES y las páginas `/privacy/*` no exportan metadata.
-- **M8. `src/app/globals.css:23-25` vs `layout.tsx:6-9`** — se carga la webfont Inter y se aplica `inter.variable` → `--font-inter`, pero `body` usa `var(--font-body)` (stack del sistema): la fuente se descarga y nunca se renderiza.
-- **M9. `src/app/globals.css:213`** — `.container` propio colisiona con la utility `container` de Tailwind v4 (`@import "tailwindcss"`): el ancho/padding depende del orden de capas. **Fix:** renombrar a `.shell`.
-- **M10. `src/app/hooks/useTranslation.tsx:15-23`** — la elección manual ES/EN no se persiste; se detecta `navigator.language` una sola vez y se pierde en cada recarga (no hay `localStorage`).
-- **M11. `src/app/hooks/useTranslation.tsx:17-23`** — el provider es un client component: el SSR emite siempre ES y el locale cambia tras la hidratación (flash de contenido y SEO siempre en español).
-- **M12. `src/data/apps.ts:303`, `:337`** — los enlaces de App Store hardcodean el storefront español (`/es/app/...`) y se sirven a usuarios EN.
-- **M13. `src/app/privacy/mybartrack/page.tsx:8` y `src/app/privacy/synctracers/page.tsx:8`** — dos apps distintas renderizan el mismo `t.privacyAnalytics`, cuyo título es genérico ("Política de Privacidad") y cuyo cuerpo dice "Nuestras aplicaciones…". Ninguna página menciona la app concreta.
-- **M14. `src/app/components/PrivacyView.tsx:167`, `:173`** — `info@saraiba.eu` y `https://saraiba.eu` están en línea en el componente mientras las etiquetas (`p.contactEmail`, `p.contactWeb`) vienen del fichero de traducciones; el email además difiere de la marca "Polidisio" usada en el resto de la UI.
+- **`src/app/layout.tsx:29`** — `<html lang="es">` hardcodeado aunque la app tiene selector de idioma en runtime (`Header.tsx:15-34`); los lectores de pantalla pronuncian el contenido inglés con fonética española. Verificado línea 29.
+- **`src/app/hooks/useTranslation.tsx:15-23`** — `useState<Locale>("es")` se sobrescribe en mount con `navigator.language` y **no se persiste**: quien elige EN vuelve a ES en la siguiente recarga; además hay flash de ES→EN en la primera visita.
+- **`src/app/components/AppModal.tsx:226`** — `app.privacyUrl ?? "/privacy"`: 9 de las 14 apps caen en la política genérica (ver C4). Markdown Notes sincroniza por iCloud y LLMBox envía los prompts a un servidor AI de tu red (`apps.ts:839`, `:857`, `:860`), sin mención en la política genérica.
+- **`src/app/components/AppModal.tsx:52-71`** — el overlay es un `div` con `onClick`: sin `role="dialog"`, sin `aria-modal`, sin `aria-labelledby` (el `<h2>` está en `:94`), el botón de cerrar (`:64-71`) es un SVG sin `aria-label`, sin trampa de foco ni restauración de foco al cerrar.
+- **`src/app/components/PrivacyView.tsx:5-13`** — la interfaz `PrivacyText` (21 campos) es una copia manual de `t.privacy*`; nada obliga a `translations.en` a cumplirla (solo `translations.es` tipa `TranslationKeys`), así que el bloque EN puede divergir en silencio.
+- **`src/app/privacy/**/page.tsx`** — todas son `"use client"` sin `export const metadata`, así que cada política hereda `"%s | ApplicationHub"` y el `description` por defecto está hardcodeado en español (`layout.tsx:11-21`) — justo en las páginas que se envían a revisión de App Store.
+- **`src/app/page.tsx:50-52`** — `apps.filter((a) => a.category === cat.id).length` dentro del cuerpo del render: 4 pasadas completas sobre el catálogo en cada render.
+- **`src/data/apps.ts:1` + `page.tsx:14` + `apps.ts:1059`** — la categoría `"juego"` existe en el tipo, tiene etiqueta y el filtro "Games" se renderiza, pero **ninguna app la usa** (`grep -c 'category: "juego"'` → 0): filtro siempre vacío con contador 0.
 
 ---
 
 ## 4. MINOR
 
-- **N1. `src/app/components/AppModal.tsx:22-43`, `:64`** — sin `role="dialog"`, `aria-modal`, `aria-labelledby`, sin gestión/trampa de foco ni nombre accesible en el botón de cierre (solo SVG).
-- **N2. `src/app/components/AppModal.tsx:28`** — el `setTimeout(onClose, 200)` nunca se limpia: si el modal se desmonta antes, el timer dispara sobre un árbol desmontado.
-- **N3. `src/app/components/AppModal.tsx:26-43`** — `handleClose` depende de `onClose`, que en `page.tsx:93` es una arrow inline: la identidad cambia en cada render y el efecto se re-registra (posible parpadeo del fade).
-- **N4. `src/app/page.tsx:49-52`** — los contadores por categoría se recalculan en cada render (4 pasadas O(n) sobre el JSX); trivial con `useMemo`.
-- **N5. `src/app/page.tsx:10`** — `"All"` hardcodeado aunque existe el namespace `common` (`translations.ts:6`).
-- **N6. `src/data/apps.ts:6`** — `nameEn?: string` se declara pero ningún componente lo lee; o se usa o se elimina.
-- **N7. `src/data/apps.ts:1029`** — una URL cruda embebida en la prosa de `description`/`descriptionEn` (el campo `website` ya la cubre).
-- **N8. `src/app/page.tsx:35`** — la barra de filtros sticky (`top-0 z-20`) tapa los anclajes internos; añadir `scroll-mt`/`scroll-padding-top` en `html`.
-- **N9. `src/app/globals.css:119-121`** — no hay regla `.badge-juego`; `categoryBadgeClass` mapea `juego` → `badge badge-mac` (púrpura), color engañoso.
-- **N10. `src/app/globals.css:82-88`, `:61-66`** — `blur(24px)` en el overlay del modal + `blur(16px)` en cada glass card: coste GPU alto en dispositivos modestos y Safari móvil.
+- **`src/data/apps.ts:6`** — `nameEn?` está declarado en la interfaz `App` pero no se puebla ni se lee en ningún sitio.
+- **`src/data/apps.ts:269`** — la descripción EN de MyBarTrack ("track your daily beverage consumption") no menciona el alcohol, que la ES sí menciona (`:222`).
+- **`src/data/apps.ts:1029-1030`** — la descripción de exiftool-cli incrusta una URL cruda ("…TIFF. https://github.com/polidisio/exiftool-cli") en el cuerpo del texto.
+- **`src/data/apps.ts:53-108` y siguientes** — los manuales `howToUse`/`howToUseEn` (~1-2 KB por app, 14 apps) se descargan siempre aunque el usuario no abra esa app; se podrían cargar bajo demanda al abrir el modal.
+- **`src/app/components/AppModal.tsx:28`** — `setTimeout(onClose, 200)` nunca se limpia: si el modal se desmonta antes, el callback dispara sobre un componente desmontado.
+- **`src/app/components/AppModal.tsx:199-224`** — URLs externas renderizadas con `next/link` + `target="_blank"`; para destinos externos corresponde un `<a>` plano (`Link` intenta navegación/prefetch del cliente).
+- **`src/app/components/AppModal.tsx:185`** — `alt={`Screenshot ${index + 1}`}` en inglés hardcodeado y no descriptivo; debería incluir el nombre de la app.
+- **`src/app/components/AppModal.tsx:181`** — las capturas usan el índice del array como `key` de React; usar la ruta del fichero.
+- **`src/app/components/PrivacyView.tsx:167`, `:173`** — email (`info@saraiba.eu`) y sitio (`https://saraiba.eu`) hardcodeados en el componente mientras sus *etiquetas* sí se traducen.
+- **`src/app/components/PrivacyView.tsx:167-175`** — los `<a>` no llevan `rel="noopener noreferrer"` (irrelevante para `mailto:`, inconsistente con `AppModal.tsx:202`).
+- **`src/app/page.tsx:86`** — el enlace del pie "Privacy Policy" está hardcodeado en inglés en el locale ES; debería venir de `t.common.privacyPolicy`.
+- **`src/app/i18n/translations.ts:18-51`** — la política genérica no tiene `notCollectedTitle`, así que la sección 02 muestra una lista con ✕ rojo sin encabezado que explique que la lista significa "no recopilamos".
+- **`src/app/i18n/translations.ts:20`, `:55`, `:97`, `:142`, `:181`, `:233`, `:268`, `:310`, `:353`, `:391`** — las fechas "última actualización" son literales duplicados por locale y divergen entre sí (la genérica sigue en "16 de febrero de 2026" mientras las otras dicen septiembre/noviembre de 2026).
+- **`src/app/hooks/useTranslation.tsx:25`** — el objeto `t` completo va en el contexto: todo consumidor se re-renderiza al cambiar de locale y el bundle completo de traducciones se envía a todas las rutas.
+- **`src/data/apps.ts`** — el emoji `icon: "📝"` se reutiliza para `markdown-notes` y `daily-quotes`; `daily-quotes` merece uno propio.
 
 ---
 
 ## 5. Resumen
 
-Sin superficies de inyección, XSS ni enlaces inseguros: no hay `dangerouslySetInnerHTML`, ni `eval`, ni entrada de red o de usuario en el código revisado; los enlaces externos usan `rel="noopener noreferrer"`.
-
-Los tres temas dominantes son: (a) **valores hardcodeados que han derivado del fichero de datos** ("9 apps" vs 14, filtro "Games" sin apps, categoría "Juego" sin regla CSS), (b) **fugas de i18n** — el sistema de locale cubre el copy de privacidad pero no las etiquetas de categoría, los badges, el pie, el estado vacío ni `<html lang>`, y el bundle `en` no se contrasta tipadamente contra `es`, de modo que la deriva es invisible al compilador, y (c) **defectos de copy ya en producción**: los caracteres chinos del manual ES de ThinkDeck y las políticas de privacidad contradictorias.
-
-Prioridad sugerida: H1, H2, H3 (cumplimiento normativo) → H4, H5, H6 → M1, M2, M5.
-
----
-
-*Nota: este repositorio no tiene commits de código desde el 2026-11-02 (`672b9e8`), por lo que la mayor parte de los hallazgos ya estaban cubiertos por los PR #4–#10. Se mantienen las referencias de duplicado para facilitar la deduplicación. No se ha cerrado ningún PR previo.*
+**A corregir ya:** C1–C4 (las cuatro afirmaciones de privacidad publicadas que no se corresponden con el comportamiento real de las apps).
+**A corregir:** H2–H5 (texto corrupto visible en el manual ES, nombre antiguo en el manual EN, etiquetas de categoría incoherentes, contador de apps falso en la cabecera).
+**Concentración del riesgo:** H5 + H6 + H7 de las noches anteriores (sincronización de compose, escáner de secretos, verificación de backup) siguen sin resolverse; y ninguna de las 4 apps con datos sensibles (SyncTrackers, Markdown Notes, LLMBox, MyBarTrack) tiene una política de privacidad propia y veraz.
