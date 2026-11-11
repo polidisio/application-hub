@@ -24,7 +24,7 @@ Cada mazo de la lista tiene una barra de su color, el nombre y el número de tar
 
 Escribe en **Buscar mazos** para filtrar por nombre (sin distinguir mayúsculas). Solo se busca en el nombre del mazo, no en las tarjetas.
 
-> **Revisar:** mientras hay un texto en el buscador, las acciones sobre un mazo (abrirlo, renombrarlo, eliminarlo) pueden aplicarse a otro mazo de la lista completa, porque la app usa la posición en la lista filtrada. Borra la búsqueda antes de abrir, renombrar o eliminar un mazo.
+> **Problema conocido:** mientras hay un texto en el buscador, las acciones sobre un mazo (abrirlo, renombrarlo, eliminarlo) pueden aplicarse a otro mazo de la lista completa, porque la app usa la posición en la lista filtrada. Borra la búsqueda antes de abrir, renombrar o eliminar un mazo.
 
 ## Renombrar o eliminar un mazo
 

@@ -17,7 +17,7 @@ The app doesn't use iCloud, has no sync between devices, has no servers of its o
 
 ## Data is not kept between launches
 
-> **Important limitation (needs review):** at startup, the app always recreates the four sample decks (*Vocabulary*, *History*, *Science*, *Languages*) and overwrites `decks.json` with them. In practice, every time you fully close the app and reopen it:
+> **Important limitation:** at startup, the app always recreates the four sample decks (*Vocabulary*, *History*, *Science*, *Languages*) and overwrites `decks.json` with them. In practice, every time you fully close the app and reopen it:
 >
 > - Decks you created or imported are gone.
 > - Cards you added, edited or deleted in the sample decks return to their original state.

@@ -17,7 +17,7 @@ La app no usa iCloud, no tiene sincronización entre dispositivos, no tiene serv
 
 ## Los datos no se conservan entre sesiones
 
-> **Limitación importante (a revisar):** al iniciar, la app recrea siempre los cuatro mazos de ejemplo (*Vocabulary*, *History*, *Science*, *Languages*) y sobrescribe `decks.json` con ellos. En la práctica, cada vez que cierras la app por completo y la vuelves a abrir:
+> **Limitación importante:** al iniciar, la app recrea siempre los cuatro mazos de ejemplo (*Vocabulary*, *History*, *Science*, *Languages*) y sobrescribe `decks.json` con ellos. En la práctica, cada vez que cierras la app por completo y la vuelves a abrir:
 >
 > - Los mazos que hayas creado o importado desaparecen.
 > - Las tarjetas que hayas añadido, editado o eliminado en los mazos de ejemplo vuelven a su estado original.

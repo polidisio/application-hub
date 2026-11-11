@@ -24,7 +24,7 @@ Each deck in the list has a bar in its colour, its name and its card count (for 
 
 Type in **Search decks** to filter by name (case-insensitive). It only searches deck names, not card contents.
 
-> **Needs review:** while there is text in the search field, actions on a deck (opening, renaming, deleting) may apply to a different deck of the full list, because the app uses the position in the filtered list. Clear the search before opening, renaming or deleting a deck.
+> **Known issue:** while there is text in the search field, actions on a deck (opening, renaming, deleting) may apply to a different deck of the full list, because the app uses the position in the filtered list. Clear the search before opening, renaming or deleting a deck.
 
 ## Renaming or deleting a deck
 

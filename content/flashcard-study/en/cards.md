@@ -25,7 +25,7 @@ There are two ways:
 
 In the **Edit Card** sheet, change the front and the back. Tap **Done** to save and close. There is no cancel button: changes are saved when you tap **Done**.
 
-> **Needs review:** the **Edit** button opens the card at that position in the full deck. In **Due Today** mode, where cards are reordered, it may open a different card from the one you see. To be safe, use the press-and-hold menu on the card.
+> **Known issue:** the **Edit** button opens the card at that position in the full deck. In **Due Today** mode, where cards are reordered, it may open a different card from the one you see. To be safe, use the press-and-hold menu on the card.
 
 ## Deleting a card
 

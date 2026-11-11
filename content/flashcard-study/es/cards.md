@@ -25,7 +25,7 @@ Hay dos formas:
 
 En la hoja **Editar Tarjeta** cambia el frente y el reverso. Toca **Hecho** para guardar y cerrar. No hay botón de cancelar: los cambios se guardan al pulsar **Hecho**.
 
-> **Revisar:** el botón **Editar** abre la tarjeta en esa posición del mazo completo. En el modo **Para Hoy**, donde las tarjetas se reordenan, puede abrir una tarjeta distinta de la que ves. Para estar seguro, usa el menú de mantener pulsado sobre la tarjeta.
+> **Problema conocido:** el botón **Editar** abre la tarjeta en esa posición del mazo completo. En el modo **Para Hoy**, donde las tarjetas se reordenan, puede abrir una tarjeta distinta de la que ves. Para estar seguro, usa el menú de mantener pulsado sobre la tarjeta.
 
 ## Eliminar una tarjeta
 
