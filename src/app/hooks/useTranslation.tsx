@@ -22,6 +22,10 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
     setLocale(detectedLocale);
   }, []);
 
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
+
   const t = translations[locale];
 
   return (

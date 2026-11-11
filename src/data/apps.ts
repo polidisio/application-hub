@@ -10,8 +10,6 @@ export interface App {
   featuresEn: string[];
   howItWorks: string;
   howItWorksEn: string;
-  howToUse?: string;
-  howToUseEn?: string;
   screenshots?: string[];
   screenshotsEn?: string[];
   category: Category;
@@ -26,86 +24,30 @@ export const apps: App[] = [
   {
     id: "markdown-notes",
     name: "Markdown Notes",
-    description: "Bloc de notas Markdown con editor en tiempo real, exportación y sincronización iCloud. Enfoque privacidad: pago único, sin suscripción.",
-    descriptionEn: "Markdown note-taking app with real-time editor, export, and iCloud sync. Privacy-focused: one-time payment, no subscription.",
+    description: "Bloc de notas Markdown con editor con resaltado de sintaxis, vista dividida con previsualización, carpetas, etiquetas y sincronización con iCloud. Exporta a PDF, HTML, Markdown y texto.",
+    descriptionEn: "Markdown notepad with a syntax-highlighting editor, split live preview, folders, tags and iCloud sync. Exports to PDF, HTML, Markdown and text.",
     features: [
       "Editor Markdown con syntax highlighting",
-      "Live preview en tiempo real",
-      "Exportación a PDF, HTML, DOCX",
-      "Carpetas y etiquetas",
-      "Sincronización iCloud (opcional)",
-      "Modo enfoque",
-      "Templates (diario, novela, código)",
-      "100% local + iCloud opcional"
+      "Vista dividida con previsualización",
+      "Carpetas, etiquetas y búsqueda",
+      "Exportación a PDF, HTML, Markdown y texto",
+      "Importar archivos .md y .txt",
+      "Tema claro/oscuro y 8 colores de acento",
+      "Sincronización con iCloud",
+      "iPhone y iPad"
     ],
     featuresEn: [
       "Markdown editor with syntax highlighting",
-      "Real-time live preview",
-      "Export to PDF, HTML, DOCX",
-      "Folders and tags",
-      "iCloud sync (optional)",
-      "Focus mode",
-      "Templates (daily, novel, code)",
-      "100% local + optional iCloud"
+      "Split view with preview",
+      "Folders, tags and search",
+      "Export to PDF, HTML, Markdown and text",
+      "Import .md and .txt files",
+      "Light/dark theme and 8 accent colours",
+      "iCloud sync",
+      "iPhone and iPad"
     ],
     howItWorks: "1. Crea una nueva nota o selecciona una existente\n2. Escribe en Markdown con syntax highlighting\n3. Usa el panel de preview para ver el resultado en tiempo real\n4. Organiza tus notas en carpetas y etiquetas\n5. Exporta tus notas a PDF, HTML o DOCX\n6. Activa iCloud para sincronizar entre dispositivos",
     howItWorksEn: "1. Create a new note or select an existing one\n2. Write in Markdown with syntax highlighting\n3. Use the preview panel to see real-time results\n4. Organize your notes into folders and tags\n5. Export your notes to PDF, HTML, or DOCX\n6. Enable iCloud to sync across devices",
-    howToUse: `📝 ¿Qué es Markdown Notes?
-Markdown Notes es un bloc de notas para iOS que te permite escribir en Markdown con todas las funcionalidades que necesitas.
-
-🖊️ Editor
-- Escribe en Markdown con syntax highlighting
-- Toolbar con botones para formato rápido (bold, italic, código, enlaces, etc.)
-- Vista dividida para editar y previsualizar a la vez
-- Contador de palabras y caracteres
-
-📁 Organizar
-- Crea carpetas para categorizar tus notas
-- Añade etiquetas para una organización flexible
-- Busca notas por título o contenido
-
-📤 Exportar
-- Exporta notas individuales a PDF, HTML o DOCX
-- Exporta todas las notas a la vez
-- Importa notas desde archivos Markdown
-
-🎨 Personalización
-- Temas: Sistema, Claro, Oscuro
-- Color de acento personalizable
-- Temas de código para el highlighting
-
-☁️ Sincronización
-- Sincronización opcional con iCloud
-- Tus notas siempre disponibles en todos tus dispositivos
-- Enfoque privacidad: datos locales + iCloud opcional`,
-    howToUseEn: `📝 What is Markdown Notes?
-Markdown Notes is an iOS note-taking app that lets you write in Markdown with all the features you need.
-
-🖊️ Editor
-- Write in Markdown with syntax highlighting
-- Toolbar with quick format buttons (bold, italic, code, links, etc.)
-- Split view to edit and preview simultaneously
-- Word and character counter
-
-📁 Organize
-- Create folders to categorize your notes
-- Add tags for flexible organization
-- Search notes by title or content
-
-📤 Export
-- Export individual notes to PDF, HTML, or DOCX
-- Export all notes at once
-- Import notes from Markdown files
-
-🎨 Customization
-- Themes: System, Light, Dark
-- Customizable accent color
-- Code themes for highlighting
-
-☁️ Sync
-- Optional iCloud synchronization
-- Your notes always available on all your devices
-- Privacy-focused: local data + optional iCloud`,
     category: "ios",
     icon: "📝",
     iconImage: "/icons/MarkdownNotes.jpg",
@@ -120,9 +62,8 @@ Markdown Notes is an iOS note-taking app that lets you write in Markdown with al
       "Crear, editar y organizar mazos de tarjetas",
       "Diseño Glassmorphism con colores personalizables",
       "Importar mazos desde archivos CSV y Excel",
-      "Soporte para imágenes y audio en tarjetas",
       "Estadísticas de progreso (nivel, precisión, correctas/incorrectas)",
-      "Modos de estudio: Todas las tarjetas y Pendientes hoy",
+      "Modos de estudio: Todas las tarjetas y Para hoy (pendientes primero)",
       "Multilingüe: inglés, español, francés y alemán",
       "Compatible con iPhone y iPad"
     ],
@@ -131,86 +72,13 @@ Markdown Notes is an iOS note-taking app that lets you write in Markdown with al
       "Create, edit and organize flashcard decks",
       "Glassmorphism design with customizable colors",
       "Import decks from CSV and Excel files",
-      "Support for images and audio in cards",
       "Progress statistics (level, precision, correct/incorrect)",
-      "Study modes: All cards and Due today",
+      "Study modes: All cards and Due Today (due cards first)",
       "Multilingual: English, Spanish, French and German",
       "Compatible with iPhone and iPad"
     ],
-    howItWorks: "1. Crea un mazo con nombre y color personalizado\n2. Añade tarjetas con pregunta (anverso) y respuesta (reverso)\n3. Inicia una sesión de estudio y翻转 la tarjeta para ver la respuesta\n4. Marca cada tarjeta como correcta o incorrecta\n5. El sistema SRS programa las tarjetas para revisión óptima\n6. Importa tus propios mazos desde Excel o CSV\n7. Consulta las estadísticas para ver tu progreso",
+    howItWorks: "1. Crea un mazo con nombre y color personalizado\n2. Añade tarjetas con pregunta (anverso) y respuesta (reverso)\n3. Inicia una sesión de estudio y gira la tarjeta para ver la respuesta\n4. Marca cada tarjeta como correcta o incorrecta\n5. El sistema SRS programa las tarjetas para revisión óptima\n6. Importa tus propios mazos desde Excel o CSV\n7. Consulta las estadísticas para ver tu progreso",
     howItWorksEn: "1. Create a deck with name and custom color\n2. Add cards with question (front) and answer (back)\n3. Start a study session and flip the card to reveal the answer\n4. Mark each card as correct or incorrect\n5. The SRS system schedules cards for optimal review\n6. Import your own decks from Excel or CSV\n7. Check statistics to track your progress",
-    howToUse: `🎯 ¿Qué es ThinkDeck Study?
-ThinkDeck Study es una app para estudiar con flashcards usando el sistema de repetición espaciada (SRS), que optimiza tu aprendizaje mostrando las tarjetas en el momento ideal.
-
-📱 Pantalla Principal
-- Verás la lista de tus mazos de tarjetas
-- Cada mazo muestra el nombre, color y número de tarjetas
-- Botón "+" para crear un nuevo mazo
-- Botón de importar para añadir desde CSV/Excel
-
-📝 Crear un Mazo
-- Pulsa "+" y dale un nombre al mazo
-- Elige un color de entre las opciones disponibles
-- Guarda el mazo
-
-🃏 Añadir Tarjetas
-- Entra en un mazo y pulsa "+" para añadir tarjeta
-- Escribe la pregunta (anverso) y la respuesta (reverso)
-- Las tarjetas pueden incluir imágenes y audio
-
-📖 Estudiar
-- Selecciona un mazo y pulsa "Study"
-- Elige modo: "All Cards" o "Due Today"
-- Toca la tarjeta para翻转 y ver la respuesta
-- Marca "Correct" o "Incorrect" para cada tarjeta
-- El sistema SRS adapta la próxima revisión
-
-📊 Estadísticas
-- Nivel de cada tarjeta (1-10)
-- Precisión porcentual
-- Veces estudiada, correctas e incorrectas
-- Disponible pulsando el icono de gráfico
-
-📥 Importar
-- Soporta formato CSV y Excel (.xlsx)
-- Columnas: front (pregunta), back (respuesta)
-- El delimitador se detecta automáticamente (coma, punto y coma, tab)`,
-    howToUseEn: `🎯 What is ThinkDeck Study?
-ThinkDeck Study is an app for studying flashcards using the spaced repetition system (SRS), which optimizes your learning by showing cards at the ideal time.
-
-📱 Main Screen
-- You will see your list of card decks
-- Each deck shows name, color, and number of cards
-- "+" button to create a new deck
-- Import button to add from CSV/Excel
-
-📝 Creating a Deck
-- Tap "+" and give the deck a name
-- Choose a color from the available options
-- Save the deck
-
-🃏 Adding Cards
-- Enter a deck and tap "+" to add a card
-- Write the question (front) and answer (back)
-- Cards can include images and audio
-
-📖 Studying
-- Select a deck and tap "Study"
-- Choose mode: "All Cards" or "Due Today"
-- Tap the card to flip and see the answer
-- Mark "Correct" or "Incorrect" for each card
-- The SRS system adapts the next review
-
-📊 Statistics
-- Level of each card (1-10)
-- Percentage precision
-- Times studied, correct and incorrect
-- Available by tapping the chart icon
-
-📥 Import
-- Supports CSV and Excel format (.xlsx)
-- Columns: front (question), back (answer)
-- Delimiter is automatically detected (comma, semicolon, tab)`,
     category: "ios",
     icon: "🧠",
     iconImage: "/icons/flashcard-study.png",
@@ -219,78 +87,28 @@ ThinkDeck Study is an app for studying flashcards using the spaced repetition sy
   {
     id: "drinktrack",
     name: "MyBarTrack",
-    description: "Aplicación para seguimiento de consumo de bebidas. Controla tu hidratación o consumo de alcohol con facilidad.",
-    descriptionEn: "Application to track your daily beverage consumption. Control your hydration or alcohol intake with ease.",
+    description: "Contador de bebidas con control de gasto: apunta lo que tomas con un toque, consulta el historial y vigila tu presupuesto. Con widget y Apple Watch.",
+    descriptionEn: "Drink counter with spending control: log what you have with one tap, check your history and keep an eye on your budget. With widget and Apple Watch.",
     features: [
-      "Registro rápido de bebidas consumidas",
-      "Historial de consumiciones",
-      "Personalización de bebidas (nombre, emoji, precio)",
-      "Datos almacenados exclusivamente en tu dispositivo",
-      "Sin recopilación de datos personales",
-      "Exportación e importación de datos"
+      "Registro rápido de bebidas con un toque",
+      "Gasto acumulado y presupuesto semanal o mensual",
+      "Historial con gráficas de 7, 30 o 90 días",
+      "Bebidas personalizables (nombre, emoji, precio, categoría)",
+      "Widget de pantalla de inicio y app para Apple Watch",
+      "Exportación a CSV e importación de bebidas",
+      "Datos solo en tu dispositivo; analítica anónima opcional"
     ],
     featuresEn: [
-      "Quick logging of consumed beverages",
-      "Consumption history",
-      "Beverage customization (name, emoji, price)",
-      "Data stored exclusively on your device",
-      "No personal data collection",
-      "Data export and import"
+      "Quick drink logging with one tap",
+      "Running spending and a weekly or monthly budget",
+      "History with 7, 30 or 90-day charts",
+      "Customisable drinks (name, emoji, price, category)",
+      "Home Screen widget and Apple Watch app",
+      "CSV export and drink import",
+      "Data stays on your device; optional anonymous analytics"
     ],
-    howItWorks: "1. Añade las bebidas que consumes desde el botón +\n2. Cada entrada guarda: nombre, emoji, precio y fecha/hora\n3. Consulta el historial para ver tu consumo\n4. Configura tus preferencias en Ajustes\n5. Exporta tus datos cuando lo necesites",
-    howItWorksEn: "1. Add the beverages you consume from the + button\n2. Each entry saves: name, emoji, price and date/time\n3. Check the history to see your consumption\n4. Configure your preferences in Settings\n5. Export your data when needed",
-    howToUse: `🎯 ¿Qué es MyBarTrack?
-MyBarTrack es una aplicación para rastrear tu consumo de bebidas diarias (cervezas, refrescos, agua, etc.) y controlar cuánto gastas.
-
-📱 Pantalla Principal
-- Lista de bebidas: Muestra todas las bebidas disponibles con su emoji
-- Contador: Cada bebida tiene botones + y - para añadir o quitar unidades
-- Totales superiores: Muestra el total de bebidas consumidas hoy y el coste total
-- Botón "+": Añadir una consumición personalizada
-
-🔄 Funciones de cada bebida
-- + : Añadir una unidad
-- - : Quitar una unidad  
-- Reset : Borrar todas las consumiciones de esa bebida hoy
-
-📊 Historial
-Accesible desde el botón de historial en la barra superior:
-- Vista de hoy: Consumiciones del día actual
-- Ayer: Consumiciones del día anterior
-- Últimos 7 días: Resumen semanal
-- Gráficos: Visualización de consumo y gasto por día
-
-⚙️ Gestionar Bebidas
-Desde el historial puedes acceder a:
-- Añadir nuevas bebidas personalizadas
-- Editar nombre, emoji, precio y categoría
-- Eliminar bebidas personalizadas`,
-    howToUseEn: `🎯 What is DrinkTrack?
-DrinkTrack is an app to track your daily beverage consumption (beers, soft drinks, water, etc.) and control how much you spend.
-
-📱 Main Screen
-- Beverage list: Shows all available beverages with their emoji
-- Counter: Each beverage has + and - buttons to add or remove units
-- Top totals: Shows total beverages consumed today and total cost
-- "+" Button: Add a custom consumption
-
-🔄 Each Beverage Functions
-- + : Add one unit
-- - : Remove one unit  
-- Reset: Clear all consumptions of that beverage today
-
-📊 History
-Accessible from the history button in the top bar:
-- Today's view: Consumptions for the current day
-- Yesterday: Consumptions from the previous day
-- Last 7 days: Weekly summary
-- Charts: Visualization of consumption and spending per day
-
-⚙️ Manage Beverages
-From history you can access:
-- Add new custom beverages
-- Edit name, emoji, price and category
-- Delete custom beverages`,
+    howItWorks: "1. Toca + en una bebida para apuntarla, o usa Añadir Consumición para indicar cantidad, precio y notas\n2. Consulta el contador y el coste en la pantalla principal\n3. Define un presupuesto en Ajustes y sigue su barra de progreso\n4. Revisa el historial y las gráficas\n5. Exporta tu historial a CSV cuando lo necesites",
+    howItWorksEn: "1. Tap + on a drink to log it, or use Add Drink to set quantity, price and notes\n2. Check the counter and cost on the main screen\n3. Set a budget in Settings and follow its progress bar\n4. Review the history and charts\n5. Export your history to CSV when needed",
     screenshots: [
       "/images/drinktrack/Simulator Screenshot - iPhone 17 Pro Max - 2026-02-16 at 11.32.34.png",
       "/images/drinktrack/Simulator Screenshot - iPhone 17 Pro Max - 2026-02-16 at 11.33.05.png",
@@ -306,17 +124,19 @@ From history you can access:
   {
     id: "magicmousebattery",
     name: "MyMouseBattery",
-    description: "Menu bar app para monitorear la batería del Magic Mouse y Magic Keyboard en macOS.",
-    descriptionEn: "Menu bar app to monitor your Magic Mouse and Magic Keyboard battery on macOS.",
+    description: "App de barra de menú para vigilar la batería de tu Magic Mouse, Magic Keyboard y Magic Trackpad en macOS.",
+    descriptionEn: "Menu bar app to monitor your Magic Mouse, Magic Keyboard and Magic Trackpad battery on macOS.",
     features: [
-      "Monitoreo en tiempo real de la batería del Magic Mouse y Magic Keyboard",
+      "Monitoreo de la batería del Magic Mouse, Magic Keyboard y Magic Trackpad (se actualiza cada 1-5 minutos)",
+      "Historial de batería de los últimos 7 días por dispositivo",
       "Menú bar con indicador visual del nivel de batería",
       "Notificaciones cuando la batería baja del umbral configurado",
       "Configuración editable del umbral de notificación (5-50%)",
       "Diseño minimalista y eficiente"
     ],
     featuresEn: [
-      "Real-time battery monitoring for Magic Mouse and Magic Keyboard",
+      "Battery monitoring for Magic Mouse, Magic Keyboard and Magic Trackpad (refreshes every 1-5 minutes)",
+      "7-day battery history per device",
       "Menu bar with visual battery level indicator",
       "Notifications when battery drops below configured threshold",
       "Editable notification threshold setting (5-50%)",
@@ -324,8 +144,6 @@ From history you can access:
     ],
     howItWorks: "1. Descarga e instala la app en tu Mac\n2. La app aparece como un icono en la barra de menú\n3. Haz clic para ver los niveles de batería de los dispositivos conectados\n4. Configura el umbral de notificación en Configuración > Notificación de batería baja",
     howItWorksEn: "1. Download and install the app on your Mac\n2. The app appears as an icon in the menu bar\n3. Click to see battery levels of connected devices\n4. Configure the notification threshold in Settings > Low battery notification",
-    howToUse: "- La app aparece como un icono en la barra de menú\n- Haz clic para ver los niveles de batería de los dispositivos conectados\n- Configura el umbral de notificación en Configuración > Notificación de batería baja\n- El umbral de notificación se puede ajustar entre 5% y 50%",
-    howToUseEn: "- The app appears as an icon in the menu bar\n- Click to see battery levels of connected devices\n- Configure the notification threshold in Settings > Low battery notification\n- The notification threshold can be adjusted between 5% and 50%",
     screenshots: [
       "/images/mymousebattery/image1.png",
       "/images/mymousebattery/image2.png",
@@ -339,21 +157,21 @@ From history you can access:
   {
     id: "daily-quotes",
     name: "Daily Quotes",
-    description: "Página web con citas diarias del día con estética retro de Windows 95/98 WordPad.",
-    descriptionEn: "Daily quotes website with Windows 95/98 WordPad retro aesthetic.",
+    description: "Web con una cita del día dentro de una ventana estilo WordPad de Windows 95/98. La cita cambia cada día según la fecha y se guarda en Notion.",
+    descriptionEn: "Website showing a daily quote in a Windows 95/98 WordPad-style window. The quote changes each day based on the date and is saved to Notion.",
     features: [
-      "Diseño retro estilo Windows 95/98",
-      "Citas diarias automáticas",
-      "Estética WordPad de los 90s",
-      "Despliegue automático en Vercel",
-      "Tecnología web simple (HTML, CSS, JS)"
+      "Diseño retro Windows 95/98 / WordPad",
+      "Cita diaria según la fecha (sin azar)",
+      "Español o inglés según tu navegador",
+      "Guarda la cita del día en Notion",
+      "HTML, CSS y JavaScript simples"
     ],
     featuresEn: [
-      "Retro Windows 95/98 design",
-      "Automatic daily quotes",
-      "90s WordPad aesthetic",
-      "Automatic deployment on Vercel",
-      "Simple web technology (HTML, CSS, JS)"
+      "Retro Windows 95/98 WordPad design",
+      "Daily quote based on the date (no randomness)",
+      "Spanish or English from your browser language",
+      "Saves the quote of the day to Notion",
+      "Plain HTML, CSS and JavaScript"
     ],
     howItWorks: "1. Abre la web en tu navegador\n2. La cita del día se muestra automáticamente\n3. Disfruta de una nueva cita cada día\n4. Siéntete libre de añadir más citas al código fuente",
     howItWorksEn: "1. Open the website in your browser\n2. The quote of the day is displayed automatically\n3. Enjoy a new quote every day\n4. Feel free to add more quotes to the source code",
@@ -367,20 +185,20 @@ From history you can access:
     description: "OpenClaw skill para controlar Apple Music en macOS usando AppleScript.",
     descriptionEn: "OpenClaw skill to control Apple Music on macOS using AppleScript.",
     features: [
-      "Play/Pause/Stop",
-      "Next/Previous track",
-      "Obtener información de la pista actual",
-      "Control de volumen",
-      "Buscar y reproducir canciones",
-      "Reproducir playlists"
+      "Reproducir, pausar y alternar (play/pause/toggle)",
+      "Siguiente y anterior",
+      "Información de la pista actual (título, artista, álbum, duración)",
+      "Volumen del sistema (subir, bajar, fijar 0-100)",
+      "Reproducir playlists de usuario por nombre",
+      "Búsqueda y reproducción por texto (experimental)"
     ],
     featuresEn: [
-      "Play/Pause/Stop",
-      "Next/Previous track",
-      "Get current track info",
-      "Volume control",
-      "Search and play songs",
-      "Play playlists"
+      "Play, pause and toggle",
+      "Next and previous track",
+      "Current track info (title, artist, album, duration)",
+      "System volume (up, down, set 0-100)",
+      "Play user playlists by name",
+      "Search and play by text (experimental)"
     ],
     howItWorks: "1. Instala el skill via OpenClaw: openclaw skills add https://github.com/polidisio/apple-music-cli\n2. Usa los comandos: apple-music play, pause, next, status, volume up, etc.",
     howItWorksEn: "1. Install the skill via OpenClaw: openclaw skills add https://github.com/polidisio/apple-music-cli\n2. Use commands: apple-music play, pause, next, status, volume up, etc.",
@@ -409,58 +227,6 @@ From history you can access:
     ],
     howItWorks: "1. Abre la app y concede permisos de HealthKit\n2. La app lee automáticamente tus workouts de Apple Health\n3. Los datos se guardan en SQLite local\n4. Sincroniza entre dispositivos usando iCloud privado\n5. Exporta tus datos a JSON cuando lo necesites",
     howItWorksEn: "1. Open the app and grant HealthKit permissions\n2. The app automatically reads your workouts from Apple Health\n3. Data is stored in local SQLite\n4. Sync between devices using private iCloud\n5. Export your data to JSON when needed",
-    howToUse: `📱 ¿Qué es SyncTrackers?
-SyncTrackers es una app para iOS que extrae tus datos de entrenamiento de Apple Health y los sincroniza entre tus dispositivos.
-
-📊 Dashboard
-- Verás un resumen de tu actividad reciente
-- Estadísticas de workouts: distancia, duración, calorías
-- Tu racha de entrenamiento actual
-
-🏃 Sincronizar Workouts
-- La app lee automáticamente de Apple Health
-- Compatible con múltiples tipos: running, cycling, swimming, etc.
-- Datos almacenados de forma privada en tu dispositivo
-
-☁️ Sincronización con iCloud
-- Tus datos se sincronizan entre iPhone y Mac
-- Sincronización automática al abrir la app
-- También puedes pulsar el botón de sincronizar manualmente
-- Funciona en background cada N horas
-
-📤 Exportar Datos
-- Exporta todos tus workouts a JSON
-- Comparte o guarda el archivo como prefieras
-
-⚙️ Configuración
-- Activa/desactiva la sincronización automática
-- Configura el intervalo de sincronización en background`,
-    howToUseEn: `📱 What is SyncTrackers?
-SyncTrackers is an iOS app that extracts your Apple Health workout data and syncs it across your devices.
-
-📊 Dashboard
-- See a summary of your recent activity
-- Workout statistics: distance, duration, calories
-- Your current training streak
-
-🏃 Syncing Workouts
-- The app automatically reads from Apple Health
-- Compatible with multiple types: running, cycling, swimming, etc.
-- Data stored privately on your device
-
-☁️ iCloud Sync
-- Your data syncs between iPhone and Mac
-- Auto sync when opening the app
-- You can also manually tap the sync button
-- Works in background every N hours
-
-📤 Export Data
-- Export all your workouts to JSON
-- Share or save the file as you prefer
-
-⚙️ Settings
-- Enable/disable auto sync
-- Configure the background sync interval`,
     category: "ios",
     icon: "💪",
     iconImage: "/icons/SyncTrackers.jpg",
@@ -494,54 +260,6 @@ SyncTrackers is an iOS app that extracts your Apple Health workout data and sync
     ],
     howItWorks: "1. Abre la app: no hay registro ni cuentas\n2. Busca un título y la app rellena portada y datos, o añádelo a mano\n3. Actualiza tu progreso, fechas, nota y reseña\n4. Consulta tus estadísticas y filtra tu biblioteca\n5. Tus datos se guardan en el dispositivo y se sincronizan con tu iCloud privado",
     howItWorksEn: "1. Open the app: no sign-up or accounts\n2. Search a title and the app fills in cover and details, or add it manually\n3. Update your progress, dates, rating and review\n4. Check your statistics and filter your library\n5. Data is stored on your device and synced via your private iCloud",
-    howToUse: `📚 ¿Qué es TrackHobbies?
-Un diario personal de ocio para iPhone y iPad: libros, series y juegos en un solo lugar.
-
-➕ Añadir títulos
-- Busca por título y se rellenan portada y descripción
-- ¿No aparece? Añádelo a mano con estado, páginas, temporadas, horas y portada propia
-
-📈 Seguir el progreso
-- Libros: página actual y total, o porcentaje
-- Series: temporada y episodio actuales
-- Juegos: horas jugadas
-- Fechas de inicio y fin
-
-⭐ Puntuar
-- Nota de 0 a 5 con saltos de cuarto de estrella
-- Reseña personal para cada título
-- Filtra por estado, nota o fecha, y busca por título o autor
-
-📊 Estadísticas
-- Elementos por tipo y estado, páginas leídas, horas jugadas, nota media y tus mejor valorados
-
-☁️ Tus datos
-- Sincronización con iCloud entre iPhone y iPad
-- Importa desde Goodreads (CSV), exporta a CSV y haz copias JSON`,
-    howToUseEn: `📚 What is TrackHobbies?
-A personal leisure journal for iPhone and iPad: books, series and games in one place.
-
-➕ Adding titles
-- Search by title and cover and description are filled in
-- Not found? Add it manually with status, pages, seasons, hours and your own cover
-
-📈 Tracking progress
-- Books: current and total page, or percentage
-- Series: current season and episode
-- Games: hours played
-- Start and end dates
-
-⭐ Rating
-- 0 to 5 rating in quarter-star steps
-- Personal review for each title
-- Filter by status, rating or date, and search by title or author
-
-📊 Statistics
-- Items by type and status, pages read, hours played, average rating and your top rated
-
-☁️ Your data
-- iCloud sync between iPhone and iPad
-- Import from Goodreads (CSV), export to CSV and make JSON backups`,
     screenshots: [
       "/images/trackhobbies/01_library.png",
       "/images/trackhobbies/02_search.png",
@@ -561,69 +279,27 @@ A personal leisure journal for iPhone and iPad: books, series and games in one p
     description: "Reproductor para tus propias fuentes: listas IPTV (M3U/M3U8), cuentas Xtream y la biblioteca de tu NAS o servidor de medios. Para iPhone, iPad y Apple TV. Sin cuentas ni analíticas.",
     descriptionEn: "A player for your own sources: IPTV playlists (M3U/M3U8), Xtream accounts and the library on your NAS or media server. For iPhone, iPad and Apple TV. No accounts, no analytics.",
     features: [
-      "Listas M3U y M3U8 por dirección web o archivo, y cuentas Xtream Codes",
+      "Listas M3U y M3U8 por dirección web o archivo (en Apple TV, solo por dirección), y cuentas Xtream Codes",
       "Canales por grupos, búsqueda y favoritos",
       "Películas y series de Xtream con categorías, temporadas y continuar viendo",
       "Biblioteca propia por DLNA, SMB, NFS o WebDAV, o con tu servidor Jellyfin o Plex",
       "Series agrupadas por temporada a partir de los nombres de archivos y carpetas",
       "Carátulas generadas automáticamente, sin depender de servicios externos",
-      "Selección de audio y subtítulos, con soporte para MKV y muchos formatos",
+      "Selección de audio y subtítulos con el motor VLC, con soporte para MKV y muchos formatos",
       "Contraseñas en el llavero de Apple; sin cuentas, publicidad ni analíticas"
     ],
     featuresEn: [
-      "M3U and M3U8 playlists by web address or file, and Xtream Codes accounts",
+      "M3U and M3U8 playlists by web address or file (on Apple TV, web address only), and Xtream Codes accounts",
       "Channels by group, search and favorites",
       "Xtream movies and series with categories, seasons and continue watching",
       "Your own library over DLNA, SMB, NFS or WebDAV, or with your Jellyfin or Plex server",
       "Series grouped by season from file and folder names",
       "Automatically generated artwork, with no reliance on external services",
-      "Audio and subtitle selection, with MKV and many other formats supported",
+      "Audio and subtitle selection with the VLC engine, with MKV and many other formats supported",
       "Passwords in the Apple Keychain; no accounts, ads or analytics"
     ],
-    howItWorks: "1. Abre la app: no hay registro ni cuentas\n2. Añade una fuente: una lista IPTV o un servidor de medios de tu red\n3. Elige las carpetas de tu NAS que quieres explorar\n4. Navega por canales, películas y series y pulsa para reproducir\n5. Tus datos se quedan en tu dispositivo",
-    howItWorksEn: "1. Open the app: no sign-up or accounts\n2. Add a source: an IPTV playlist or a media server on your network\n3. Choose the folders on your NAS you want to browse\n4. Browse channels, movies and series and tap to play\n5. Your data stays on your device",
-    howToUse: `Qué es StreamAura
-Un reproductor para iPhone, iPad y Apple TV que reúne tus listas IPTV y la biblioteca de tu NAS en un solo sitio. StreamAura no incluye ni ofrece canales ni contenido: tú añades tus propias fuentes.
-
-Añadir una lista IPTV
-- Fuentes > + > Añadir lista IPTV
-- Pega la dirección de una lista M3U o M3U8, elige un archivo o introduce los datos de tu cuenta Xtream
-
-Añadir tu biblioteca
-- Fuentes > + > Añadir servidor de medios (NAS)
-- Elige el tipo: DLNA, SMB, NFS, WebDAV, Jellyfin o Plex
-- Para SMB, NFS y WebDAV, usa "Elegir carpetas" para marcar qué carpetas explorar
-- Las series se agrupan por temporada y episodio
-
-Reproducir
-- Pulsa un canal, película o episodio
-- Cambia de pista de audio o de subtítulos desde el reproductor
-- En Apple TV, desliza hacia arriba en el mando para abrir las pistas
-
-Privacidad
-- Sin cuentas, publicidad ni analíticas
-- Las contraseñas se guardan en el llavero de Apple`,
-    howToUseEn: `What is StreamAura
-A player for iPhone, iPad and Apple TV that brings your IPTV playlists and your NAS library together in one place. StreamAura does not include or provide any channels or content: you add your own sources.
-
-Add an IPTV playlist
-- Sources > + > Add IPTV playlist
-- Paste the address of an M3U or M3U8 playlist, pick a file, or enter your Xtream account details
-
-Add your library
-- Sources > + > Add media server (NAS)
-- Choose the type: DLNA, SMB, NFS, WebDAV, Jellyfin or Plex
-- For SMB, NFS and WebDAV, use "Choose folders" to pick which folders to browse
-- Series are grouped by season and episode
-
-Play
-- Tap a channel, movie or episode
-- Switch audio track or subtitles from the player
-- On Apple TV, swipe up on the remote to open the tracks
-
-Privacy
-- No accounts, ads or analytics
-- Passwords are stored in the Apple Keychain`,
+    howItWorks: "1. Abre la app: no hay registro ni cuentas\n2. Añade una fuente: una lista IPTV o un servidor de medios de tu red\n3. En SMB, NFS o WebDAV, elige las carpetas de tu NAS que quieres explorar\n4. Navega por canales, películas y series y pulsa para reproducir\n5. Tus datos se quedan en tu dispositivo",
+    howItWorksEn: "1. Open the app: no sign-up or accounts\n2. Add a source: an IPTV playlist or a media server on your network\n3. For SMB, NFS or WebDAV, choose the folders on your NAS you want to browse\n4. Browse channels, movies and series and tap to play\n5. Your data stays on your device",
     screenshots: [
       "/images/streamaura/es-1.jpg",
       "/images/streamaura/es-2.jpg",
@@ -652,7 +328,7 @@ Privacy
       "Varias pestañas: mantén varios servidores abiertos a la vez",
       "Búsqueda en el historial (scrollback) de la terminal",
       "Servidores guardados: conecta con un toque",
-      "Acceso con contraseña o con clave privada (ed25519 y ECDSA)",
+      "Acceso con contraseña o clave privada (ed25519 OpenSSH o ECDSA PEM, sin passphrase)",
       "Verificación de la clave del servidor como PuTTY: confianza en el primer uso y aviso si cambia",
       "Contraseñas y claves solo en el llavero de Apple; sin cuentas, publicidad ni analíticas"
     ],
@@ -662,74 +338,12 @@ Privacy
       "Multiple tabs: keep several servers open at once",
       "Search the terminal scrollback",
       "Saved servers: connect with one tap",
-      "Sign in with a password or a private key (ed25519 and ECDSA)",
+      "Sign in with a password or a private key (OpenSSH ed25519 or PEM ECDSA, no passphrase)",
       "Host key verification like PuTTY: trust on first use, with a warning if it changes",
       "Passwords and keys only in the Apple Keychain; no accounts, ads or analytics"
     ],
     howItWorks: "1. Abre la app: no hay registro ni cuentas\n2. Pulsa + y añade un servidor: host, puerto, usuario y contraseña (opcional con clave)\n3. Opcional: importa tu clave privada SSH\n4. Toca el servidor para conectar y confirma la huella la primera vez\n5. Usa la terminal; abre más pestañas con +\n6. Tus datos se quedan en tu dispositivo",
     howItWorksEn: "1. Open the app: no sign-up or accounts\n2. Tap + and add a server: host, port, user and password (optional with a key)\n3. Optional: import your SSH private key\n4. Tap the server to connect and confirm the fingerprint the first time\n5. Use the terminal; open more tabs with +\n6. Your data stays on your device",
-    howToUse: `Qué es NodusCli
-Un cliente SSH para iPhone y iPad pensado para quien vive en la terminal: una terminal real, no una vista web.
-
-Añadir un servidor
-- Pulsa + en la pantalla principal
-- Introduce nombre, host, puerto (22 por defecto), usuario y contraseña
-- La contraseña es opcional si usas una clave privada
-
-Usar una clave privada
-- Clave SSH > Importar clave privada
-- Se admiten claves OpenSSH ed25519 y ECDSA (P-256, P-384, P-521) en PEM
-- Las claves RSA y las protegidas con passphrase aún no se admiten: la app te indica cómo convertirlas (por ejemplo, con ssh-keygen)
-
-Conectar
-- Toca un servidor
-- La primera vez verás la huella SHA256 de su clave: confírmala si es la correcta
-- Si la clave cambia, NodusCli te avisa antes de conectar
-
-En la terminal
-- Barra superior de teclas: Esc, Ctrl, Tab, flechas y F1-F12
-- Pestañas: + para abrir otro servidor, × para cerrar
-- Lupa: busca en el historial de la terminal
-- Ajustes: tamaño de letra y tema de color
-
-Red local
-- Para conectar a servidores de tu casa u oficina, iOS pedirá permiso de Red local la primera vez: pulsa Permitir
-- Si lo denegaste, actívalo en Ajustes > NodusCli > Red local
-
-Privacidad
-- Sin cuentas, publicidad ni analíticas
-- Contraseñas y claves en el llavero de Apple`,
-    howToUseEn: `What is NodusCli
-An SSH client for iPhone and iPad built for people who live in the terminal: a real terminal, not a web view.
-
-Add a server
-- Tap + on the main screen
-- Enter name, host, port (22 by default), user and password
-- The password is optional if you use a private key
-
-Use a private key
-- SSH key > Import private key
-- OpenSSH ed25519 and ECDSA (P-256, P-384, P-521) keys in PEM are supported
-- RSA keys and passphrase-protected keys are not supported yet: the app tells you how to convert them (for example, with ssh-keygen)
-
-Connect
-- Tap a server
-- The first time you will see the SHA256 fingerprint of its key: confirm it if it is the right one
-- If the key changes, NodusCli warns you before connecting
-
-In the terminal
-- Top key bar: Esc, Ctrl, Tab, arrows and F1-F12
-- Tabs: + to open another server, × to close
-- Magnifier: search the terminal scrollback
-- Settings: font size and color theme
-
-Local network
-- To connect to servers in your home or office, iOS will ask for Local Network permission the first time: tap Allow
-- If you denied it, enable it in Settings > NodusCli > Local Network
-
-Privacy
-- No accounts, ads or analytics
-- Passwords and keys in the Apple Keychain`,
     category: "ios",
     icon: "💻",
     iconImage: "/icons/NodusCli.png",
@@ -738,90 +352,30 @@ Privacy
   {
     id: "filesizer",
     name: "FileSizer",
-    description: "App nativa macOS para encontrar archivos grandes en tu disco. Escaneo async, historial de búsquedas y exportación a CSV o JSON.",
-    descriptionEn: "Native macOS app to find large files on your disk. Async scanning, scan history, and export to CSV or JSON.",
+    description: "App nativa macOS para encontrar los archivos más grandes de una carpeta o volumen. Escaneo en segundo plano con filtros de tamaño y extensión, historial de ajustes y exportación a CSV o JSON. Interfaz solo en inglés.",
+    descriptionEn: "Native macOS app to find the largest files in a folder or volume. Background scanning with size and extension filters, saved scan settings, and export to CSV or JSON. English-only interface.",
     features: [
-      "Interfaz SwiftUI moderna con NavigationSplitView",
-      "Escaneo async que no bloquea la interfaz",
-      "Gestión de archivos: mover a Papelera, revelar en Finder",
-      "Historial de escaneos para repetir búsquedas anteriores",
-      "Exportación de resultados a CSV o JSON",
-      "Lectura y escritura de comentarios Finder",
-      "Lista de exclusión para carpetas del sistema",
-      "Ready para Mac App Store"
+      "Interfaz SwiftUI con tres columnas: configuración, resultados y detalle",
+      "Escaneo en segundo plano con tamaño mínimo, extensiones y límite de resultados",
+      "Búsqueda instantánea y ordenación por nombre, tamaño o fecha",
+      "Mover a la Papelera, revelar en Finder y vista previa QuickLook",
+      "Historial de ajustes de escaneo para repetir búsquedas",
+      "Exportación a CSV o JSON",
+      "Exclusión automática de carpetas de caché y desarrollo",
+      "Sin red ni analíticas"
     ],
     featuresEn: [
-      "Modern SwiftUI interface with NavigationSplitView",
-      "Async scanning without blocking the UI",
-      "File management: move to Trash, reveal in Finder",
-      "Scan history to repeat previous searches",
-      "Export results to CSV or JSON",
-      "Read and write Finder comments",
-      "Exclusion list for system folders",
-      "Mac App Store ready"
+      "Three-column SwiftUI interface: configuration, results and detail",
+      "Background scanning with minimum size, extensions and result limit",
+      "Instant search and sorting by name, size or date",
+      "Move to Trash, reveal in Finder and QuickLook preview",
+      "Scan settings history to repeat searches",
+      "Export to CSV or JSON",
+      "Automatic exclusion of cache and developer folders",
+      "No network or analytics"
     ],
     howItWorks: "1. Selecciona una carpeta o volumen para escanear\n2. El escaneo analiza todos los archivos de forma async\n3. Ve los resultados ordenados por tamaño\n4. Gestiona archivos: mover a papelera, revelar en Finder\n5. Guarda el historial para repetir búsquedas\n6. Exporta los resultados a CSV o JSON",
     howItWorksEn: "1. Select a folder or volume to scan\n2. The scan analyzes all files asynchronously\n3. View results sorted by size\n4. Manage files: move to trash, reveal in Finder\n5. Save history to repeat searches\n6. Export results to CSV or JSON",
-    howToUse: `📁 ¿Qué es FileSizer?
-FileSizer es una aplicación macOS que te ayuda a encontrar archivos grandes en tu disco duro, ideal para liberar espacio o analizar el uso de almacenamiento.
-
-🔍 Escanear
-- Haz clic en "Select Folder" para elegir directorio
-- Selecciona un volumen completo o carpeta específica
-- Añade rutas a la lista de exclusión (carpetas sistema)
-- El progreso del escaneo se muestra en tiempo real
-
-📊 Ver Resultados
-- Archivos ordenados por tamaño (mayor primero)
-- Muestra ruta completa, tamaño y fecha modificación
-- Filtra por tipo de archivo o tamaño mínimo
-- Click derecho para acciones rápidas
-
-🗑️ Gestionar Archivos
-- Mover a Papelera: elimina el archivo seleccionado
-- Revelar en Finder: abre la ubicación del archivo
-- Leer/Escribir comentarios Finder
-- Copiar ruta al portapapeles
-
-📜 Historial
-- Guarda los últimos escaneos realizados
-- Repite un escaneo anterior con un clic
-- Elimina escaneos antigos del historial
-
-📤 Exportar
-- Exporta a CSV para abrir en Excel/Numbers
-- Exporta a JSON para procesar con scripts
-- Incluye todas las columnas: nombre, ruta, tamaño, fecha`,
-    howToUseEn: `📁 What is FileSizer?
-FileSizer is a macOS app that helps you find large files on your hard drive, ideal for freeing up space or analyzing storage usage.
-
-🔍 Scanning
-- Click "Select Folder" to choose a directory
-- Select a full volume or specific folder
-- Add paths to the exclusion list (system folders)
-- Scan progress is shown in real time
-
-📊 View Results
-- Files sorted by size (largest first)
-- Shows full path, size, and modification date
-- Filter by file type or minimum size
-- Right-click for quick actions
-
-🗑️ Manage Files
-- Move to Trash: deletes the selected file
-- Reveal in Finder: opens the file location
-- Read/Write Finder comments
-- Copy path to clipboard
-
-📜 History
-- Saves recent scans performed
-- Repeat a previous scan with one click
-- Delete old scans from history
-
-📤 Export
-- Export to CSV for Excel/Numbers
-- Export to JSON for script processing
-- Includes all columns: name, path, size, date`,
     category: "mac",
     icon: "📁",
     iconImage: "/icons/FileSizer.jpg",
@@ -836,82 +390,26 @@ FileSizer is a macOS app that helps you find large files on your hard drive, ide
   {
     id: "llmbox",
     name: "LLMBox",
-    description: "Chat interface para conectar con modelos AI locales como Ollama, Gemma, Qwen y más. Streaming en tiempo real, historial de conversaciones y selector de modelos.",
-    descriptionEn: "Chat interface to connect with local AI models like Ollama, Gemma, Qwen, and more. Real-time streaming, conversation history, and model selector.",
+    description: "Cliente de chat para tu servidor Ollama. Elige modelo, conversa y guarda el historial de tus conversaciones en el Mac. Solo habla con la URL que configures.",
+    descriptionEn: "Chat client for your Ollama server. Pick a model, chat, and keep your conversation history on your Mac. It only talks to the URL you configure.",
     features: [
-      "Conecta con servidores AI locales en tu red",
-      "Streaming de respuestas en tiempo real",
-      "Historial persistente de conversaciones",
-      "Cambio flexible entre diferentes modelos AI",
-      "Interfaz moderna inspirada en Apple Messages",
-      "Selector de modelos integrado"
+      "Conecta con tu servidor Ollama (red local o este Mac)",
+      "Selector de modelos leídos del servidor",
+      "Historial de conversaciones guardado en tu Mac",
+      "Renombrar, eliminar y exportar chats a JSON",
+      "Icono en la barra de menús con chats recientes",
+      "Sin cuentas ni analítica"
     ],
     featuresEn: [
-      "Connect to local AI servers on your network",
-      "Real-time streaming responses",
-      "Persistent conversation history",
-      "Flexible switching between different AI models",
-      "Modern interface inspired by Apple Messages",
-      "Built-in model selector"
+      "Connect to your Ollama server (local network or this Mac)",
+      "Model picker populated from the server",
+      "Conversation history stored on your Mac",
+      "Rename, delete and export chats to JSON",
+      "Menu bar icon with recent chats",
+      "No accounts, no analytics"
     ],
-    howItWorks: "1. Añade un servidor AI local (URL base, ej: http://localhost:11434)\n2. Selecciona el modelo que quieres usar\n3. Escribe tu mensaje y recibe respuestas en streaming\n4. Consulta el historial de conversaciones\n5. Cambia de modelo cuando quieras desde el selector",
-    howItWorksEn: "1. Add a local AI server (base URL, eg: http://localhost:11434)\n2. Select the model you want to use\n3. Write your message and receive streaming responses\n4. Check conversation history\n5. Switch models anytime from the selector",
-    howToUse: `🤖 ¿Qué es LLMBox?
-LLMBox es una interfaz de chat para conectar con modelos AI locales como Ollama, Gemma, Qwen y más. Tus datos nunca salen de tu red.
-
-🔗 Conectar Servidor
-- Añade la URL base del servidor (ej: http://localhost:11434 para Ollama)
-- El servidor debe estar accesible en tu red
-- Prueba la conexión antes de guardar
-
-💬 Chatear
-- Escribe tu mensaje en el campo de texto
-- Presiona Enter o clic en Send para enviar
-- Las respuestas aparecen en streaming en tiempo real
-- El modelo responde de forma contextual
-
-📜 Historial
-- Las conversaciones se guardan automáticamente
-- Selecciona una conversación anterior para continuar
-- Elimina conversaciones que ya no necesites
-
-🔄 Cambiar Modelo
-- Usa el selector de modelos en la barra superior
-- Cambia entre diferentes modelos según necesidad
-- Cada modelo tiene sus propias características
-
-⚙️ Configuración
-- Edita o elimina servidores guardados
-- Gestiona tus conversaciones
-- Ajusta preferencias de la interfaz`,
-    howToUseEn: `🤖 What is LLMBox?
-LLMBox is a chat interface to connect with local AI models like Ollama, Gemma, Qwen, and more. Your data never leaves your network.
-
-🔗 Connect Server
-- Add the base URL of the server (eg: http://localhost:11434 for Ollama)
-- The server must be accessible on your network
-- Test the connection before saving
-
-💬 Chat
-- Write your message in the text field
-- Press Enter or click Send to submit
-- Responses appear in real-time streaming
-- The model responds contextually
-
-📜 History
-- Conversations are saved automatically
-- Select a previous conversation to continue
-- Delete conversations you no longer need
-
-🔄 Switch Model
-- Use the model selector in the top bar
-- Switch between different models as needed
-- Each model has its own characteristics
-
-⚙️ Settings
-- Edit or delete saved servers
-- Manage your conversations
-- Adjust interface preferences`,
+    howItWorks: "1. En Settings escribe la URL de Ollama y pulsa Reconnect\n2. Elige el modelo\n3. Escribe y espera la respuesta\n4. Renombra, elimina o exporta tus chats",
+    howItWorksEn: "1. In Settings type your Ollama URL and tap Reconnect\n2. Pick the model\n3. Type and wait for the reply\n4. Rename, delete or export your chats",
     category: "mac",
     icon: "🤖",
     iconImage: "/icons/LLMBox.png",
@@ -925,92 +423,30 @@ LLMBox is a chat interface to connect with local AI models like Ollama, Gemma, Q
   {
     id: "qiresizer",
     name: "QIResizer",
-    description: "Redimensiona imágenes macOS con calidad y simplicidad. Soporta PNG, JPG y HEIC con controles avanzados de formato y calidad.",
-    descriptionEn: "macOS image resizer with quality and simplicity. Supports PNG, JPG and HEIC with advanced format and quality controls.",
+    description: "Redimensiona imágenes por lotes en macOS con presets de ancho y conversión a JPEG, PNG o HEIC. Interfaz solo en inglés.",
+    descriptionEn: "Batch image resizer for macOS with width presets and conversion to JPEG, PNG or HEIC. English-only interface.",
     features: [
-      "Drag & drop de imágenes",
-      "Presets: 1080p, 720p, 480p y custom",
-      "Bloqueo de aspect ratio",
-      "Formatos: JPEG, PNG, HEIC",
-      "Calidad ajustable para JPEG/HEIC",
-      "Nombre de archivo personalizado",
-      "Temas: Claro, Oscuro, Sistema",
-      "Estadísticas de ahorro de espacio"
+      "Arrastra y suelta o Browse Files, varias imágenes a la vez",
+      "11 presets de ancho (480p a 4K, smartphone, tablet, escritorio) y ancho personalizado",
+      "Bloqueo de proporción (Lock Aspect Ratio)",
+      "Salida JPEG, PNG o HEIC",
+      "Calidad ajustable (10-100%) para JPEG/HEIC",
+      "Nombre personalizado y carpeta de destino a elegir",
+      "Cancelar el lote y estadísticas de ahorro",
+      "Tema Sistema, Claro u Oscuro"
     ],
     featuresEn: [
-      "Drag & drop images",
-      "Presets: 1080p, 720p, 480p and custom",
-      "Aspect ratio lock",
-      "Formats: JPEG, PNG, HEIC",
-      "Adjustable quality for JPEG/HEIC",
-      "Custom file name",
-      "Themes: Light, Dark, System",
-      "Space saving statistics"
+      "Drag & drop or Browse Files, multiple images at once",
+      "11 width presets (480p to 4K, smartphone, tablet, desktop) plus custom width",
+      "Aspect ratio lock (Lock Aspect Ratio)",
+      "JPEG, PNG or HEIC output",
+      "Adjustable quality (10-100%) for JPEG/HEIC",
+      "Custom file name and destination folder of your choice",
+      "Cancel a batch, and space-saving statistics",
+      "System, Light or Dark theme"
     ],
     howItWorks: "1. Arrastra imágenes al área de drop o usa Browse Files\n2. Selecciona un preset o introduce un ancho personalizado\n3. Elige el formato de salida (JPEG, PNG, HEIC)\n4. Ajusta la calidad si usas JPEG o HEIC\n5. Haz clic en Resize Now y elige la carpeta de destino\n6. Ve las estadísticas de ahorro de espacio",
     howItWorksEn: "1. Drag images to the drop area or use Browse Files\n2. Select a preset or enter a custom width\n3. Choose the output format (JPEG, PNG, HEIC)\n4. Adjust quality if using JPEG or HEIC\n5. Click Resize Now and choose the destination folder\n6. View space saving statistics",
-    howToUse: `🖼️ ¿Qué es QIResizer?
-QIResizer es una aplicación macOS para redimensionar imágenes de forma rápida y sencilla.
-
-📥 Importar Imágenes
-- Arrastra imágenes directamente al área de drop
-- O usa el botón "Browse Files" para seleccionarlas
-- Soporta PNG, JPG y HEIC
-- Añade varias imágenes a la vez
-
-📐 Dimensiones
-- Presets disponibles: 1080p, 720p, 480p
-- También puedes elegir "Custom" e introducir el ancho en píxeles
-- Activa "Lock Aspect Ratio" para mantener las proporciones
-
-📤 Formato de Salida
-- JPEG: ideal para fotos, con calidad ajustable (10-100%)
-- PNG: ideal para graphics, sin pérdida de calidad
-- HEIC: formato eficiente de Apple
-
-✏️ Nombre Personalizado
-- Añade un nombre personalizado para los archivos de salida
-- Los archivos se guardarán con el formato seleccionado
-
-🎨 Temas
-- Sistema: sigue la configuración de tu macOS
-- Claro: interfaz clara
-- Oscuro: interfaz oscura
-
-📊 Estadísticas
-- Después de redimensionar, ve el porcentaje de ahorro
-- Compara el tamaño original con el nuevo`,
-    howToUseEn: `🖼️ What is QIResizer?
-QIResizer is a macOS app for resizing images quickly and easily.
-
-📥 Import Images
-- Drag images directly to the drop area
-- Or use the "Browse Files" button to select them
-- Supports PNG, JPG and HEIC
-- Add multiple images at once
-
-📐 Dimensions
-- Available presets: 1080p, 720p, 480p
-- You can also choose "Custom" and enter the width in pixels
-- Enable "Lock Aspect Ratio" to maintain proportions
-
-📤 Output Format
-- JPEG: ideal for photos, with adjustable quality (10-100%)
-- PNG: ideal for graphics, lossless quality
-- HEIC: efficient Apple format
-
-✏️ Custom Name
-- Add a custom name for the output files
-- Files will be saved with the selected format
-
-🎨 Themes
-- System: follows your macOS settings
-- Light: light interface
-- Dark: dark interface
-
-📊 Statistics
-- After resizing, view the savings percentage
-- Compare original size with the new size`,
     category: "mac",
     icon: "🖼️",
     iconImage: "/icons/QIResizer.png",
@@ -1026,26 +462,26 @@ QIResizer is a macOS app for resizing images quickly and easily.
   {
     id: "exiftool-cli",
     name: "exiftool-cli",
-    description: "Herramienta CLI para extraer, exportar y eliminar metadatos EXIF de fotos. Soporta JPEG, PNG y TIFF. https://github.com/polidisio/exiftool-cli",
-    descriptionEn: "CLI tool to extract, export and remove EXIF metadata from photos. Supports JPEG, PNG and TIFF. https://github.com/polidisio/exiftool-cli",
+    description: "Herramienta de línea de comandos para ver, exportar (JSON o CSV) y eliminar metadatos EXIF de fotos JPEG y TIFF. Los PNG se aceptan para eliminar, pero no se leen. Todo en local.",
+    descriptionEn: "Command-line tool to view, export (JSON or CSV) and remove EXIF metadata from JPEG and TIFF photos. PNG is accepted for removal but not read. Everything runs locally.",
     features: [
-      "Modo interactivo con menús",
-      "Extraer metadatos EXIF (cámara, fecha, GPS)",
+      "Menú interactivo (exiftool-cli interactive)",
+      "Ver metadatos EXIF en tabla (cámara, fecha, GPS, exposición)",
       "Exportar a JSON o CSV",
-      "Eliminar metadatos manteniendo calidad",
-      "Procesamiento por lotes",
-      "Soporte recursivo de subcarpetas"
+      "Crear copias sin EXIF, con opción de conservar el GPS",
+      "Procesamiento por lotes de carpetas",
+      "Subcarpetas con --recursive"
     ],
     featuresEn: [
-      "Interactive menu mode",
-      "Extract EXIF metadata (camera, date, GPS)",
+      "Interactive menu (exiftool-cli interactive)",
+      "View EXIF metadata as a table (camera, date, GPS, exposure)",
       "Export to JSON or CSV",
-      "Remove metadata while preserving quality",
-      "Batch processing",
-      "Recursive subfolder support"
+      "Create copies without EXIF, with an option to keep GPS",
+      "Batch processing of folders",
+      "Subfolders with --recursive"
     ],
-    howItWorks: "1. Ejecuta exiftool-cli sin argumentos para modo interactivo\n2. Usa extract para ver metadatos en formato tabla\n3. Usa export para guardar en JSON o CSV\n4. Usa remove para eliminar metadatos\n5. Usa batch para procesar carpetas completas",
-    howItWorksEn: "1. Run exiftool-cli without arguments for interactive mode\n2. Use extract to view metadata in table format\n3. Use export to save to JSON or CSV\n4. Use remove to strip metadata\n5. Use batch to process entire folders",
+    howItWorks: "1. Ejecuta exiftool-cli interactive para el menú interactivo\n2. Usa extract para ver metadatos en formato tabla\n3. Usa export para guardar en JSON o CSV\n4. Usa remove para crear una copia sin metadatos\n5. Usa batch para procesar carpetas completas",
+    howItWorksEn: "1. Run exiftool-cli interactive for the interactive menu\n2. Use extract to view metadata in table format\n3. Use export to save to JSON or CSV\n4. Use remove to create a copy without metadata\n5. Use batch to process entire folders",
     category: "desarrollo",
     icon: "🛠️",
     website: "https://github.com/polidisio/exiftool-cli",
